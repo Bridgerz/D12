@@ -1,30 +1,46 @@
 ﻿/// Experience.cs
-/// D12 team
+/// D12 Team
+using System;
 /// <summary>
 /// Experience management system for a character
 /// </summary>
 public class Experience
 {
     /// <summary>
-    /// Default starting point value
+    /// Internal experience point count
     /// </summary>
-    public readonly int STARTING_EXP_VAL = 24;
+    private int points;
+
+    /// <summary>
+    /// Current experience points character holds
+    /// </summary>
+    public int Points {
+        get
+        {
+            return points;
+        }
+        set
+        {
+            if (value < 0) throw new ArgumentOutOfRangeException("Value must be greater than or equal to 0.");
+            points = value;
+        }
+    }
 
     /// <summary>
     /// Constructor: Initializes experience points to default value
     /// </summary>
-    public Experience()
+    public Experience ()
     {
-        Points = STARTING_EXP_VAL;
+        points = Constants.STARTING_EXP_VAL;
     }
 
     /// <summary>
-    /// Constructor: Initializes experience points to parameter
+    /// Constructor: Initializes experience points from parameter
     /// </summary>
     /// <param name="initialValue">Starting experience points</param>
     public Experience (int initialValue)
     {
-        Points = initialValue;
+        points = initialValue;
     }
 
     /// <summary>
@@ -32,10 +48,10 @@ public class Experience
     /// </summary>
     /// <param name="val">Deduction value</param>
     /// <returns>If deduction was successful</returns>
-    public bool Deduct(int val)
+    public bool Deduct (int val)
     {
-        if (val < 0 || val > Points) return false;
-        Points -= val;
+        if (val < 0 || val > points) return false;
+        points -= val;
         return true;
     }
 
@@ -45,11 +61,6 @@ public class Experience
     /// <param name="val">Addition value</param>
     public void Add (int val)
     {
-        Points += val;
+        points += val;
     }
-
-    /// <summary>
-    /// Current experience points character holds
-    /// </summary>
-    public int Points { get; set; }
 }
