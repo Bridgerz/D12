@@ -1,12 +1,13 @@
 ﻿/// Wallet.cs
 /// D12 Team
+
 using System;
+
 /// <summary>
-/// Currency management system for a character
+/// Currency management system for a character.
 /// </summary>
 public class Wallet
 {
-
     /// <summary>
     /// Internal bits count
     /// </summary>
@@ -86,9 +87,7 @@ public class Wallet
     public bool Deduct(int amount)
     {
         var balance = GetBalance();
-        if (bits > balance) return false;
-
-        balance -= amount;
+        if (amount > balance) return false;
 
         // Can transaction be covered by the bits
         if(amount <= bits)
@@ -114,5 +113,32 @@ public class Wallet
         return true;
     }
 
+    /// <summary>
+    /// Add bits to the character's wallet
+    /// </summary>
+    /// <param name="amount">Amount of bits to be added</param>
+    public void AddBits(int amount)
+    {
+        bits += amount;
+    }
 
+    /// <summary>
+    /// Add bars to the character's wallet
+    /// </summary>
+    /// <param name="amount">Amount of bars to be added</param>
+    public void AddBars(int amount)
+    {
+        bars += amount;
+    }
+
+    /// <summary>
+    /// Add a combination of bits and bars to the character's wallet
+    /// </summary>
+    /// <param name="bitAmount">Amount of bits to be added</param>
+    /// <param name="barAmount">Amount of bars to be added</param>
+    public void AddAmount(int bitAmount, int barAmount)
+    {
+        AddBars(barAmount);
+        AddBits(bitAmount);
+    }
 }

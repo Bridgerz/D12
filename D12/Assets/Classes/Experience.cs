@@ -1,6 +1,8 @@
 ﻿/// Experience.cs
 /// D12 Team
+
 using System;
+
 /// <summary>
 /// Experience management system for a character
 /// </summary>

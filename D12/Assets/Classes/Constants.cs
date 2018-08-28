@@ -1,5 +1,6 @@
 ﻿/// Constants.cs
 /// D12 Team
+
 /// <summary>
 /// Global constants for BaseCharacter class and its members
 /// </summary>

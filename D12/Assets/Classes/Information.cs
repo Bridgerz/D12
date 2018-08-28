@@ -1,6 +1,8 @@
 ﻿/// Information.cs
 /// D12 Team
+
 using System.Collections.Generic;
+
 /// <summary>
 /// Collection of information regarding a character's backstory, habits, and other flavor
 /// </summary>
