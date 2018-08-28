@@ -21,8 +21,7 @@ public class Wallet
     /// <summary>
     /// Lower currency denomination (100 Bits = 1 Bar). Represents total bits in character's wallet
     /// </summary>
-    public int Bits 
-    {
+    public int Bits {
         get
         {
             return bits;
@@ -37,8 +36,7 @@ public class Wallet
     /// <summary>
     /// Upper currency denomination (1 Bar = 100 Bits). Represents total bars in character's wallet
     /// </summary>
-    public int Bars 
-    {
+    public int Bars {
         get
         {
             return bars;
@@ -53,7 +51,7 @@ public class Wallet
     /// <summary>
     /// Constructor: Initializes bits and bars to defaults for a new character
     /// </summary>
-    public Wallet ()
+    public Wallet()
     {
         bits = Constants.STARTING_BIT_VAL;
         bars = Constants.STARTING_BAR_VAL;
@@ -64,7 +62,7 @@ public class Wallet
     /// </summary>
     /// <param name="bits">Initial bit amount</param>
     /// <param name="bars">Initial bar amount</param>
-    public Wallet (int bits, int bars)
+    public Wallet(int bits, int bars)
     {
         this.bits = bits;
         this.bars = bars;
@@ -90,7 +88,7 @@ public class Wallet
         if (amount > balance) return false;
 
         // Can transaction be covered by the bits
-        if(amount <= bits)
+        if (amount <= bits)
         {
             bits -= balance;
         }

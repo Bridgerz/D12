@@ -31,7 +31,7 @@ public class Experience
     /// <summary>
     /// Constructor: Initializes experience points to default value
     /// </summary>
-    public Experience ()
+    public Experience()
     {
         points = Constants.STARTING_EXP_VAL;
     }
@@ -40,7 +40,7 @@ public class Experience
     /// Constructor: Initializes experience points from parameter
     /// </summary>
     /// <param name="initialValue">Starting experience points</param>
-    public Experience (int initialValue)
+    public Experience(int initialValue)
     {
         points = initialValue;
     }
@@ -50,7 +50,7 @@ public class Experience
     /// </summary>
     /// <param name="val">Deduction value</param>
     /// <returns>If deduction was successful</returns>
-    public bool Deduct (int val)
+    public bool Deduct(int val)
     {
         if (val < 0 || val > points) return false;
         points -= val;
@@ -61,7 +61,7 @@ public class Experience
     /// Adds to current point balance
     /// </summary>
     /// <param name="val">Addition value</param>
-    public void Add (int val)
+    public void Add(int val)
     {
         points += val;
     }

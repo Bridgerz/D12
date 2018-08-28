@@ -44,7 +44,7 @@ public class BaseCharacter
     /// <summary>
     /// Constructor: Initializes all components to their default state (new character)
     /// </summary>
-    public BaseCharacter ()
+    public BaseCharacter()
     {
         Experience = new Experience();
         Info = new Information();
@@ -55,7 +55,7 @@ public class BaseCharacter
     /// Constructor: Initializes components from a save file (returning character)
     /// </summary>
     /// <param name="savefile">Path to save file</param>
-    public BaseCharacter (string savefile)
+    public BaseCharacter(string savefile)
     {
         // TODO
     }

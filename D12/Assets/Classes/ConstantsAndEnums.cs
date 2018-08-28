@@ -1,8 +1,8 @@
-﻿/// Constants.cs
+﻿/// ConstantsAndEnums.cs
 /// D12 Team
 
 /// <summary>
-/// Global constants for BaseCharacter class and its members
+/// Global constants
 /// </summary>
 public static class Constants
 {
@@ -21,6 +21,21 @@ public static class Constants
     /// New character starting bar amount
     /// </summary>
     public const int STARTING_BAR_VAL = 10;
+
+    /* BaseItem.cs*/
+    /// <summary>
+    /// Default name for any item
+    /// </summary>
+    public const string BASEITEM_DEFAULT_NAME = "BASEITEM_DEFAULT_NAME";
+    /// <summary>
+    /// Default weight for any item
+    /// </summary>
+    public const double BASEITEM_DEFAULT_WEIGHT = 0;
+    /// <summary>
+    /// Default volume for any item
+    /// </summary>
+    public const double BASEITEM_DEFAULT_VOLUME = 0;
+    
 
 }
 
