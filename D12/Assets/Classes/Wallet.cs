@@ -78,10 +78,40 @@ public class Wallet
         return bars * 100 + bits;
     }
 
-    bool Deduct(int bits)
+    /// <summary>
+    /// Deducts an amount from the character's wallet if able. Deducts from the bits before the bars
+    /// </summary>
+    /// <param name="amount">Deduction amount</param>
+    /// <returns>If wallet had a balance greater than or equal to amount</returns>
+    public bool Deduct(int amount)
     {
-        if (bits > GetBalance()) return false;
+        var balance = GetBalance();
+        if (bits > balance) return false;
 
+        balance -= amount;
+
+        // Can transaction be covered by the bits
+        if(amount <= bits)
+        {
+            bits -= balance;
+        }
+        else
+        {
+            // Deduct from bits first
+            amount -= bits;
+            // Deduct remaining amount from bars
+            var barsNeeded = amount / 100;
+            if (amount % 100 == 0)
+            {
+                bars -= barsNeeded;
+            }
+            else
+            {
+                bars -= barsNeeded + 1;
+                bits = amount % barsNeeded;
+            }
+        }
+        return true;
     }
 
 
