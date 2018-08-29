@@ -68,6 +68,23 @@ public class BaseItem
         }
     }
 
+
+    /// <summary>
+    /// Internal global unique indentifier for a single instance of an item
+    /// </summary>
+    private Guid uniqueId;
+
+    /// <summary>
+    /// Global unique indentifier for a single instance of an item
+    /// </summary>
+    public Guid UniqueId {
+        get
+        {
+            return uniqueId;
+        }
+        private set { }
+    }
+
     /// <summary>
     /// Constructor: Initializes name and weight to default values
     /// </summary>
@@ -76,6 +93,7 @@ public class BaseItem
         weight = Constants.BASEITEM_DEFAULT_WEIGHT;
         name = Constants.BASEITEM_DEFAULT_NAME;
         volume = Constants.BASEITEM_DEFAULT_VOLUME;
+        uniqueId = Guid.NewGuid();
     }
 
     /// <summary>
@@ -84,10 +102,12 @@ public class BaseItem
     /// <param name="name">Name of the item</param>
     /// <param name="weight">Weight of the item in kilograms</param>
     /// <param name="volume">Volume of the item</param>
-    protected BaseItem(string name, double weight, double volume)
+    /// <param name="uniqueID">Guid of the item</param>
+    protected BaseItem(string name, double weight, double volume, Guid uniqueID)
     {
         Weight = weight;
         Name = name;
         Volume = volume;
+        uniqueId = uniqueID;
     }
 }
