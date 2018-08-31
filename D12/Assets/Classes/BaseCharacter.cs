@@ -49,6 +49,7 @@ public class BaseCharacter
         Experience = new Experience();
         Info = new Information();
         Wallet = new Wallet();
+        Inventory = new Inventory();
     }
 
     /// <summary>

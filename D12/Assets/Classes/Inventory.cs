@@ -87,6 +87,8 @@ public class Inventory
     {
         items = new List<BaseItem>();
         currentWeight = 0;
+        currentVolume = 0;
+        maxVolume = Constants.DEFAULT_MAX_VOLUME;
     }
 
     /// <summary>
@@ -104,7 +106,7 @@ public class Inventory
     /// </summary>
     /// <param name="item">Item to be added to inventory</param>
     /// <returns>If item fits in the inventory</returns>
-    bool Add(BaseItem item)
+    public bool Add(BaseItem item)
     {
         if (currentVolume + item.Volume > maxVolume) return false;
         items.Add(item);
@@ -118,7 +120,7 @@ public class Inventory
     /// </summary>
     /// <param name="targetId">Target item's guid</param>
     /// <returns>False if item was not in inventory</returns>
-    bool Remove(Guid targetId)
+    public bool Remove(Guid targetId)
     {
         int index = items.FindIndex(x => x.UniqueId == targetId);
         if (index == -1) return false;
@@ -127,24 +129,5 @@ public class Inventory
         currentVolume -= item.Volume;
         currentWeight -= item.Weight;
         return true;
-    }
-
-    /// <summary>
-    /// Removes all items in the inventory with target name
-    /// </summary>
-    /// <param name="targetName"></param>
-    /// <returns></returns>
-    void RemoveAll(string targetName)
-    {
-        var removedItems = items.FindAll(x => x.Name == targetName);
-        if(removedItems.Count > 0)
-        {
-            items.RemoveAll(x => x.Name == targetName);
-            foreach(BaseItem i in removedItems)
-            {
-                currentVolume -= i.Volume;
-                currentWeight -= i.Weight;
-            }
-        }
     }
 }

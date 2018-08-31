@@ -22,7 +22,7 @@ public static class Constants
     /// </summary>
     public const int STARTING_BAR_VAL = 10;
 
-    /* BaseItem.cs*/
+    /* BaseItem.cs */
     /// <summary>
     /// Default name for any item
     /// </summary>
@@ -35,7 +35,9 @@ public static class Constants
     /// Default volume for any item
     /// </summary>
     public const double BASEITEM_DEFAULT_VOLUME = 0;
-    
+
+    /* Inventory.cs */
+    public const double DEFAULT_MAX_VOLUME = 100;
 
 }
 

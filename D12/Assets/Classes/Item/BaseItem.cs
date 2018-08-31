@@ -64,7 +64,7 @@ public class BaseItem
         set
         {
             if (value < 0) throw new ArgumentOutOfRangeException("Value must be greater than or equal to 0.");
-            weight = value;
+            volume = value;
         }
     }
 
@@ -88,7 +88,7 @@ public class BaseItem
     /// <summary>
     /// Constructor: Initializes name and weight to default values
     /// </summary>
-    protected BaseItem()
+    public BaseItem()
     {
         weight = Constants.BASEITEM_DEFAULT_WEIGHT;
         name = Constants.BASEITEM_DEFAULT_NAME;
@@ -103,7 +103,7 @@ public class BaseItem
     /// <param name="weight">Weight of the item in kilograms</param>
     /// <param name="volume">Volume of the item</param>
     /// <param name="uniqueID">Guid of the item</param>
-    protected BaseItem(string name, double weight, double volume, Guid uniqueID)
+    public BaseItem(string name, double weight, double volume, Guid uniqueID)
     {
         Weight = weight;
         Name = name;
