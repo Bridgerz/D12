@@ -76,6 +76,7 @@
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotSectorScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemButtonScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemListManager.cs" />
+    <Compile Include="Assets\Inventory\Scripts\ItemObject\Category.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemObject\ItemClass.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemObject\ItemScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\Misc\AddPresetItemsScript.cs" />
