@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections;
+﻿using Assets.Inventory.Scripts.ItemObject;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using System.Text;
 
+[Serializable]
 public class LoadItemDatabase : MonoBehaviour {
 
     public TextAsset dbFile;
-
     public List<string> TypeNameList = new List<string>();
 
+    private string FilePath;
 
     private void Awake()
     {
-        LoadDb(dbFile);
+        FilePath = Application.dataPath + "/StreamingAssets/data.json";
+        LoadCSVDb(dbFile);
     }
-
+    [Serializable]
     public class ItemData
     {
         public int GlobalID;
-        public int CategoryID;
-        public string CategoryName;
+        public Category Category;
         public int TypeID;
         public string TypeName;
         public IntVector2 Size;
         public Sprite Icon;
     }
 
+
     public List<ItemData> dbList = new List<ItemData>();
 
-    private void LoadDb(TextAsset csvFile)
+    private void LoadCSVDb(TextAsset csvFile)
     {
         string[][] grid = CsvReadWrite.LoadTextFile(csvFile);
         for (int i = 1; i < grid.Length; i++)
@@ -36,8 +40,7 @@ public class LoadItemDatabase : MonoBehaviour {
             Int32 num = Int32.Parse(grid[i][0]);
             ItemData row = new ItemData();
             row.GlobalID = Int32.Parse(grid[i][0]);
-            row.CategoryID = Int32.Parse(grid[i][1]);
-            row.CategoryName = grid[i][2];
+            row.Category = (Category) Enum.Parse(typeof(Category), grid[i][1]);
             row.TypeID = Int32.Parse(grid[i][3]);
             row.TypeName = grid[i][4];
             TypeNameList.Add(row.TypeName);
@@ -50,8 +53,7 @@ public class LoadItemDatabase : MonoBehaviour {
     public void PassItemData(ref ItemClass item)
     {
         int ID = item.GlobalID;
-        item.CategoryID = dbList[ID].CategoryID;
-        item.CategoryName = dbList[ID].CategoryName;
+        item.Category = dbList[ID].Category;
         item.TypeID = dbList[ID].TypeID;
         item.TypeName = dbList[ID].TypeName;
         item.Size = dbList[ID].Size;

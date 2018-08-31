@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Inventory.Scripts.ItemObject;
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,8 +7,7 @@ public class ItemClass {
 
 
     public int GlobalID;
-    [HideInInspector] public int CategoryID;
-    [HideInInspector] public string CategoryName;
+    [HideInInspector] public Category Category;
     [HideInInspector] public int TypeID;
     public string TypeName;
     [Range(1, 100)] public int Level;

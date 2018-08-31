@@ -54,8 +54,8 @@ public class SortAndFilterManager : MonoBehaviour {
 
     private List<ItemClass> FilterByClass(List<ItemClass> list)
     {
-        if (catFilterInt == 0) return list;
-        else return list.FindAll(x => x.CategoryID == catFilterInt - 1);
+        return list;
+        // not implimented
     }
 
     private List<ItemClass> FilterByQuality(List<ItemClass> list)
