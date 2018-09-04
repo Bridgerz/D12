@@ -37,6 +37,9 @@ public static class Constants
     public const double BASEITEM_DEFAULT_VOLUME = 0;
 
     /* Inventory.cs */
+    /// <summary>
+    /// Default starting volume of an inventory
+    /// </summary>
     public const double DEFAULT_MAX_VOLUME = 100;
 
 }

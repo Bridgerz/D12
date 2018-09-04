@@ -61,14 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Classes\BaseCharacter.cs" />
+    <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
+    <Compile Include="Assets\Classes\Character\Experience.cs" />
+    <Compile Include="Assets\Classes\Character\Information.cs" />
+    <Compile Include="Assets\Classes\Character\Inventory.cs" />
+    <Compile Include="Assets\Classes\Character\Item\BaseItem.cs" />
+    <Compile Include="Assets\Classes\Character\TestScripts\CharacterDataViewer.cs" />
+    <Compile Include="Assets\Classes\Character\Wallet.cs" />
     <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
-    <Compile Include="Assets\Classes\Experience.cs" />
-    <Compile Include="Assets\Classes\Information.cs" />
-    <Compile Include="Assets\Classes\Inventory.cs" />
-    <Compile Include="Assets\Classes\Item\BaseItem.cs" />
-    <Compile Include="Assets\Classes\Wallet.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Character\CharacterDataViewer.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CreateItemManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CsvReadWrite.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
@@ -105,16 +105,16 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -315,10 +315,10 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/Jonnie/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Users/jrosc/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/Jonnie/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/jrosc/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

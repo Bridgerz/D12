@@ -1,0 +1,98 @@
+9 Traits:
+
+Combat
+	Firebolt
+		Firebolt 1: Spell: 1 mana, 1 target, 80 ft range, sling hissing fire at a target, dealing a hit of fire damage.
+		Firebolt 2: Spell: 1 mana, 1 target, 80 ft range, sling hissing fire at a target, dealing {111111222222} fire damage.
+		Firebolt 3: Spell: 1 mana, 1 target, 80 ft range, sling hissing fire at a target, dealing a hit of fire damage.
+			Crossroads at 20 XP devoted to combat and Firebolt 3
+				Homeseeking Embers: missed Firebolts consume no mana.
+				Unerring Bolt: +3 to attack rolls when attacking with Firebolt. 
+		Firebolt 4: Spell: 1 mana, 1 target, 80 ft range, sling hissing fire at a target, dealing a hit of fire damage.
+		Firebolt 5: Spell: 1 mana, 1 target, 80 ft range, sling hissing fire at a target, dealing a hit of fire damage.
+			Crossroads at 50 XP devoted to combat and Firebolt 6
+				Two Embers: firebolt casts twice targeting two differant targets.
+				Igneos Birth: after casting firebolt you may choose to continue casting firebolt for free as long as no other action is taken.
+	Hamstring
+		Hamstring 1: Action: 3 times a day, 1 target, melee attack, make a basic attack which slows the target by 30% if it hits.
+		Hamstring 2: Action: 3 times a day, 1 target, melee attack, make a basic attack which slows the target by 40% if it hits.
+		Hamstring 3: Action: 4 times a day, 1 target, melee attack, make a basic attack which slows the target by 40% if it hits.
+			Crossroads at 15 XP devoted to combat and Hamstring 3
+				Deep Wound: 1-5's on damage rolls for Hamstring are 6's.
+				Achilles: slow is increased by 20%.
+		Hamstring 4: Action: 4 times a day, 1 target, melee attack, make a basic attack which slows the target by 50% if it hits.
+		Hamstring 5: Action: 5 times a day, 1 target, melee attack, make a basic attack which slows the target by 50% if it hits.
+			Crossroads at 40 XP devoted to combat and Hamstring 5
+				Backswing: if Hamstring misses once, it is used again for free.
+				Leave it Bleeding: targets slowed by Hamstring take 1 damage when they take the move action.
+	Lay on Hands
+		Lay on Hands 1: Spell: 1 mana: 1 target, touch, heal a target for 1 hit of damage.
+		Lay on Hands 2: Spell: 1 mana: 1 target, touch, heal a target for 1 hit of damage.
+		Lay on Hands 3: Spell: 1 mana: 1 target, touch, heal a target for 2 hits of damage.
+			Crossroads at 40 XP devoted to combat and Lay on Hands 3
+				Blessed be the Weak: +1 hit healed to those with less health than you.
+				Blessed be the Giver: +1 hit healed when healing yourself.
+		Lay on Hands 4: Spell: 1 mana: 1 target, touch, heal a target for 2 hits of damage.
+		Lay on Hands 5: Spell: 1 mana: 1 target, touch, heal a target for 3 hits of damage.
+			Crossroads at 70 XP devoted to combat and Lay on Hands 6
+				Radiant Touch: Lay on Hands heals everything within 5' of the target.
+				Boundless Gifts: Lay on Hands costs 0 mana.
+Skill
+	Lockpicking
+		Lockpicking 1: +1 to rolls involving picking or examining locks.
+		Lockpicking 2: +2 to rolls involving picking or examining locks.
+		Lockpicking 3: +3 to rolls involving picking or examining locks.
+		Lockpicking 4: +4 to rolls involving picking or examining locks.
+		Lockpicking 5: +5 to rolls involving picking or examining locks.
+			Crossroads at 30 XP devoted to skills and Lockpicking 5: 
+				Safebreaker: You do not trigger traps when successfully lockpicking.
+				Vandal: You may be stealthed while picking locks and suppress all noise from picking.
+	Deception
+		Deception 1: +1 to Social Sparring when attempting to decieve the opponent.
+		Deception 2: +2 to Social Sparring when attempting to decieve the opponent.
+		Deception 3: +3 to Social Sparring when attempting to decieve the opponent.
+			Crossroads at 30 XP devoted to skills and Deception 3
+				Pawner: You get dvantage on Social Sparring rolls involving the buying or selling of goods.
+				Smooth Talker: You get advantage on Social Sparring rolls when getting out of trouble.
+		Deception 4: +4 to Social Sparring when attempting to decieve the opponent.
+		Deception 5: +5 to Social Sparring when attempting to decieve the opponent.
+	Smithing
+		Smithing 1: +1 to Work rolls involving smith tools.
+		Smithing 2: +2 to Work rolls involving smith tools.
+		Smithing 3: +3 to Work rolls involving smith tools.
+			Crossroads at 30 XP devoted to skills and Smithing 3
+				Weaponsmith: +2 free points to weapon blanks, does not count towards Apathy.
+				Armorsmith: +1 Defence to armors you make, counts towards Apathy.
+				Artificer: arts you make have -1 Apathy.
+		Smithing 4: +4 to Work rolls involving smith tools.
+		Smithing 5: +5 to Work rolls involving smith tools.
+			Crossroads at 60 XP devoted to skills and smithing 5
+				Gilder: ignore the gilded tag's negative effects.
+				Engraver: ignore ingraving's negative effects.
+Accumen
+	Linguist
+		Linguist 1: you may learn to speak another language.
+		Linguist 2: you may learn to read and write a language you can speak.
+			Crossroads at 20 XP devoted to accumen and Linguist 2
+				Multilinguist: the XP cost of further Linguist levels is reduced.
+				Transcriber: you can read all laguages.
+		Linguist 3: you may learn to speak another language.
+		Linguist 4: you may learn to read and write a language you can speak.
+		Linguist 5: you may learn to speak, read and write another language.
+			Crossroads at 60 XP devoted to accumen and Linguist 5
+				Archlinguist: you can read runes and understand their purpose.
+				Global Local: get better prices on goods when speaking in the seller/buyer's native language.
+	Chromic Insight 
+		Chromic Insight 1: Spell: 1 mana, 1 target, 60 ft range, cause an object no bigger than a 5' cube to change color.
+		Chromic Insight 2: Spell: 1 mana, 1 target, 60 ft range, cause an object no bigger than a 25' cube to change color.
+		Chromic Insight 3: Spell: 0 mana, 1 target, 60 ft range, cause an object no bigger than a 25' cube to change color.
+	Religion
+		Religion 1: +1 to rolls involving recalling facts about Gods and their religions.
+		Religion 2: +2 to rolls involving recalling facts about Gods and their religions.
+		Religion 3: +3 to rolls involving recalling facts about Gods and their religions.
+		Religion 4: +4 to rolls involving recalling facts about Gods and their religions.
+		Religion 5: +5 to rolls involving recalling facts about Gods and their religions.
+			Crossroads at 40 XP devoted to accumen and Linguist 5
+				Philotheos: you are able to tell if an object or person has a God's good or bad will.
+				Blessed: you gain the favor of a God. Though it does not interact with you, others with Sight will see its good will.
+				
