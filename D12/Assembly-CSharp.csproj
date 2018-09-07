@@ -68,7 +68,9 @@
     <Compile Include="Assets\Classes\Character\InventoryManager\Item\BaseItem.cs" />
     <Compile Include="Assets\Classes\Character\TestScripts\CharacterDataViewer.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
-    <Compile Include="Assets\Classes\Character\ConstantsAndEnums.cs" />
+    <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
+    <Compile Include="Assets\Classes\Traits\SpellTraits\SpellTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\Trait.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CreateItemManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CsvReadWrite.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
