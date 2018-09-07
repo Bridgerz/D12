@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Assets.Inventory.Scripts.Item;
 
 public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler{
 
@@ -11,27 +12,27 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     public Text QualityText;
     public Image QualityColor;
 
-    public ItemClass item;
+    public ItemOm item;
     private ItemListManager listManager;
     public ObjectPoolScript itemEquipPool;
 
     public static InvenGridManager invenManager;
-    public static ItemOverlayScript overlayScript;
+    //public static ItemOverlayScript overlayScript;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (Input.GetMouseButtonDown(0))// still spawns when drag scroll
         {
-            if (ItemScript.selectedItem == null)
+            if (ItemManager.SelectedItem == null)
             {
                 SpawnStoredItem(); //swap item when no selectedButton and selectedItem
             }
             listManager.AddSelectedItemToList();
-            if (ItemScript.selectedItem != null && invenManager.selectedButton != this.gameObject) // reset selected button when item is from list
+            if (ItemManager.SelectedItem != null && invenManager.selectedButton != this.gameObject) // reset selected button when item is from list
             {
                 invenManager.selectedButton.GetComponent<CanvasGroup>().alpha = 1f;
                 invenManager.selectedButton = null;
-                listManager.itemEquipPool.ReturnObject(ItemScript.selectedItem);
+                listManager.itemEquipPool.ReturnObject(ItemManager.SelectedItem);
                 SpawnStoredItem();
             }
         }
@@ -50,26 +51,24 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     private void SpawnStoredItem()
     {
         GameObject newItem = itemEquipPool.GetObject();
-        newItem.GetComponent<ItemScript>().SetItemObject(item);
+        newItem.GetComponent<ItemOm>().SetItemObject(item);
 
-        ItemScript.SetSelectedItem(newItem);
+        ItemManager.SetSelectedItem(newItem);
         invenManager.selectedButton = this.gameObject;
 
         GetComponent<CanvasGroup>().alpha = 0.5f;
     }
 
-    public void SetUpButton(ItemClass passedItem, ItemListManager passedListManager)
+    public void SetUpButton(ItemOm passedItem, ItemListManager passedListManager)
     {
         listManager = passedListManager;
         item = passedItem;
-        ItemClass.SetItemValues(passedItem);
-        nameText.text = passedItem.TypeName;
-        LvlText.text = "Lvl: " + passedItem.Level.ToString();
-        QualityText.text = passedItem.GetQualityStr();
+        nameText.text = passedItem.Item.Title;
+        QualityText.text = passedItem.Item.Quality.ToString();
         GetComponent<LayoutElement>().preferredHeight = transform.parent.GetComponent<RectTransform>().rect.width / 4;
         iconImage.sprite = passedItem.Icon;
         itemEquipPool = passedListManager.itemEquipPool;
-        switch (item.qualityInt)
+        switch ((int)item.Item.Quality.GetTypeCode())
         {
             case 0: QualityColor.color = Color.gray; break;
             case 1: QualityColor.color = Color.white; break;

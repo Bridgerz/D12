@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Inventory.Scripts.Item;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemListManager : MonoBehaviour {
@@ -11,9 +12,10 @@ public class ItemListManager : MonoBehaviour {
 
     public float iconSize;
     
-    public List<ItemClass> startItemList; // created and initialized on LoadSaveItems
+    public List<ItemOm> startItemList; // created and initialized on LoadSaveItems
     public List<GameObject> currentButtonList;
-    public List<ItemClass> currentItemList;
+    public List<ItemOm> currentItemList;
+    public List<ItemOm> Inventory;
 
     private Transform contentPanel;
 
@@ -33,23 +35,23 @@ public class ItemListManager : MonoBehaviour {
             invenManager.RefrechColor(false);
             invenManager.selectedButton.GetComponent<CanvasGroup>().alpha = 1f;
             invenManager.selectedButton = null;
-            itemEquipPool.ReturnObject(ItemScript.selectedItem);
-            ItemScript.ResetSelectedItem();
+            itemEquipPool.ReturnObject(ItemManager.SelectedItem);
+            ItemManager.ResetSelectedItem();
         }
     }
 
     public void AddSelectedItemToList()//used on scrollview pointerclick trigger
     {
-        if (invenManager.selectedButton == null && ItemScript.selectedItem != null) //add item to list if item is not from list
+        if (invenManager.selectedButton == null && ItemManager.SelectedItem != null) //add item to list if item is not from list
         {
-            ItemClass item = ItemScript.selectedItem.GetComponent<ItemScript>().item;
+            ItemOm item = ItemManager.SelectedItem.GetComponent<ItemOm>();
             sortManager.AddItemToList(item);
-            itemEquipPool.ReturnObject(ItemScript.selectedItem);
-            ItemScript.ResetSelectedItem();
+            itemEquipPool.ReturnObject(ItemManager.SelectedItem);
+            ItemManager.ResetSelectedItem();
         }
     }
 
-    public void PopulateList(List<ItemClass> passedItemlist)
+    public void PopulateList(List<ItemOm> passedItemlist)
     {
         if (currentButtonList.Count > 0)
         {
@@ -64,7 +66,7 @@ public class ItemListManager : MonoBehaviour {
         }
     }
 
-    public void AddButton(ItemClass addItem)
+    public void AddButton(ItemOm addItem)
     {
         GameObject newButton = itemButtonPool.GetObject();
         newButton.transform.SetParent(contentPanel);
@@ -80,8 +82,9 @@ public class ItemListManager : MonoBehaviour {
         itemButtonPool.ReturnObject(buttonObj);
     }
 
-    public void RevomeItemFromList(ItemClass itemToRemove)
-    {//used to remove from list when placing item on grid or deleting item
+    //used to remove from list when placing item on grid or deleting item
+    public void RevomeItemFromList(ItemOm itemToRemove)
+    {
         for (int i = currentItemList.Count - 1; i >= 0; i--)
         {
             if (currentItemList[i] == itemToRemove)

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SortAndFilterManager : MonoBehaviour {
 
     public ItemListManager listManager;
-    private List<ItemClass> itemList;
+    private List<ItemOm> itemList;
 
     public List<GameObject> categoryButtons;
     private GameObject selectedCatButton;
@@ -17,8 +17,8 @@ public class SortAndFilterManager : MonoBehaviour {
     public Text qualityButtonText;
     private int qualityFilterInt = 0;
 
-    private List<ItemClass> filteredList;
-    public List<ItemClass> sortedList;
+    private List<ItemOm> filteredList;
+    public List<ItemOm> sortedList;
     private int sortTypeInt = 0;
 
     private void Start()
@@ -32,10 +32,8 @@ public class SortAndFilterManager : MonoBehaviour {
     }
 
     #region filter list
-    private void FilterList(List<ItemClass> list)
+    private void FilterList(List<ItemOm> list)
     {
-        list = FilterByClass(list);
-        list = FilterByQuality(list);
         filteredList = list;
         listManager.PopulateList(filteredList);
     }
@@ -50,18 +48,6 @@ public class SortAndFilterManager : MonoBehaviour {
             selectedCatButton = categoryButtons[type];
             FilterList(sortedList);
         }
-    }
-
-    private List<ItemClass> FilterByClass(List<ItemClass> list)
-    {
-        return list;
-        // not implimented
-    }
-
-    private List<ItemClass> FilterByQuality(List<ItemClass> list)
-    {
-        if (qualityFilterInt == 0) return list;
-        else return list.FindAll(x => x.qualityInt >= qualityFilterInt);
     }
 
     private void QualityButtonClick()//used on quality filter button
@@ -94,23 +80,19 @@ public class SortAndFilterManager : MonoBehaviour {
         filteredList = SortList(filteredList);
         listManager.PopulateList(filteredList);
     }
-    public List<ItemClass> SortList(List<ItemClass> list)
+    public List<ItemOm> SortList(List<ItemOm> list)
     {
         switch (sortTypeInt)
         {
-            case 0: return list.OrderBy(x => x.GlobalID).ToList();
-            case 1: return list.OrderByDescending(x => x.GlobalID).ToList();
-            case 2: return list.OrderBy(x => x.Level).ToList();
-            case 3: return list.OrderByDescending(x => x.Level).ToList();
-            case 4: return list.OrderBy(x => x.qualityInt).ToList();
-            case 5: return list.OrderByDescending(x => x.qualityInt).ToList();
-            case 6: return list.OrderBy(x => x.TypeName).ToList();
-            case 7: return list.OrderByDescending(x => x.TypeName).ToList();
+            case 0: return list.OrderBy(x => x.Item.GlobalID).ToList();
+            case 1: return list.OrderByDescending(x => x.Item.GlobalID).ToList();
+            case 2: return list.OrderBy(x => x.Item.Quality).ToList();
+            case 3: return list.OrderByDescending(x => x.Item.Quality).ToList();
             default: return list;
         }
     }
 #endregion
-    public void AddItemToList(ItemClass item)
+    public void AddItemToList(ItemOm item)
     {
         listManager.currentItemList.Add(item);
         SortAndFilterList();

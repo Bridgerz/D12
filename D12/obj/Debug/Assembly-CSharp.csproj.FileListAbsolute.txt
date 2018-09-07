@@ -168,3 +168,6 @@ C:\Git\D12\D12\Temp\bin\Debug\UnityEngine.ParticlesLegacyModule.xml
 C:\Git\D12\D12\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Git\D12\D12\obj\Debug\Assembly-CSharp.dll
 C:\Git\D12\D12\obj\Debug\Assembly-CSharp.pdb
+C:\Git\D12\D12\Temp\bin\Debug\LitJson.dll
+C:\Git\D12\D12\Temp\bin\Debug\Newtonsoft.Json.dll
+C:\Git\D12\D12\Temp\bin\Debug\Newtonsoft.Json.xml
