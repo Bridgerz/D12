@@ -12,7 +12,6 @@ public class InvenGridManager : MonoBehaviour {
     public Transform dropParent;
     [HideInInspector]
     public IntVector2 gridSize;
-    //public List<ItemOm> Inventory;
     public InventoryDataManager InvManager;
     
     public ItemListManager listManager;
@@ -28,7 +27,7 @@ public class InvenGridManager : MonoBehaviour {
     {
         ItemButtonScript.invenManager = this;
         InvManager = new InventoryDataManager();
-        //Inventory = InvManager.LoadInventory(listManager.itemDB);
+        listManager.Inventory = InvManager.LoadInventory(listManager.itemDB);
     }
 
     private void Update()
@@ -192,7 +191,7 @@ public class InvenGridManager : MonoBehaviour {
         SlotScript instanceScript;
         IntVector2 itemSizeL = item.GetComponent<ItemOm>().Item.Size;
         item.GetComponent<ItemOm>().Item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
-        //Inventory.Add(item.GetComponent<ItemOm>());
+        listManager.Inventory.Add(item.GetComponent<ItemOm>().Item);
         for (int y = 0; y < itemSizeL.y; y++)
         {
             for (int x = 0; x < itemSizeL.x; x++)
@@ -211,8 +210,7 @@ public class InvenGridManager : MonoBehaviour {
         item.GetComponent<RectTransform>().pivot = Vector2.zero;
         item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
         item.GetComponent<CanvasGroup>().alpha = 1f;
-        //InvManager.SaveInventory(Inventory);
-        //overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
+        InvManager.SaveInventory(listManager.Inventory);
     }
 
     private GameObject GetItem(GameObject slotObject)

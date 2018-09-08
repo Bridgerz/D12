@@ -24,28 +24,7 @@ public class LoadLootItems : MonoBehaviour
 
     public List<ItemDm> LoadItems(TextAsset itemFile)
     {
-        // grab all items in DB
+        // grab all items in DB (later will just be things the WB allows players to see)
         return itemDB.dbList;
     }
-
-
-
-
-
-
-
-
-
-
-    public void SaveItemsToFile(List<ItemOm> itemList, TextAsset file)
-    {
-        BinaryFormatter vb = new BinaryFormatter();
-        FileStream saveFile = File.Open(Application.persistentDataPath + "/inventoryInfo.dat", FileMode.Open);
-
-        foreach (var item in itemList)
-        {
-           // var itemSaveOm = new ItemSaveOm(item.GlobalID, item.location, item.Qu);
-        }
-    }
-
 }

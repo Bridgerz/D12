@@ -1,0 +1,18 @@
+[
+  {
+    "GlobalID": 0,
+    "Quantity": 1,
+    "Location": {
+      "X": 12,
+      "Y": 3
+    }
+  },
+  {
+    "GlobalID": 3,
+    "Quantity": 1,
+    "Location": {
+      "X": 10,
+      "Y": 3
+    }
+  }
+]

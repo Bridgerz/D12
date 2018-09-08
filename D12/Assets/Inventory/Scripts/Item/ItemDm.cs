@@ -6,7 +6,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDm : MonoBehaviour
+[Serializable]
+public class ItemDm
 {
     [JsonProperty("GlobalID")]
     public int GlobalID { get; set; }
@@ -45,6 +46,5 @@ public class ItemDm : MonoBehaviour
         Weight = weight;
         Quantity = 1;
         Icon = Resources.Load<Sprite>("ItemImages/" + Title);
-        Size = new IntVector2(2, 2);
     }
 }
