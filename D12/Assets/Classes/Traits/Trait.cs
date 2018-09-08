@@ -26,6 +26,21 @@ public class Trait
     }
 
     /// <summary>
+    /// Internal description of trait and its effects
+    /// </summary>
+    protected string desc;
+
+    /// <summary>
+    /// Description of trait and its effects
+    /// </summary>
+    public string Desc {
+        get
+        {
+            return Desc;
+        }
+    }
+
+    /// <summary>
     /// Internal EXP cost to puchase trait
     /// </summary>
     protected int cost;
@@ -55,6 +70,10 @@ public class Trait
         {
             return active;
         }
+        set
+        {
+            active = value;
+        }
     }
 
     /// <summary>
@@ -68,17 +87,19 @@ public class Trait
     public List<Trait> children;
 
     /// <summary>
-    /// Constructor: Initializes a Trait with a name, cost and active flag
+    /// Constructor: Initializes a Trait with a name, desc, cost and active flag
     /// </summary>
     /// <param name="name">Name of trait</param>
+    /// <param name="desc">Description of trait and its effects</param>
     /// <param name="cost">EXP cost to purchase (unlock) trait</param>
     /// <param name="active">Flag indicating trait's lock/unlock status</param>
-    public Trait(string name, int cost, bool active)
+    public Trait(string name, string desc, int cost, bool active)
     {
         children = new List<Trait>();
         parents = new List<Trait>();
         this.active = active;
         this.cost = cost;
+        this.desc = desc;
         this.name = name;
     }
 }

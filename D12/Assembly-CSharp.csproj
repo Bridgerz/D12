@@ -70,8 +70,10 @@
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
     <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
     <Compile Include="Assets\Classes\Traits\ActionTraits\ActionTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\SpellTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CreateItemManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CsvReadWrite.cs" />
