@@ -15,16 +15,6 @@ public class Trait
     protected string name;
 
     /// <summary>
-    /// Internal EXP cost to puchase trait
-    /// </summary>
-    protected int cost;
-
-    /// <summary>
-    /// Internal flag if trait has been purchased and is now active
-    /// </summary>
-    protected bool active;
-
-    /// <summary>
     /// Name of the trait
     /// </summary>
     public string Name
@@ -36,6 +26,11 @@ public class Trait
     }
 
     /// <summary>
+    /// Internal EXP cost to puchase trait
+    /// </summary>
+    protected int cost;
+
+    /// <summary>
     /// EXP cost to purchase (unlock) trait
     /// </summary>
     public int Cost
@@ -45,6 +40,11 @@ public class Trait
             return cost;
         }
     }
+
+    /// <summary>
+    /// Internal flag if trait has been purchased and is now active
+    /// </summary>
+    protected bool active;
 
     /// <summary>
     /// Flag if trait has been unlocked

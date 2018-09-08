@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Traits that are cast as spells
 /// </summary>
-class SpellTrait : Trait
+public class SpellTrait : Trait
 {
     /// <summary>
     /// Internal mana cost of spell
