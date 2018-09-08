@@ -6,15 +6,9 @@ using UnityEngine.UI;
 public class SlotScript : MonoBehaviour
 {
     public IntVector2 gridPos;
-
-    public GameObject storedItemObject;
-    public IntVector2 storedItemSize;
-    public IntVector2 storedItemStartPos;
-    public ItemDm storedItemClass;
-    public bool isOccupied;
-
-    private void Start()
-    {
-        
-    }
+    public GameObject storedItemObject { get; set; }
+    public IntVector2 storedItemSize { get; set; }
+    public IntVector2 storedItemStartPos { get; set; }
+    public ItemOm storedItemClass { get; set; }
+    public bool isOccupied { get; set; }
 }

@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class LoadLootItems : MonoBehaviour
 {
+    public LoadItemDatabase itemDB;
     public ItemListManager listManager;
 
     public TextAsset startItemsFile;
     public TextAsset presetItemsFile;
     public TextAsset saveFile;
 
-    private List<ItemOm> startItemList = new List<ItemOm>();
+    private List<ItemDm> startItemList = new List<ItemDm>();
 
     private void Start()
     {
@@ -21,16 +22,10 @@ public class LoadLootItems : MonoBehaviour
         listManager.startItemList = this.startItemList;
     }
 
-    public List<ItemOm> LoadItems(TextAsset itemFile)
+    public List<ItemDm> LoadItems(TextAsset itemFile)
     {
-        List<ItemOm> itemList = new List<ItemOm>();
-        foreach (var item in listManager.itemDB.dbList)
-        {
-            var Om = new ItemOm(item, 1, Resources.Load<Sprite>("ItemImages/" + item.Title), new IntVector2(2, 2));
-            itemList.Add(Om);
-        }
-        var list = itemList;
-        return itemList;
+        // grab all items in DB
+        return itemDB.dbList;
     }
 
 

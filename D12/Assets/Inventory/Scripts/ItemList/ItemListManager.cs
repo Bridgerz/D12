@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemListManager : MonoBehaviour {
-    /***** NEEDS AN OVEHAUL *****/
     public ObjectPoolScript itemButtonPool;
     public ObjectPoolScript itemEquipPool;
     public InvenGridManager invenManager;
@@ -12,61 +11,59 @@ public class ItemListManager : MonoBehaviour {
 
     public float iconSize;
     
-    public List<ItemOm> startItemList; // created and initialized on LoadSaveItems
+    public List<ItemDm> startItemList; // created and initialized on LoadSaveItems
     public List<GameObject> currentButtonList;
-    public List<ItemOm> currentItemList;
-    public List<ItemOm> Inventory;
+    public List<ItemDm> currentItemList;
+    public List<ItemDm> Inventory;
 
     private Transform contentPanel;
 
     private void Start()
     {
         contentPanel = this.transform;
-        //lists are initialize on SortAndFilterManager
     }
-
-    //*** rework the add item to list
-    // make a proper add item to list with sort and filter in mind
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && invenManager.selectedButton != null) //right click to return item to list if item is from list
+        //right click to return item to list if item is from list
+        if (Input.GetMouseButtonDown(1) && invenManager.selectedButton != null) 
         {
             invenManager.RefrechColor(false);
             invenManager.selectedButton.GetComponent<CanvasGroup>().alpha = 1f;
             invenManager.selectedButton = null;
-            itemEquipPool.ReturnObject(ItemManager.SelectedItem);
-            ItemManager.ResetSelectedItem();
+            itemEquipPool.ReturnObject(ItemOm.SelectedItem);
+            ItemOm.ResetSelectedItem();
         }
     }
 
-    public void AddSelectedItemToList()//used on scrollview pointerclick trigger
+    public void AddSelectedItemToList()
     {
-        if (invenManager.selectedButton == null && ItemManager.SelectedItem != null) //add item to list if item is not from list
+        //add item to list if item is not from list
+        if (invenManager.selectedButton == null && ItemOm.SelectedItem != null) 
         {
-            ItemOm item = ItemManager.SelectedItem.GetComponent<ItemOm>();
+            ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
-            itemEquipPool.ReturnObject(ItemManager.SelectedItem);
-            ItemManager.ResetSelectedItem();
+            itemEquipPool.ReturnObject(ItemOm.SelectedItem);
+            ItemOm.ResetSelectedItem();
         }
     }
 
-    public void PopulateList(List<ItemOm> passedItemlist)
+    public void PopulateList(List<ItemDm> passedItemlist)
     {
         if (currentButtonList.Count > 0)
         {
-            for (int i = currentButtonList.Count - 1; i >= 0; i--)//removes all buttons
+            for (int i = currentButtonList.Count - 1; i >= 0; i--)
             {
                 RemoveButton(currentButtonList[i]);
             }
         }
-        for (int j = 0; j < passedItemlist.Count; j++)//populates list
+        foreach (var item in passedItemlist)
         {
-            AddButton(passedItemlist[j]);
+            AddButton(item);
         }
     }
 
-    public void AddButton(ItemOm addItem)
+    public void AddButton(ItemDm addItem)
     {
         GameObject newButton = itemButtonPool.GetObject();
         newButton.transform.SetParent(contentPanel);
@@ -83,15 +80,12 @@ public class ItemListManager : MonoBehaviour {
     }
 
     //used to remove from list when placing item on grid or deleting item
-    public void RevomeItemFromList(ItemOm itemToRemove)
+    public void RevomeItemFromList(ItemDm itemToRemove)
     {
-        for (int i = currentItemList.Count - 1; i >= 0; i--)
+        var i = currentItemList.FindIndex(x => x.GlobalID == itemToRemove.GlobalID);
+        if (i >= 0)
         {
-            if (currentItemList[i] == itemToRemove)
-            {
-                currentItemList.RemoveAt(i);
-                break;//temporary for now
-            }
+            currentItemList.RemoveAt(i);
         }
     }
 

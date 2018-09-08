@@ -7,37 +7,50 @@ using UnityEngine.UI;
 
 public class ItemOm : MonoBehaviour
 {
-    private GameObject invenPanel;
-    private float slotSize;
+    private GameObject InvenPanel;
+    private float SlotSize;
 
     public ItemDm Item;
-    public int Quantity;
-    public SlotLocation Location;
-    [HideInInspector] public Sprite Icon;
-    [HideInInspector] public IntVector2 Size;
-
-    public ItemOm(ItemDm item, int quantity, Sprite icon, IntVector2 size)
-    {
-        Item = item;
-        Quantity = quantity;
-        Icon = icon;
-        Size = size;
-    }
+    public static GameObject SelectedItem;
+    public static IntVector2 SelectedItemSize;
+    public static bool IsDragging = false;
 
     private void Awake()
     {
-        slotSize = GameObject.FindGameObjectWithTag("InvenPanel").GetComponent<InvenGridScript>().slotSize;
+        SlotSize = GameObject.FindGameObjectWithTag("InvenPanel").GetComponent<InvenGridScript>().slotSize;
     }
 
-
-    public void SetItemObject(ItemOm passedItem)
+    public void SetItemObject(ItemDm passedItem)
     {
         RectTransform rect = GetComponent<RectTransform>();
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, passedItem.Size.x * slotSize);
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, passedItem.Size.y * slotSize);
-        Item = passedItem.Item;
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, passedItem.Size.x * SlotSize);
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, passedItem.Size.y * SlotSize);
+        Item = passedItem;
         GetComponent<Image>().sprite = passedItem.Icon;
     }
 
+    private void Update()
+    {
+        if (IsDragging)
+        {
+            SelectedItem.transform.position = Input.mousePosition;
+        }
+    }
+
+    public static void SetSelectedItem(GameObject obj)
+    {
+        SelectedItem = obj;
+        SelectedItemSize = obj.GetComponent<ItemOm>().Item.Size;
+        IsDragging = true;
+        obj.transform.SetParent(GameObject.FindGameObjectWithTag("DragParent").transform);
+        obj.GetComponent<RectTransform>().localScale = Vector3.one;
+    }
+
+    public static void ResetSelectedItem()
+    {
+        SelectedItem = null;
+        SelectedItemSize = IntVector2.Zero;
+        IsDragging = false;
+    }
 
 }

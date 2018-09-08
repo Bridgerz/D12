@@ -11,7 +11,6 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public int QuadNum;
     public static IntVector2 posOffset;
     public static SlotSectorScript sectorScript;
-    // public static ItemOverlayScript overlayScript;
     private InvenGridManager invenGridManager;
     private SlotScript parentSlotScript;
 
@@ -27,24 +26,24 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         sectorScript = this;
         invenGridManager.highlightedSlot = slotParent;
         PosOffset();
-        if (ItemManager.SelectedItem != null)
+        if (ItemOm.SelectedItem != null)
         {
             invenGridManager.RefrechColor(true);
         }
-        if (parentSlotScript.storedItemObject != null && ItemManager.SelectedItem == null)
+        if (parentSlotScript.storedItemObject != null && ItemOm.SelectedItem == null)
         {
             invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos);
         }
         if (parentSlotScript.storedItemObject != null)
         {
-            //overlayScript.UpdateOverlay(parentSlotScript.storedItemClass);
+            // insert tool tip call boiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
         }
 
     }
 
     public void PosOffset()
     {
-        if (ItemManager.SelectedItemSize.x != 0 && ItemManager.SelectedItemSize.x % 2 == 0)
+        if (ItemOm.SelectedItemSize.x != 0 && ItemOm.SelectedItemSize.x % 2 == 0)
         {
             switch (QuadNum)
             {
@@ -59,7 +58,7 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 default: break;
             }
         }
-        if (ItemManager.SelectedItemSize.y != 0 && ItemManager.SelectedItemSize.y % 2 == 0)
+        if (ItemOm.SelectedItemSize.y != 0 && ItemOm.SelectedItemSize.y % 2 == 0)
         {
             switch (QuadNum)
             {
@@ -80,13 +79,13 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         sectorScript = null;
         invenGridManager.highlightedSlot = null;
-        //overlayScript.UpdateOverlay(null);
-        if (ItemManager.SelectedItem != null)
+        // insert tool tip remove boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+        if (ItemOm.SelectedItem != null)
         {
             invenGridManager.RefrechColor(false);
         }
         posOffset = IntVector2.Zero;
-        if (parentSlotScript.storedItemObject != null && ItemManager.SelectedItem == null)
+        if (parentSlotScript.storedItemObject != null && ItemOm.SelectedItem == null)
         {
             invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue2, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos);
         }

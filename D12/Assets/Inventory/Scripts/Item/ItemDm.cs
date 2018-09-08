@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDm
+public class ItemDm : MonoBehaviour
 {
     [JsonProperty("GlobalID")]
     public int GlobalID { get; set; }
@@ -28,6 +28,11 @@ public class ItemDm
     [JsonProperty("Enchantments")]
     public virtual List<Enchantment> Enchantments { get; set; }
 
+    public int Quantity;
+    public SlotLocation Location;
+
+    [HideInInspector] public Sprite Icon;
+    [HideInInspector] public IntVector2 Size;
 
     public ItemDm(int globalID, string title,
         string defenition, Quality quality,
@@ -38,5 +43,8 @@ public class ItemDm
         Defenition = defenition;
         Quality = quality;
         Weight = weight;
+        Quantity = 1;
+        Icon = Resources.Load<Sprite>("ItemImages/" + Title);
+        Size = new IntVector2(2, 2);
     }
 }

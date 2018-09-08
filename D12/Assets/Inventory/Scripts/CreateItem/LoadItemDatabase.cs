@@ -24,7 +24,6 @@ public class LoadItemDatabase : MonoBehaviour {
 
     private void LoadJson()
     {
-        //*******************************************************************This needs a lot of testing*********************
         if (File.Exists(JsonFile))
         {
             string dataAsJason = File.ReadAllText(JsonFile);
