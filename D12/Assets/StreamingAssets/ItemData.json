@@ -1,0 +1,342 @@
+[
+    {
+        "GlobalID":0,
+        "Title": "Alphas Council",
+        "Defenition": "A fuckin lit sword",
+        "Damage": 69,
+        "MainHand": true,
+        "Tags": [
+            6,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": {
+            "x": 2,
+            "y": 4
+        }
+    },
+
+    {
+        "GlobalID":1,
+        "Title": "Alphas First Secret",
+        "MainHand": true,
+        "Defenition": "A fuckin lit mace",
+        "Damage": 69,
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": 
+        {
+            "x": 2,
+            "y": 4
+        },
+    },
+    {
+        "GlobalID":2,
+        "Title": "Alphas Sting",
+        "Defenition": "A fuckin lit dagger",
+        "Damage": 69,
+        "MainHand": true,
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": 
+        {
+            "x": 2,
+            "y": 4
+        },
+    },
+    {
+        "GlobalID":3,
+        "Title": "Alphas Truth",
+        "Defenition": "A fuckin lit Bow",
+        "Damage": 69,
+        "MainHand": true,
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": 
+        {
+            "x": 2,
+            "y": 4
+        },
+    },
+    {
+        "GlobalID":4,
+        "Title": "Keep of the Alpha",
+        "Defenition": "A fuckin lit Shield",
+        "Damage": 69,
+        "MainHand": true,
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": 
+        {
+            "x": 2,
+            "y": 4
+        },
+    },
+    {
+        "GlobalID":5,
+        "Title": "Alphas Judgement",
+        "Defenition": "A fuckin lit Staff",
+        "Damage": 69,
+        "MainHand": true,
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Murders sluts"
+            }
+        ],
+        "Quality": 2,
+        "Weight": 420,
+        "Size": 
+        {
+            "x": 2,
+            "y": 4
+        },
+    },
+    {
+        "GlobalID":6,
+        "Title": "Alphas Helm",
+        "Defenition": "A Fuckin Lit helmet",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID":7,
+        "Title": "Alphas Conquest",
+        "Defenition": "Fuckin Lit boots",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID":8,
+        "Title": "Alphas Presence",
+        "Defenition": "A Fuckin Lit cape",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID":9,
+        "Title": "Alphas Stride",
+        "Defenition": "Fuckin Lit pants",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID":10,
+        "Title": "Grasp of the Alpha",
+        "Defenition": "Fuckin Lit gauntlets",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID":11,
+        "Title": "Breast of the Alpha",
+        "Defenition": "Fuckin Lit Chest Armor",
+        "Tags": [
+            4,
+            7
+        ],
+        "Enchantments": [
+            {
+            "Effect": "Protects against bitches"
+            },
+            {
+            "Effect": "Increases slut count"
+            }
+        ],
+        "Quality": 1,
+        "Weight": 69,
+        "Size": 
+        {
+            "x": 2,
+            "y": 2
+        },
+    },
+    {
+        "GlobalID": 12,
+        "Title": "Alphas Second Secret",
+        "Defenition": "weird thing",
+        "Tags": [
+            1
+        ],
+        "Enchantments": [
+            {
+                "Effect": "You FUCK"
+            }
+        ],
+        "Quality": 3,
+        "Weight": 420,
+        "Size":{
+            "x": 2,
+            "y": 2
+            },
+    },
+    {
+        "GlobalID": 13,
+        "Title": "Alphas Shadow",
+        "Defenition": "shadow thing",
+        "Tags": [
+            2
+        ],
+        "Enchantments": [],
+        "Quality": 3,
+        "Weight": 2,
+        "Size":{
+            "x": 2,
+            "y": 2 
+            },
+    },
+    {
+        "GlobalID":14,
+        "Title": "Hate Potion",
+        "Defenition": "Potion that makes you racist",
+        "Enchantments": [],
+        "Quality": 4,
+        "Weight": 2,
+        "Size":{
+            "x": 2,
+            "y": 2
+            },
+    },
+    {
+        "GlobalID":15,
+        "Title": "Lesser Health Potion",
+        "Defenition": "Potion that heals you lesser",
+        "Enchantments": [],
+        "Quality": 4,
+        "Weight": 2,
+        "Size":{
+            "x": 2,
+            "y": 2
+            },
+    }
+]

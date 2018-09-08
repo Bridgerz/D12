@@ -370,12 +370,13 @@ MonoBehaviour:
   itemButtonPool: {fileID: 1868354532}
   itemEquipPool: {fileID: 972379339}
   invenManager: {fileID: 1217632578}
-  itemDB: {fileID: 0}
+  itemDB: {fileID: 1446856573}
   sortManager: {fileID: 1990426672}
   iconSize: 100
   startItemList: []
   currentButtonList: []
   currentItemList: []
+  Inventory: []
 --- !u!114 &444281627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,9 +390,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDB: {fileID: 1446856573}
   listManager: {fileID: 444281626}
-  startItemsFile: {fileID: 4900000, guid: 51644dc73e8d3704999e32aa50cfa532, type: 3}
+  startItemsFile: {fileID: 0}
   presetItemsFile: {fileID: 0}
-  saveFile: {fileID: 4900000, guid: 9a972bf3bf6efd344980e03981dc2f0d, type: 3}
+  saveFile: {fileID: 0}
 --- !u!1 &499899895
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,8 +498,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215725476}
   m_HandleRect: {fileID: 1215725475}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1270,7 +1271,7 @@ RectTransform:
   m_Father: {fileID: 1390420275}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.000000059604645}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -1344,7 +1345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0000056242798, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0.0000059070635, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1217632575
@@ -1416,7 +1417,6 @@ MonoBehaviour:
     y: 0
   listManager: {fileID: 444281626}
   selectedButton: {fileID: 0}
-  overlayScript: {fileID: 0}
 --- !u!1 &1390420274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,8 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bd8b53ecf966145808d25dc9f54f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dbFile: {fileID: 4900000, guid: 4e9d7bb2457a3404c9951415f85d1b23, type: 3}
   TypeNameList: []
+  file: {fileID: 0}
   dbList: []
 --- !u!1 &1504397038
 GameObject:
@@ -2303,11 +2303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listManager: {fileID: 444281626}
   categoryButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   catFilterInt: 0
   qualityButtonImage: {fileID: 0}

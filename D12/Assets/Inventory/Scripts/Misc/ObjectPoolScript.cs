@@ -42,7 +42,7 @@ public class ObjectPoolScript : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning(toReturn.name + " was returned to a pool it wasn't spawned from! Destroying.");
+            Debug.LogWarning(toReturn.name + " was returned to a pool it wasn't spawned from Destroying.");
             Destroy(toReturn);
         }
     }

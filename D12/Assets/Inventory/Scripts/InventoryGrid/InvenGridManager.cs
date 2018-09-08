@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Assets.Inventory.Scripts.InventoryGrid;
+using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.ItemObject;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class InvenGridManager : MonoBehaviour {
@@ -8,6 +12,8 @@ public class InvenGridManager : MonoBehaviour {
     public Transform dropParent;
     [HideInInspector]
     public IntVector2 gridSize;
+    //public List<ItemOm> Inventory;
+    public InventoryDataManager InvManager;
     
     public ItemListManager listManager;
     public GameObject selectedButton;
@@ -18,35 +24,29 @@ public class InvenGridManager : MonoBehaviour {
     private int checkState;
     private bool isOverEdge = false;
 
-    public ItemOverlayScript overlayScript;
-
-    /* to do list
-     * make the ColorChangeLoop on swap items take arrguements fron the other item, not hte private variables *1
-     * transfer the CheckArea() and SlotCheck() into inside RefreshColor() *2
-     * have *3 be local variables of CheckArea(). SwapItem() uses the variable, may need to rewrite.
-     */
     private void Start()
     {
         ItemButtonScript.invenManager = this;
+        InvManager = new InventoryDataManager();
+        //Inventory = InvManager.LoadInventory(listManager.itemDB);
     }
-
 
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            if (highlightedSlot != null && ItemScript.selectedItem != null && !isOverEdge)
+            if (highlightedSlot != null && ItemOm.SelectedItem != null && !isOverEdge)
             {
                 switch (checkState)
                 {
                     case 0: //store on empty slots
-                        StoreItem(ItemScript.selectedItem);
-                        ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset);
-                        ItemScript.ResetSelectedItem();
+                        StoreItem(ItemOm.SelectedItem);
+                        ColorChangeLoop(SlotColorHighlights.Blue, ItemOm.SelectedItemSize, totalOffset);
+                        ItemOm.ResetSelectedItem();
                         RemoveSelectedButton();
                         break;
                     case 1: //swap items
-                        ItemScript.SetSelectedItem(SwapItem(ItemScript.selectedItem));
+                        ItemOm.SetSelectedItem(SwapItem(ItemOm.SelectedItem));
                         SlotSectorScript.sectorScript.PosOffset();
                         ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); //*1
                         RefrechColor(true);
@@ -54,10 +54,10 @@ public class InvenGridManager : MonoBehaviour {
                         break;
                 }
             }// retrieve items
-            else if (highlightedSlot != null && ItemScript.selectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
+            else if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
                 ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                ItemScript.SetSelectedItem(GetItem(highlightedSlot));
+                ItemOm.SetSelectedItem(GetItem(highlightedSlot));
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
             }
@@ -116,7 +116,7 @@ public class InvenGridManager : MonoBehaviour {
                         {
                             obj = instanceScript.storedItemObject;
                             otherItemPos = instanceScript.storedItemStartPos;
-                            otherItemSize = obj.GetComponent<ItemScript>().item.Size;
+                            otherItemSize = obj.GetComponent<ItemOm>().Item.Size;
                         }
                         else if (obj != instanceScript.storedItemObject)
                             return 2; // if cheack Area has 1+ item occupied
@@ -134,7 +134,7 @@ public class InvenGridManager : MonoBehaviour {
     {
         if (enter)
         {
-            CheckArea(ItemScript.selectedItemSize);
+            CheckArea(ItemOm.SelectedItemSize);
             checkState = SlotCheck(checkSize);
             switch (checkState)
             {
@@ -190,7 +190,9 @@ public class InvenGridManager : MonoBehaviour {
     private void StoreItem(GameObject item)
     {
         SlotScript instanceScript;
-        IntVector2 itemSizeL = item.GetComponent<ItemScript>().item.Size;
+        IntVector2 itemSizeL = item.GetComponent<ItemOm>().Item.Size;
+        item.GetComponent<ItemOm>().Item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
+        //Inventory.Add(item.GetComponent<ItemOm>());
         for (int y = 0; y < itemSizeL.y; y++)
         {
             for (int x = 0; x < itemSizeL.x; x++)
@@ -198,7 +200,7 @@ public class InvenGridManager : MonoBehaviour {
                 //set each slot parameters
                 instanceScript = slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<SlotScript>();
                 instanceScript.storedItemObject = item;
-                instanceScript.storedItemClass = item.GetComponent<ItemScript>().item;
+                instanceScript.storedItemClass = item.GetComponent<ItemOm>();
                 instanceScript.storedItemSize = itemSizeL;
                 instanceScript.storedItemStartPos = totalOffset;
                 instanceScript.isOccupied = true;
@@ -209,14 +211,16 @@ public class InvenGridManager : MonoBehaviour {
         item.GetComponent<RectTransform>().pivot = Vector2.zero;
         item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
         item.GetComponent<CanvasGroup>().alpha = 1f;
+        //InvManager.SaveInventory(Inventory);
         //overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
     }
+
     private GameObject GetItem(GameObject slotObject)
     {
         SlotScript slotObjectScript = slotObject.GetComponent<SlotScript>();
         GameObject retItem = slotObjectScript.storedItemObject;
         IntVector2 tempItemPos = slotObjectScript.storedItemStartPos;
-        IntVector2 itemSizeL = retItem.GetComponent<ItemScript>().item.Size;
+        IntVector2 itemSizeL = retItem.GetComponent<ItemOm>().Item.Size;
 
         SlotScript instanceScript;
         for (int y = 0; y < itemSizeL.y; y++)
@@ -254,7 +258,6 @@ public class InvenGridManager : MonoBehaviour {
             listManager.RemoveButton(selectedButton);
             listManager.sortManager.SortAndFilterList();
             selectedButton = null;
-
         }
     }
     
