@@ -176,14 +176,9 @@ J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\System.Runtime.Serializa
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\System.Xml.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\System.Xml.Linq.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\Unity.Locator.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\Unity.TextMeshPro.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEditor.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEditor.StandardEvents.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.AccessibilityModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.AIModule.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.Analytics.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.AnimationModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.ARModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.AssetBundleModule.dll
@@ -221,7 +216,6 @@ J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.SharedIntern
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.SpriteMaskModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.SpriteShapeModule.dll
-J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.StandardEvents.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.StreamingModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.StyleSheetsModule.dll
 J:\~CODE PROJECTS KEEP ORGANIZED\D12\D12\Temp\bin\Debug\UnityEngine.SubstanceModule.dll

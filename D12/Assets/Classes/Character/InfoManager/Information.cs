@@ -26,7 +26,7 @@ public class Information
     /// <summary>
     /// List of character's habits
     /// </summary>
-    public List<string> HabitList { get; set; }
+    public List<string> HabitList;
 
     /// <summary>
     /// Constructor: All components are initialized to default values

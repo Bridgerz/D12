@@ -6,12 +6,6 @@
 /// </summary>
 public static class Constants
 {
-    /* Experience.cs */
-    /// <summary>
-    /// New character starting experience points
-    /// </summary>
-    public const int STARTING_EXP_VAL = 24;
-
     /* Wallet.cs */
     /// <summary>
     /// New character starting bit amount

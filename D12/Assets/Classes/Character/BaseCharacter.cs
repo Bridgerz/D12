@@ -22,11 +22,6 @@ using UnityEngine;
 public class BaseCharacter
 {
     /// <summary>
-    /// Experience manager
-    /// </summary>
-    public Experience Experience;
-
-    /// <summary>
     /// Information and flavor container
     /// </summary>
     public Information Info;
@@ -42,14 +37,19 @@ public class BaseCharacter
     public Inventory Inventory;
 
     /// <summary>
+    /// Stats manager
+    /// </summary>
+    public Stats Stats;
+
+    /// <summary>
     /// Constructor: Initializes all components to their default state (new character)
     /// </summary>
     public BaseCharacter()
     {
-        Experience = new Experience();
         Info = new Information();
         Wallet = new Wallet();
         Inventory = new Inventory();
+        Stats = new Stats();
     }
 
     /// <summary>
