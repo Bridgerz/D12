@@ -19,6 +19,8 @@ public class LoadItemDatabase : MonoBehaviour
 
     public List<ItemDm> dbList = new List<ItemDm>();
 
+
+    // need a way to deserialize each object into their respective types
     private void LoadJson()
     {
         var list = new List<ItemDm>();

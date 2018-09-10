@@ -13,13 +13,12 @@ namespace Assets.Inventory.Scripts.InventoryGrid
 {
     public class InventoryDataManager
     {
+
         private string JsonFile = "Assets/StreamingAssets/InventoryItemData.json";
+        
 
         public void SaveInventory(List<ItemDm> inventory)
         {
-            // fetch current inventory and compare 
-
-
             var saveList = new List<InventoryItemSave>();
             foreach (var item in inventory)
             {
@@ -32,7 +31,24 @@ namespace Assets.Inventory.Scripts.InventoryGrid
         
         public List<ItemDm> LoadInventory(LoadItemDatabase database)
         {
-            return new List<ItemDm>();
+            List<InventoryItemSave> saveList = new List<InventoryItemSave>();
+            List<ItemDm> newList = new List<ItemDm>();
+            if (File.Exists(JsonFile))
+            {
+                string dataAsJason = File.ReadAllText(JsonFile);
+                saveList = JsonConvert.DeserializeObject<List<InventoryItemSave>>(dataAsJason);
+            }
+            if (saveList.Count > 0)
+            {
+                foreach (var item in saveList)
+                {
+                    var newItem = database.dbList.Where(x => x.GlobalID == item.GlobalID).First();
+                    newItem.Location = item.Location;
+                    newItem.Quantity = item.Quantity;
+                    newList.Add(newItem);
+                }
+            }
+            return newList;
         }
     }
 }
