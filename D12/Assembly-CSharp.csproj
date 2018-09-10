@@ -61,13 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Assets\Classes\BaseCharacter.cs" />
-    <Compile Include="Assets\Classes\Constants.cs" />
-    <Compile Include="Assets\Classes\Experience.cs" />
-    <Compile Include="Assets\Classes\Information.cs" />
-    <Compile Include="Assets\Classes\Wallet.cs" />
-=======
     <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
     <Compile Include="Assets\Classes\Character\InfoManager\Information.cs" />
@@ -85,7 +78,6 @@
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CreateItemManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\CsvReadWrite.cs" />
->>>>>>> JonnieCharacterUpdate
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InvenGridManager.cs" />
