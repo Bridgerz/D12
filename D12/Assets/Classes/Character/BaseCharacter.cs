@@ -12,8 +12,7 @@
 
 /// (CTRL + M), (CTRL + O) to collapse all comments and functions
 
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -37,6 +36,11 @@ public class BaseCharacter
     public Stats Stats;
 
     /// <summary>
+    /// Unique player identifier
+    /// </summary>
+    public Guid Guid { get; private set; }
+
+    /// <summary>
     /// Constructor: Initializes all components to their default state (new character)
     /// </summary>
     public BaseCharacter()
@@ -44,6 +48,7 @@ public class BaseCharacter
         Info = new Information();
         Wallet = new Wallet();
         Stats = new Stats();
+        Guid = new Guid();
     }
 
     /// <summary>

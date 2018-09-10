@@ -48,7 +48,7 @@ public class SpellTrait : Trait
     /// <param name="goodTargets">Targets inteded to be buffed/healed by the spell</param>
     /// <param name="additionalObjects">Any additional objects that the spellcast affects / interacts with</param>
     /// <returns>If spell was successfully cast</returns>
-    public virtual bool Cast(out string msg, BaseCharacter[] badTargets = null, BaseCharacter[] goodTargets = null, object[] additionalObjects = null)
+    public virtual bool Cast(out string msg, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
     {
         msg = "";
         return false;

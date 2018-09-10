@@ -32,10 +32,12 @@ public class ActionTrait : Trait
     /// <param name="dailyCount">Max number of times action should be performed in a day</param>
     /// <param name="numTargets">Number of targets for the action</param>
     /// <param name="active">Flag indicating if trait has been purchased (unlocked)</param>
-    public ActionTrait(string name, string desc, int cost, int dailyCount, int numTargets, bool active) : base(name, desc, cost, active)
+    /// <param name="currentCount">Number of times action has been used today</param>
+    public ActionTrait(string name, string desc, int cost, int dailyCount, int numTargets, bool active, int currentCount = 0) : base(name, desc, cost, active)
     {
         this.DailyCount = dailyCount;
         this.NumTargets = numTargets;
+        CurrentCount = currentCount;
     }
 
     /// <summary>
@@ -46,7 +48,7 @@ public class ActionTrait : Trait
     /// <param name="goodTargets">Targets intended to benefit from the action</param>
     /// <param name="additionalObjects">Any additional objects the performance affects / interacts with</param>
     /// <returns>If action was succesfully performed</returns>
-    public virtual bool Perform(out string msg, BaseCharacter[] badTargets = null, BaseCharacter[] goodTargets = null, object[] additionalObjects = null)
+    public virtual bool Perform(out string msg, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
     {
         msg = "";
         return false;
