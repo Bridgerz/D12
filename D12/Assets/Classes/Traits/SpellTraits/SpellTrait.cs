@@ -9,49 +9,19 @@ using System.Collections.Generic;
 public class SpellTrait : Trait
 {
     /// <summary>
-    /// Internal mana cost of spell
-    /// </summary>
-    private int manaCost;
-
-    /// <summary>
     /// Mana cost of spell
     /// </summary>
-    public int ManaCost {
-        get
-        {
-            return manaCost;
-        }
-    }
-
-    /// <summary>
-    /// Internal range in meters of the spell
-    /// </summary>
-    private int range;
+    public int ManaCost { get; protected set; }
 
     /// <summary>
     /// Range in meters of the spell
     /// </summary>
-    public int Range {
-        get
-        {
-            return range;
-        }
-    }
-
-    /// <summary>
-    /// Internal number of spell targets
-    /// </summary>
-    private int numTargets;
+    public int Range { get; protected set; }
 
     /// <summary>
     /// Number of spell targets
     /// </summary>
-    public int NumTargets {
-        get
-        {
-            return numTargets;
-        }
-    }
+    public int NumTargets { get; protected set; }
 
     /// <summary>
     /// Constructor: Initializes all data members of a spell trait
@@ -65,9 +35,9 @@ public class SpellTrait : Trait
     /// <param name="active">Flag indicating if trait has been purchased (unlocked)</param>
     public SpellTrait(string name, string desc, int cost, int manaCost, int range, int numTargets, bool active) : base(name, desc, cost, active)
     {
-        this.manaCost = manaCost;
-        this.range = range;
-        this.numTargets = numTargets;
+        ManaCost = manaCost;
+        Range = range;
+        NumTargets = numTargets;
     }
 
     /// <summary>

@@ -32,11 +32,6 @@ public class BaseCharacter
     public Wallet Wallet;
 
     /// <summary>
-    /// Inventory manager
-    /// </summary>
-    public Inventory Inventory;
-
-    /// <summary>
     /// Stats manager
     /// </summary>
     public Stats Stats;
@@ -48,7 +43,6 @@ public class BaseCharacter
     {
         Info = new Information();
         Wallet = new Wallet();
-        Inventory = new Inventory();
         Stats = new Stats();
     }
 

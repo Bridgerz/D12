@@ -15,10 +15,7 @@ public class EffectTrait : Trait
     /// <param name="desc">Description of trait and its effects</param>
     /// <param name="cost">EXP cost to purchase (unlock) trait</param>
     /// <param name="active">Flag indicating trait's lock/unlock status</param>
-    public EffectTrait(string name, string desc, int cost, bool active) : base(name, desc, cost, active)
-    {
-
-    }
+    public EffectTrait(string name, string desc, int cost, bool active) : base(name, desc, cost, active) { }
 
     /// <summary>
     /// Does something?

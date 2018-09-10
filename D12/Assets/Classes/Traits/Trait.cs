@@ -10,71 +10,24 @@ using System.Collections.Generic;
 public class Trait
 {
     /// <summary>
-    /// Internal name of the trait
-    /// </summary>
-    protected string name;
-
-    /// <summary>
     /// Name of the trait
     /// </summary>
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-    }
-
-    /// <summary>
-    /// Internal description of trait and its effects
-    /// </summary>
-    protected string desc;
+    public string Name { get; protected set; }
 
     /// <summary>
     /// Description of trait and its effects
     /// </summary>
-    public string Desc {
-        get
-        {
-            return Desc;
-        }
-    }
-
-    /// <summary>
-    /// Internal EXP cost to puchase trait
-    /// </summary>
-    protected int cost;
+    public string Desc { get; protected set; }
 
     /// <summary>
     /// EXP cost to purchase (unlock) trait
     /// </summary>
-    public int Cost
-    {
-        get
-        {
-            return cost;
-        }
-    }
-
-    /// <summary>
-    /// Internal flag if trait has been purchased and is now active
-    /// </summary>
-    protected bool active;
+    public int Cost { get; protected set; }
 
     /// <summary>
     /// Flag if trait has been unlocked
     /// </summary>
-    public bool Active
-    {
-        get
-        {
-            return active;
-        }
-        set
-        {
-            active = value;
-        }
-    }
+    public bool Active { get; set; }
 
     /// <summary>
     /// List of parent traits (traits directly above it in the tree)
@@ -87,6 +40,11 @@ public class Trait
     public List<Trait> children;
 
     /// <summary>
+    /// Internal rng for calculations
+    /// </summary>
+    protected readonly Random rng;
+
+    /// <summary>
     /// Constructor: Initializes a Trait with a name, desc, cost and active flag
     /// </summary>
     /// <param name="name">Name of trait</param>
@@ -97,10 +55,11 @@ public class Trait
     {
         children = new List<Trait>();
         parents = new List<Trait>();
-        this.active = active;
-        this.cost = cost;
-        this.desc = desc;
-        this.name = name;
+        Active = active;
+        Cost = cost;
+        Desc = desc;
+        Name = name;
+        rng = new Random(new Guid().GetHashCode());
     }
 }
 

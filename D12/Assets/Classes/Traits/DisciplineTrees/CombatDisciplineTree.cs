@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// The tree of all combat discipline based traits
+/// Tree of all combat discipline based traits
 /// </summary>
 public class CombatDisciplineTree
 {

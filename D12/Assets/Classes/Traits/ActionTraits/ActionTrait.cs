@@ -9,19 +9,9 @@ using System.Collections.Generic;
 public class ActionTrait : Trait
 {
     /// <summary>
-    /// Internal number of times the action can be done in a day
-    /// </summary>
-    private int dailyCount;
-
-    /// <summary>
     /// Number of times the action can be done in a day
     /// </summary>
-    public int DailyCount {
-        get
-        {
-            return dailyCount;
-        }
-    }
+    public int DailyCount { get; protected set; }
 
     /// <summary>
     /// Count of times the action has been performed
@@ -29,19 +19,9 @@ public class ActionTrait : Trait
     public int CurrentCount;
 
     /// <summary>
-    /// Internal number of action targets
-    /// </summary>
-    private int numTargets;
-
-    /// <summary>
     /// Number of action targets
     /// </summary>
-    public int NumTargets {
-        get
-        {
-            return numTargets;
-        }
-    }
+    public int NumTargets { get; protected set; }
 
     /// <summary>
     /// Constructor: Initializes all data members of an action trait
@@ -54,8 +34,8 @@ public class ActionTrait : Trait
     /// <param name="active">Flag indicating if trait has been purchased (unlocked)</param>
     public ActionTrait(string name, string desc, int cost, int dailyCount, int numTargets, bool active) : base(name, desc, cost, active)
     {
-        this.dailyCount = dailyCount;
-        this.numTargets = numTargets;
+        this.DailyCount = dailyCount;
+        this.NumTargets = numTargets;
     }
 
     /// <summary>
