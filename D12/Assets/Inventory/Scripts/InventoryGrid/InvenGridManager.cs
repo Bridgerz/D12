@@ -12,7 +12,6 @@ public class InvenGridManager : MonoBehaviour {
     public Transform dropParent;
     [HideInInspector]
     public IntVector2 gridSize;
-    //public List<ItemOm> Inventory;
     public InventoryDataManager InvManager;
     
     public ItemListManager listManager;
@@ -28,7 +27,11 @@ public class InvenGridManager : MonoBehaviour {
     {
         ItemButtonScript.invenManager = this;
         InvManager = new InventoryDataManager();
-        //Inventory = InvManager.LoadInventory(listManager.itemDB);
+        listManager.Inventory = InvManager.LoadInventory(listManager.itemDB);
+        if (listManager.Inventory.Count > 0)
+        {
+            LoadInventory(listManager.Inventory);
+        }
     }
 
     private void Update()
@@ -62,6 +65,45 @@ public class InvenGridManager : MonoBehaviour {
                 RefrechColor(true);
             }
         }
+    }
+
+    private void LoadInventory(List<ItemDm> inventory)
+    {
+        foreach (var item in inventory)
+        {
+            // create object
+            GameObject newItem = listManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(item);
+            // store object
+            var slot = slotGrid[item.Location.X + item.Size.x/2, item.Location.Y + item.Size.y / 2];
+            highlightedSlot = slot;
+            CheckArea(item.Size);
+           
+            SlotScript instanceScript;
+            IntVector2 itemSizeL = item.Size;
+            for (int y = 0; y < itemSizeL.y; y++)
+            {
+                for (int x = 0; x < itemSizeL.x; x++)
+                {
+                    //set each slot parameters
+                    instanceScript = slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<SlotScript>();
+                    instanceScript.storedItemObject = newItem;
+                    instanceScript.storedItemClass = newItem.GetComponent<ItemOm>();
+                    instanceScript.storedItemSize = itemSizeL;
+                    instanceScript.storedItemStartPos = totalOffset;
+                    instanceScript.isOccupied = true;
+                    slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<Image>().color = SlotColorHighlights.Gray;
+                }
+            }
+            //set dropped parameters
+            newItem.transform.SetParent(dropParent);
+            newItem.GetComponent<RectTransform>().pivot = Vector2.zero;
+            newItem.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
+            newItem.GetComponent<CanvasGroup>().alpha = 1f;
+            newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        }
+        highlightedSlot = null;
+        
     }
 
     private void CheckArea(IntVector2 itemSize) //*2
@@ -99,6 +141,7 @@ public class InvenGridManager : MonoBehaviour {
             isOverEdge = true;
         }
     }
+
     private int SlotCheck(IntVector2 itemSize)//*2
     {
         GameObject obj = null;
@@ -130,6 +173,7 @@ public class InvenGridManager : MonoBehaviour {
         }
         return 2; // check areaArea is over the grid
     }
+
     public void RefrechColor(bool enter)
     {
         if (enter)
@@ -158,6 +202,7 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
+
     public void ColorChangeLoop(Color32 color, IntVector2 size, IntVector2 startPos)
     {
         for (int y = 0; y < size.y; y++)
@@ -168,6 +213,7 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
+
     public void ColorChangeLoop2(IntVector2 size, IntVector2 startPos)
     {
         GameObject slot;
@@ -187,32 +233,45 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
-    private void StoreItem(GameObject item)
+
+    private void StoreItem(GameObject itemObject)
     {
         SlotScript instanceScript;
-        IntVector2 itemSizeL = item.GetComponent<ItemOm>().Item.Size;
-        item.GetComponent<ItemOm>().Item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
-        //Inventory.Add(item.GetComponent<ItemOm>());
+        IntVector2 itemSizeL = itemObject.GetComponent<ItemOm>().Item.Size;
+        var item = itemObject.GetComponent<ItemOm>().Item;
+        var position = highlightedSlot.GetComponent<SlotScript>().gridPos;
+        item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
         for (int y = 0; y < itemSizeL.y; y++)
         {
             for (int x = 0; x < itemSizeL.x; x++)
             {
                 //set each slot parameters
                 instanceScript = slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<SlotScript>();
-                instanceScript.storedItemObject = item;
-                instanceScript.storedItemClass = item.GetComponent<ItemOm>();
+                instanceScript.storedItemObject = itemObject;
+                instanceScript.storedItemClass = itemObject.GetComponent<ItemOm>();
                 instanceScript.storedItemSize = itemSizeL;
                 instanceScript.storedItemStartPos = totalOffset;
                 instanceScript.isOccupied = true;
                 slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<Image>().color = SlotColorHighlights.Gray;
             }
-        }//set dropped parameters
-        item.transform.SetParent(dropParent);
-        item.GetComponent<RectTransform>().pivot = Vector2.zero;
-        item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
-        item.GetComponent<CanvasGroup>().alpha = 1f;
-        //InvManager.SaveInventory(Inventory);
-        //overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
+        }
+        //set dropped parameters
+        itemObject.transform.SetParent(dropParent);
+        itemObject.GetComponent<RectTransform>().pivot = Vector2.zero;
+        itemObject.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
+        itemObject.GetComponent<CanvasGroup>().alpha = 1f;
+
+        // check if item was already in Inventory
+        var index = listManager.Inventory.FindIndex(x => x.GlobalID == item.GlobalID);
+        if (index >= 0)
+        {
+            listManager.Inventory[index].Location = item.Location;
+        }
+        else
+        {
+            listManager.Inventory.Add(item);
+        }
+        InvManager.SaveInventory(listManager.Inventory);
     }
 
     private GameObject GetItem(GameObject slotObject)
@@ -242,6 +301,7 @@ public class InvenGridManager : MonoBehaviour {
         //overlayScript.UpdateOverlay(null);
         return retItem;
     }
+
     private GameObject SwapItem(GameObject item)
     {
         GameObject tempItem;
@@ -260,8 +320,8 @@ public class InvenGridManager : MonoBehaviour {
             selectedButton = null;
         }
     }
-    
 }
+
 
 public struct SlotColorHighlights
 {

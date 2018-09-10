@@ -9,11 +9,11 @@ using UnityEngine;
 /// </summary>
 
 [System.Serializable]
-public class ConsumableDm : ItemDm
+public class EnchantedDm : ItemDm
 {
     public override List<Enchantment> Enchantments { get; set; }
 
-    public ConsumableDm(int globalID, string title,
+    public EnchantedDm(int globalID, string title,
         string defenition, List<Enchantment> enchantments, Quality quality,
         int weight) : base(globalID, title, defenition, quality, weight)
     {

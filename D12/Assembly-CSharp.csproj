@@ -74,6 +74,7 @@
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotSectorScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\EnchantedDm.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Item\InventoryItemSave.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Enchantment.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Quality.cs" />
