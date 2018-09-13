@@ -1,4 +1,5 @@
-﻿using Assets.Inventory.Scripts.Item;
+﻿using Assets.Inventory.Scripts.InventoryGrid;
+using Assets.Inventory.Scripts.Item;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class ItemListManager : MonoBehaviour {
     public InvenGridManager invenManager;
     public LoadItemDatabase itemDB;
     public SortAndFilterManager sortManager;
+    public InventoryDataManager InvManager;
 
     public float iconSize;
     
@@ -20,6 +22,8 @@ public class ItemListManager : MonoBehaviour {
 
     private void Start()
     {
+        InvManager = new InventoryDataManager();
+        Inventory = InvManager.LoadInventory(itemDB);
         contentPanel = this.transform;
     }
 
@@ -44,6 +48,8 @@ public class ItemListManager : MonoBehaviour {
             ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);
+            Inventory.RemoveAll(x => x.GlobalID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.GlobalID);
+            InvManager.SaveInventory(Inventory);
             ItemOm.ResetSelectedItem();
         }
     }
