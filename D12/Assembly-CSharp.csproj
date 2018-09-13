@@ -73,8 +73,6 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
-    <Compile Include="Assets\Inventory\Scripts\CreateItem\CreateItemManager.cs" />
-    <Compile Include="Assets\Inventory\Scripts\CreateItem\CsvReadWrite.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InvenGridManager.cs" />
