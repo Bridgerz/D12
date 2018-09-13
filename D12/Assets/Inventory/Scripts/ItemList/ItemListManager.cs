@@ -1,4 +1,5 @@
-﻿using Assets.Inventory.Scripts.Item;
+﻿using Assets.Inventory.Scripts.InventoryGrid;
+using Assets.Inventory.Scripts.Item;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class ItemListManager : MonoBehaviour {
     public InvenGridManager invenManager;
     public LoadItemDatabase itemDB;
     public SortAndFilterManager sortManager;
+    public InventoryDataManager InvManager;
 
     public float iconSize;
     
@@ -21,6 +23,7 @@ public class ItemListManager : MonoBehaviour {
     private void Start()
     {
         contentPanel = this.transform;
+        InvManager = new InventoryDataManager();
     }
 
     private void Update()
@@ -41,6 +44,8 @@ public class ItemListManager : MonoBehaviour {
         //add item to list if item is not from list
         if (invenManager.selectedButton == null && ItemOm.SelectedItem != null) 
         {
+            Inventory.RemoveAll(x => x.GlobalID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.GlobalID);
+            InvManager.SaveInventory(Inventory);
             ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);

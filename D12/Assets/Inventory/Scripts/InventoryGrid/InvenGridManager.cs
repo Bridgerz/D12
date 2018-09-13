@@ -12,7 +12,7 @@ public class InvenGridManager : MonoBehaviour {
     public Transform dropParent;
     [HideInInspector]
     public IntVector2 gridSize;
-    public InventoryDataManager InvManager;
+    
     
     public ItemListManager listManager;
     public GameObject selectedButton;
@@ -26,8 +26,7 @@ public class InvenGridManager : MonoBehaviour {
     private void Start()
     {
         ItemButtonScript.invenManager = this;
-        InvManager = new InventoryDataManager();
-        listManager.Inventory = InvManager.LoadInventory(listManager.itemDB);
+        listManager.Inventory = listManager.InvManager.LoadInventory(listManager.itemDB);
         if (listManager.Inventory.Count > 0)
         {
             LoadInventory(listManager.Inventory);
@@ -271,7 +270,7 @@ public class InvenGridManager : MonoBehaviour {
         {
             listManager.Inventory.Add(item);
         }
-        InvManager.SaveInventory(listManager.Inventory);
+        listManager.InvManager.SaveInventory(listManager.Inventory);
     }
 
     private GameObject GetItem(GameObject slotObject)
