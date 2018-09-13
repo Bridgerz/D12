@@ -22,11 +22,10 @@ public class EffectTrait : Trait
     /// </summary>
     /// <param name="msg">Flavor message returned when something has been attempted</param>
     /// <param name="additionalObjects">Any additional objects needed to do something</param>
-    public virtual bool DoSomething(out string msg, object[] additionalObjects)
+    public virtual bool DoSomething(out string msg, List<object> additionalObjects)
     {
         msg = "";
         return false;
-        // M E M E
     }
 }
 

@@ -44,11 +44,12 @@ public class ActionTrait : Trait
     /// Simulates an action being performed on a number of targets
     /// </summary>
     /// <param name="msg">A flavor message returned after a performance</param>
+    /// <param name="roll">The d12 roll passed into the function</param>
     /// <param name="badTargets">Targets intended to be damaged by the action</param>
     /// <param name="goodTargets">Targets intended to benefit from the action</param>
     /// <param name="additionalObjects">Any additional objects the performance affects / interacts with</param>
     /// <returns>If action was succesfully performed</returns>
-    public virtual bool Perform(out string msg, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
+    public virtual bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
     {
         msg = "";
         return false;
