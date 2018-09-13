@@ -40,11 +40,6 @@ public class Trait
     public List<Trait> children;
 
     /// <summary>
-    /// Internal rng for calculations
-    /// </summary>
-    protected readonly Random rng;
-
-    /// <summary>
     /// Constructor: Initializes a Trait with a name, desc, cost and active flag
     /// </summary>
     /// <param name="name">Name of trait</param>
@@ -59,7 +54,6 @@ public class Trait
         Cost = cost;
         Desc = desc;
         Name = name;
-        rng = new Random(new Guid().GetHashCode());
     }
 }
 

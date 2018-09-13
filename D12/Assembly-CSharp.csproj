@@ -64,10 +64,7 @@
     <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
     <Compile Include="Assets\Classes\Character\InfoManager\Information.cs" />
-    <Compile Include="Assets\Classes\Character\InventoryManager %28Scrap this%29\Inventory.cs" />
-    <Compile Include="Assets\Classes\Character\InventoryManager %28Scrap this%29\Item\BaseItem.cs" />
     <Compile Include="Assets\Classes\Character\StatsManager\Stats.cs" />
-    <Compile Include="Assets\Classes\Character\TestScripts\CharacterDataViewer.cs" />
     <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
     <Compile Include="Assets\Classes\Traits\ActionTraits\ActionTrait.cs" />
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />

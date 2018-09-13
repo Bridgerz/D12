@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+D12/.vs/D12/v15/.suo
+D12/.vs/D12/v15/Server/sqlite3/storage.ide-shm
+D12/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
