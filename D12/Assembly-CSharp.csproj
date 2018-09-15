@@ -69,6 +69,7 @@
     <Compile Include="Assets\Classes\Traits\ActionTraits\ActionTrait.cs" />
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\SkillTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\SpellTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
@@ -363,6 +364,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

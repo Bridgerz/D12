@@ -27,6 +27,7 @@ public class Firebolt1 : SpellTrait
         var dmg = (roll > 8) ? -2 : -1;
 
         // Damage the target
+        // TODO: Check targets resistances.
         target.Stats.Modify(HP: dmg);
 
         // Return confirmation message and success

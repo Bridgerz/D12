@@ -25,9 +25,14 @@ public class Trait
     public int Cost { get; protected set; }
 
     /// <summary>
-    /// Flag if trait has been unlocked
+    /// Flag if trait has been unlocked and is active
     /// </summary>
     public bool Active { get; set; }
+
+    /// <summary>
+    /// Flag if trait is a crossroad trait
+    /// </summary>
+    public bool IsCrossroad { get; protected set; }
 
     /// <summary>
     /// List of parent traits (traits directly above it in the tree)
