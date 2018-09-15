@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Text;
 using Assets.Inventory.Scripts.Item.OM;
 using Newtonsoft.Json;
+using Assets.Inventory.Scripts.CreateItem;
 
 [Serializable]
 public class LoadItemDatabase : MonoBehaviour
@@ -19,15 +20,13 @@ public class LoadItemDatabase : MonoBehaviour
 
     public List<ItemDm> dbList = new List<ItemDm>();
 
-
-    // need a way to deserialize each object into their respective types
     private void LoadJson()
     {
         var list = new List<ItemDm>();
         if (File.Exists(JsonFile))
         {
             string dataAsJason = File.ReadAllText(JsonFile);
-            dbList = JsonConvert.DeserializeObject<List<ItemDm>>(dataAsJason);
+            dbList = JsonConvert.DeserializeObject<List<ItemDm>>(dataAsJason, new ItemConverter());
         }
     }
 }

@@ -1,6 +1,7 @@
 [
     {
         "GlobalID":0,
+        "Type" : 3,
         "Title": "Alphas Council",
         "Defenition": "A fuckin lit sword",
         "Damage": 69,
@@ -24,6 +25,7 @@
 
     {
         "GlobalID":1,
+        "Type" : 3,
         "Title": "Alphas First Secret",
         "MainHand": true,
         "Defenition": "A fuckin lit mace",
@@ -47,6 +49,7 @@
     },
     {
         "GlobalID":2,
+        "Type" : 3,
         "Title": "Alphas Sting",
         "Defenition": "A fuckin lit dagger",
         "Damage": 69,
@@ -70,6 +73,7 @@
     },
     {
         "GlobalID":3,
+        "Type" : 3,
         "Title": "Alphas Truth",
         "Defenition": "A fuckin lit Bow",
         "Damage": 69,
@@ -93,6 +97,7 @@
     },
     {
         "GlobalID":4,
+        "Type" : 3,
         "Title": "Keep of the Alpha",
         "Defenition": "A fuckin lit Shield",
         "Damage": 69,
@@ -116,6 +121,7 @@
     },
     {
         "GlobalID":5,
+        "Type" : 3,
         "Title": "Alphas Judgement",
         "Defenition": "A fuckin lit Staff",
         "Damage": 69,
@@ -139,6 +145,7 @@
     },
     {
         "GlobalID":6,
+        "Type" : 2,
         "Title": "Alphas Helm",
         "Defenition": "A Fuckin Lit helmet",
         "Tags": [
@@ -163,6 +170,7 @@
     },
     {
         "GlobalID":7,
+        "Type" : 2,
         "Title": "Alphas Conquest",
         "Defenition": "Fuckin Lit boots",
         "Tags": [
@@ -187,6 +195,7 @@
     },
     {
         "GlobalID":8,
+        "Type" : 2,
         "Title": "Alphas Presence",
         "Defenition": "A Fuckin Lit cape",
         "Tags": [
@@ -211,6 +220,7 @@
     },
     {
         "GlobalID":9,
+        "Type" : 2,
         "Title": "Alphas Stride",
         "Defenition": "Fuckin Lit pants",
         "Tags": [
@@ -235,6 +245,7 @@
     },
     {
         "GlobalID":10,
+        "Type" : 2,
         "Title": "Grasp of the Alpha",
         "Defenition": "Fuckin Lit gauntlets",
         "Tags": [
@@ -259,6 +270,7 @@
     },
     {
         "GlobalID":11,
+        "Type" : 2,
         "Title": "Breast of the Alpha",
         "Defenition": "Fuckin Lit Chest Armor",
         "Tags": [
@@ -283,6 +295,7 @@
     },
     {
         "GlobalID": 12,
+        "Type" : 2,
         "Title": "Alphas Second Secret",
         "Defenition": "weird thing",
         "Tags": [
@@ -302,6 +315,7 @@
     },
     {
         "GlobalID": 13,
+        "Type" : 2,
         "Title": "Alphas Shadow",
         "Defenition": "shadow thing",
         "Tags": [
@@ -317,6 +331,7 @@
     },
     {
         "GlobalID":14,
+        "Type" : 1,
         "Title": "Hate Potion",
         "Defenition": "Potion that makes you racist",
         "Enchantments": [],
@@ -329,6 +344,7 @@
     },
     {
         "GlobalID":15,
+        "Type" : 1,
         "Title": "Lesser Health Potion",
         "Defenition": "Potion that heals you lesser",
         "Enchantments": [],

@@ -8,6 +8,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
+using Assets.Inventory.Scripts.CreateItem;
 
 namespace Assets.Inventory.Scripts.InventoryGrid
 {
@@ -25,7 +26,7 @@ namespace Assets.Inventory.Scripts.InventoryGrid
                 var saveItem = new InventoryItemSave(item.GlobalID, item.Quantity, item.Location);
                 saveList.Add(saveItem);
             }
-            var json = JsonConvert.SerializeObject(saveList, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(saveList, Formatting.Indented, new ItemConverter());
             File.WriteAllText(JsonFile, json);
         }
         
@@ -36,7 +37,7 @@ namespace Assets.Inventory.Scripts.InventoryGrid
             if (File.Exists(JsonFile))
             {
                 string dataAsJason = File.ReadAllText(JsonFile);
-                saveList = JsonConvert.DeserializeObject<List<InventoryItemSave>>(dataAsJason);
+                saveList = JsonConvert.DeserializeObject<List<InventoryItemSave>>(dataAsJason, new ItemConverter());
             }
             if (saveList.Count > 0)
             {
