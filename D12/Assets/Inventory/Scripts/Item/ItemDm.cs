@@ -1,4 +1,5 @@
-﻿using Assets.Inventory.Scripts.Item.OM;
+﻿using Assets.Inventory.Scripts.Item.ItemModels;
+using Assets.Inventory.Scripts.Item.OM;
 using Assets.Inventory.Scripts.ItemObject;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -9,24 +10,16 @@ using UnityEngine;
 [Serializable]
 public class ItemDm
 {
-    [JsonProperty("GlobalID")]
     public int GlobalID { get; set; }
-    [JsonProperty("Title")]
+    public ItemType Type { get; set; }
     public string Title { get; set; }
-    [JsonProperty("Defenition")]
     public string Defenition { get; set; }
-    [JsonProperty("Quality")]
     public Quality Quality { get; set; }
-    [JsonProperty("Weight")]
-    public int Weight { get; set; }
 
-    [JsonProperty("Damage")]
+    public int Weight { get; set; }
     public virtual int Damage { get; set; }
-    [JsonProperty("MainHand")]
     public virtual bool MainHand { get; set; }
-    [JsonProperty("Tags")]
     public virtual List<Tag> Tags { get; set; }
-    [JsonProperty("Enchantments")]
     public virtual List<Enchantment> Enchantments { get; set; }
 
     public int Quantity;
@@ -35,11 +28,11 @@ public class ItemDm
     [HideInInspector] public Sprite Icon;
     [HideInInspector] public IntVector2 Size;
 
-    public ItemDm(int globalID, string title,
-        string defenition, Quality quality,
-        int weight)
+    public ItemDm(int globalID, ItemType type, string title,
+        string defenition, Quality quality, int weight)
     {
         GlobalID = globalID;
+        Type = type;
         Title = title;
         Defenition = defenition;
         Quality = quality;

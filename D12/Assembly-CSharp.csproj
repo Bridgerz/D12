@@ -73,6 +73,7 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
+    <Compile Include="Assets\Inventory\Scripts\CreateItem\ItemConverter.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InvenGridManager.cs" />
@@ -84,11 +85,12 @@
     <Compile Include="Assets\Inventory\Scripts\Item\InventoryItemSave.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Enchantment.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\ItemType.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Quality.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\SlotLocation.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Tag.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemOm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\Tagged.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Item\TaggedDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\WeaponDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemButtonScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemListManager.cs" />
@@ -319,9 +321,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files (x86)/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="LitJson">
-      <HintPath>C:/Git/D12/D12/Assets/LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:/Git/D12/D12/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
