@@ -13,50 +13,52 @@
 /// (CTRL + M), (CTRL + O) to collapse all comments and functions
 
 using System;
-using UnityEngine;
 
-/// <summary>
-/// Represents a character and encapsulates all their information
-/// </summary>
-public class BaseCharacter
+namespace Assets.Classes.Character
 {
     /// <summary>
-    /// Information and flavor container
+    /// Represents a character and encapsulates all their information
     /// </summary>
-    public Information Info;
-
-    /// <summary>
-    /// Currency manager
-    /// </summary>
-    public Wallet Wallet;
-
-    /// <summary>
-    /// Stats manager
-    /// </summary>
-    public Stats Stats;
-
-    /// <summary>
-    /// Unique player identifier
-    /// </summary>
-    public Guid Guid { get; private set; }
-
-    /// <summary>
-    /// Constructor: Initializes all components to their default state (new character)
-    /// </summary>
-    public BaseCharacter()
+    public class BaseCharacter
     {
-        Info = new Information();
-        Wallet = new Wallet();
-        Stats = new Stats();
-        Guid = new Guid();
-    }
+        /// <summary>
+        /// Information and flavor container
+        /// </summary>
+        public Information Info;
 
-    /// <summary>
-    /// Constructor: Initializes components from a save file (returning character)
-    /// </summary>
-    /// <param name="savefile">Path to save file</param>
-    public BaseCharacter(string savefile)
-    {
-        // TODO
+        /// <summary>
+        /// Currency manager
+        /// </summary>
+        public Wallet Wallet;
+
+        /// <summary>
+        /// Stats manager
+        /// </summary>
+        public Stats Stats;
+
+        /// <summary>
+        /// Unique player identifier
+        /// </summary>
+        public Guid Guid { get; private set; }
+
+        /// <summary>
+        /// Constructor: Initializes all components to their default state (new character)
+        /// </summary>
+        public BaseCharacter()
+        {
+            Info = new Information();
+            Wallet = new Wallet();
+            Stats = new Stats();
+            Guid = new Guid();
+        }
+
+        /// <summary>
+        /// Constructor: Initializes components from a save file (returning character)
+        /// </summary>
+        /// <param name="savefile">Path to save file</param>
+        public BaseCharacter(string savefile)
+        {
+            // TODO
+        }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Classes\Character\StatsManager\Stats.cs" />
     <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
     <Compile Include="Assets\Classes\Traits\ActionTraits\ActionTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\ActionTraits\Trait_Hamstring.cs" />
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SkillTraits\SkillTrait.cs" />

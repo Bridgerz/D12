@@ -4,17 +4,19 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Tree of all combat discipline based traits
-/// </summary>
-public class CombatDisciplineTree
+namespace Assets.Classes.Traits
 {
-    public Trait root;
-
-    public CombatDisciplineTree()
+    /// <summary>
+    /// Tree of all combat discipline based traits
+    /// </summary>
+    public class CombatDisciplineTree
     {
-        // ROOT
-        root = new Trait("root","root of combat tree", 0, true);
+        public Trait root;
+
+        public CombatDisciplineTree()
+        {
+            // ROOT
+            root = new Trait("root", "root of combat tree", 0, true);
+        }
     }
 }
-
