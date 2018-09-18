@@ -71,6 +71,8 @@
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SkillTraits\SkillTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Deception.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Lockpicking.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\SpellTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />

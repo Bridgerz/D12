@@ -156,4 +156,30 @@ namespace Assets.Classes.Traits
             return true;
         }
     }
+
+    /// <summary>
+    /// Lay on Hands Crossroad Trait: Radiant Touch
+    /// </summary>
+    public class RadiantTouch : EffectTrait
+    {
+        public RadiantTouch(bool active) : base("Radiant Touch","Lay on Hands heals everything within 5 meters of target", 1, active) { IsCrossroad = true; }
+
+        public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+        {
+            return base.DoSomething(out msg, additionalObjects);
+        }
+    }
+
+    /// <summary>
+    /// Lay on Hands Crossroad Trait: Boundless Gifts
+    /// </summary>
+    public class BoundlessGifts : EffectTrait
+    {
+        public BoundlessGifts(bool active) : base("Boundless Gifts", "Lay on Hands costs 0 mana", 1, active) { IsCrossroad = true; }
+
+        public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+        {
+            return base.DoSomething(out msg, additionalObjects);
+        }
+    }
 }
