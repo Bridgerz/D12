@@ -61,11 +61,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3d Table Top\Book-Page Curl Pro\Examples\scripts\BotAnimationControl.cs" />
-    <Compile Include="Assets\3d Table Top\Book-Page Curl Pro\Scripts\AutoFlip.cs" />
-    <Compile Include="Assets\3d Table Top\Book-Page Curl Pro\Scripts\BookPro.cs" />
-    <Compile Include="Assets\3d Table Top\Book-Page Curl Pro\Scripts\PageFlipper.cs" />
-    <Compile Include="Assets\3d Table Top\Book-Page Curl Pro\Scripts\Tween.cs" />
+    <Compile Include="Assets\3d Table Top\Book Page\Examples\scripts\BotAnimationControl.cs" />
+    <Compile Include="Assets\3d Table Top\Book Page\Scripts\AutoFlip.cs" />
+    <Compile Include="Assets\3d Table Top\Book Page\Scripts\BookPro.cs" />
+    <Compile Include="Assets\3d Table Top\Book Page\Scripts\PageFlipper.cs" />
+    <Compile Include="Assets\3d Table Top\Book Page\Scripts\Tween.cs" />
     <Compile Include="Assets\3d Table Top\Scripts\BookPhysics.cs" />
     <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Assets\Inventory\Scripts\Misc\IntVector2.cs" />
     <Compile Include="Assets\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
+    <Compile Include="Assets\InventoryBook.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
