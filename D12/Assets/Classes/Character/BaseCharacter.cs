@@ -3,7 +3,6 @@
 /// This class represents a single player and contains their:
 /// - Attributes (TODO)
 /// - Stats (TODO)
-/// - Experience (WIP)
 /// - Traits (TODO)
 /// - Inventory (TODO)
 /// - Currency Info (WIP)

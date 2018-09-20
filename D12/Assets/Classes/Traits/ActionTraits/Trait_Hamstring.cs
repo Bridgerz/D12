@@ -71,11 +71,17 @@ namespace Assets.Classes.Traits
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DeepWound : SkillTrait
     {
         public DeepWound(bool active) : base("Deep Wound", "1-5's on damage rolls for Hamstring are 6's", 1, active) { IsCrossroad = true; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Achilles : EffectTrait
     {
         public Achilles(bool active) : base("Achilles","slow is increased by 20%", 1, active) { IsCrossroad = true; }

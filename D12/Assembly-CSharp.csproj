@@ -72,8 +72,12 @@
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SkillTraits\SkillTrait.cs" />
     <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Deception.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Linguist.cs" />
     <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Lockpicking.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Religion.cs" />
+    <Compile Include="Assets\Classes\Traits\SkillTraits\Trait_Smithing.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\SpellTrait.cs" />
+    <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_ChromicInsight.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
