@@ -72,19 +72,46 @@ namespace Assets.Classes.Traits
     }
 
     /// <summary>
-    /// 
+    /// Hamstring Crossroad Trait: Deep Wound
     /// </summary>
     public class DeepWound : SkillTrait
     {
         public DeepWound(bool active) : base("Deep Wound", "1-5's on damage rolls for Hamstring are 6's", 1, active) { IsCrossroad = true; }
     }
 
+
     /// <summary>
-    /// 
+    /// Hamstring Crossroad Trait: Achilles
     /// </summary>
     public class Achilles : EffectTrait
     {
         public Achilles(bool active) : base("Achilles","slow is increased by 20%", 1, active) { IsCrossroad = true; }
+
+        public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+        {
+            return base.DoSomething(out msg, additionalObjects);
+        }
+    }
+
+    /// <summary>
+    /// Hamstring Crossroad Trait: Backswing
+    /// </summary>
+    public class Backswing : EffectTrait
+    {
+        public Backswing(bool active) : base("Backswing", "if Hamstring misses once, it is used again for free.", 1, active) { IsCrossroad = true; }
+
+        public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+        {
+            return base.DoSomething(out msg, additionalObjects);
+        }
+    }
+
+    /// <summary>
+    /// Hamstring Crossroad Trait: Leave It Bleeding
+    /// </summary>
+    public class LeaveItBleeding : EffectTrait
+    {
+        public LeaveItBleeding(bool active) : base("LeaveItBleeding", "targets slowed by Hamstring take 1 damage when they take the move.", 1, active) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {
