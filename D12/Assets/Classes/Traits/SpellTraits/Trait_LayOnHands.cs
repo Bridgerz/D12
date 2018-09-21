@@ -158,6 +158,32 @@ namespace Assets.Classes.Traits
     }
 
     /// <summary>
+    /// Lay on Hands Crossroad Trait: Blessed be the Weak
+    /// </summary>
+    public class BlessedBeTheWeak : EffectTrait
+    {
+        public BlessedBeTheWeak(bool active) : base("Blessed be the Weak", "+1 hit healed to those with less health than you.", 1, active) { IsCrossroad = true; }
+
+		public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+		{
+            return base.DoSomething(out msg, additionalObjects);
+		}
+	}
+
+    /// <summary>
+    /// Lay on Hands Crossroad Trait: Blessed be the Giver
+    /// </summary>
+    public class BlessedBeTheGiver : EffectTrait
+    {
+        public BlessedBeTheGiver(bool active) : base("Blessed be the Giver", "+1 hit healed when healing yourself.", 1, active) { IsCrossroad = true; }
+
+        public override bool DoSomething(out string msg, List<object> additionalObjects = null)
+        {
+            return base.DoSomething(out msg, additionalObjects);
+        }
+    }
+
+    /// <summary>
     /// Lay on Hands Crossroad Trait: Radiant Touch
     /// </summary>
     public class RadiantTouch : EffectTrait
