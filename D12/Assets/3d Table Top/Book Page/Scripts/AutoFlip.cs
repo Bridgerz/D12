@@ -11,8 +11,8 @@ public class AutoFlip : MonoBehaviour
     public float DelayBeforeStart;
     public float TimeBetweenPages=5;
     public bool AutoStartFlip=true;
-    bool flippingStarted = false;
-    bool isPageFlipping = false;
+    public bool flippingStarted = false;
+    public bool isPageFlipping = false;
     float elapsedTime = 0;
     float nextPageCountDown = 0;
     // Use this for initialization
