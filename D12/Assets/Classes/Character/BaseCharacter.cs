@@ -12,6 +12,7 @@
 /// (CTRL + M), (CTRL + O) to collapse all comments and functions
 
 using System;
+using Assets.Classes.Traits
 
 namespace Assets.Classes.Character
 {
@@ -36,6 +37,11 @@ namespace Assets.Classes.Character
         public Stats Stats;
 
         /// <summary>
+        /// Trait management system
+        /// </summary>
+        public TraitSystem TraitTrees;
+
+        /// <summary>
         /// Unique player identifier
         /// </summary>
         public Guid Guid { get; private set; }
@@ -48,6 +54,7 @@ namespace Assets.Classes.Character
             Info = new Information();
             Wallet = new Wallet();
             Stats = new Stats();
+            TraitTrees = new TraitSystem();
             Guid = new Guid();
         }
 

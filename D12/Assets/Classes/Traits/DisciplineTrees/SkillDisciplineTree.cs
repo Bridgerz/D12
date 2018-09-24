@@ -9,16 +9,12 @@ namespace Assets.Classes.Traits
     /// <summary>
     /// Tree of all skill discipline based traits
     /// </summary>
-    class SkillDisciplineTree
+    public class SkillDisciplineTree
     {
         public Trait root;
 
-        public int TotalSpentEXP;
-
         public SkillDisciplineTree()
         {
-            TotalSpentEXP = 0;
-
             root = new Trait("root", "root of skill tree", 0, true);
 
             // Lockpicking
@@ -27,56 +23,56 @@ namespace Assets.Classes.Traits
             Lockpicking3 l3 = new Lockpicking3(false);
             Lockpicking4 l4 = new Lockpicking4(false);
             Lockpicking5 l5 = new Lockpicking5(false);
-            Safebreaker safebreaker= new Safebreaker(false);
-            Vandal vandal = new Vandal(false);
+            Safebreaker l5_1= new Safebreaker(false);
+            Vandal l5_2 = new Vandal(false);
             Link(root, l1);
             Link(l1, l2);
             Link(l2, l3);
             Link(l3, l4);
             Link(l4, l5);
-            Link(l5, safebreaker);
-            Link(l5, vandal);
+            Link(l5, l5_1);
+            Link(l5, l5_2);
 
             // Deception
             Deception1 d1 = new Deception1(false);
             Deception2 d2 = new Deception2(false);
             Deception3 d3 = new Deception3(false);
-            Pawner pawner = new Pawner(false);
-            SmoothTalker smooth = new SmoothTalker(false);
+            Pawner d3_1 = new Pawner(false);
+            SmoothTalker d3_2 = new SmoothTalker(false);
             Deception4 d4 = new Deception4(false);
             Deception5 d5 = new Deception5(false);
             Link(root, d1);
             Link(d1, d2);
             Link(d2, d3);
-            Link(d3, pawner);
-            Link(d3, smooth);
-            Link(pawner, d4);
-            Link(smooth, d4);
+            Link(d3, d3_1);
+            Link(d3, d3_2);
+            Link(d3_1, d4);
+            Link(d3_2, d4);
             Link(d4, d5);
 
             // Smithing
             Smithing1 s1 = new Smithing1(false);
             Smithing2 s2 = new Smithing2(false);
             Smithing3 s3 = new Smithing3(false);
-            Weaponsmith weaponsmith = new Weaponsmith(false);
-            Armorsmith armorsmith = new Armorsmith(false);
-            Artificer artificer = new Artificer(false);
+            Weaponsmith s3_1 = new Weaponsmith(false);
+            Armorsmith s3_2 = new Armorsmith(false);
+            Artificer s3_3 = new Artificer(false);
             Smithing4 s4 = new Smithing4(false);
             Smithing5 s5 = new Smithing5(false);
-            Gilder gilder = new Gilder(false);
-            Engraver engraver = new Engraver(false);
+            Gilder s5_1 = new Gilder(false);
+            Engraver s5_2 = new Engraver(false);
             Link(root, s1);
             Link(s1, s2);
             Link(s2, s3);
-            Link(s3, weaponsmith);
-            Link(s3, armorsmith);
-            Link(s3, artificer);
-            Link(weaponsmith, s4);
-            Link(armorsmith, s4);
-            Link(artificer, s4);
+            Link(s3, s3_1);
+            Link(s3, s3_2);
+            Link(s3, s3_3);
+            Link(s3_1, s4);
+            Link(s3_2, s4);
+            Link(s3_3, s4);
             Link(s4, s5);
-            Link(s5, gilder);
-            Link(s5, engraver); 
+            Link(s5, s5_1);
+            Link(s5, s5_2); 
         }
 
         private void Link(Trait parent, Trait child)
