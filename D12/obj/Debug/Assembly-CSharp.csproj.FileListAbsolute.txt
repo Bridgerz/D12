@@ -1,7 +1,6 @@
 C:\Git\D12\D12\Temp\bin\Debug\Assembly-CSharp.dll
 C:\Git\D12\D12\Temp\bin\Debug\Assembly-CSharp.pdb
 C:\Git\D12\D12\Temp\bin\Debug\Boo.Lang.dll
-C:\Git\D12\D12\Temp\bin\Debug\LitJson.dll
 C:\Git\D12\D12\Temp\bin\Debug\mscorlib.dll
 C:\Git\D12\D12\Temp\bin\Debug\Newtonsoft.Json.dll
 C:\Git\D12\D12\Temp\bin\Debug\System.Core.dll
