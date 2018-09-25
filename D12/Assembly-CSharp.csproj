@@ -79,6 +79,8 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
+    <Compile Include="Assets\EquipManager.cs" />
+    <Compile Include="Assets\EquipSlot.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\ItemConverter.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
@@ -331,12 +333,6 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-    <Reference Include="LitJson">
-      <HintPath>C:/Users/bridg/Desktop/Git/D12/D12/Assets/LitJson.dll</HintPath>
-    </Reference>
-=======
->>>>>>> master
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:/Users/bridg/Desktop/Git/D12/D12/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>

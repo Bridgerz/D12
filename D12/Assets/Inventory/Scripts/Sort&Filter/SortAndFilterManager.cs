@@ -15,7 +15,6 @@ public class SortAndFilterManager : MonoBehaviour {
 
     public Image qualityButtonImage;
     public Text qualityButtonText;
-    private int qualityFilterInt = 0;
 
     private List<ItemDm> filteredList;
     public List<ItemDm> sortedList;

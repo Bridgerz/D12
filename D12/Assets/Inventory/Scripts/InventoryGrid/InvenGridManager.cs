@@ -235,7 +235,6 @@ public class InvenGridManager : MonoBehaviour {
         SlotScript instanceScript;
         IntVector2 itemSizeL = itemObject.GetComponent<ItemOm>().Item.Size;
         var item = itemObject.GetComponent<ItemOm>().Item;
-        var position = highlightedSlot.GetComponent<SlotScript>().gridPos;
         item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
         for (int y = 0; y < itemSizeL.y; y++)
         {
