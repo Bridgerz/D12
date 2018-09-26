@@ -17,7 +17,7 @@ public class InvenGridManager : MonoBehaviour {
     public GameObject selectedButton;
 
     private IntVector2 totalOffset, checkSize, checkStartPos;
-    private IntVector2 otherItemPos, otherItemSize; //*3
+    private IntVector2 otherItemPos, otherItemSize;
 
     private int checkState;
     private bool isOverEdge = false;
@@ -189,8 +189,6 @@ public class InvenGridManager : MonoBehaviour {
         else //on pointer exit. resets colors
         {
             isOverEdge = false;
-            //checkArea(); //commented out for performance. may cause bugs if not included
-            
             ColorChangeLoop2(checkSize, checkStartPos);
             if (checkState == 1)
             {

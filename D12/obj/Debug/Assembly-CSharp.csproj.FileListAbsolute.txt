@@ -253,7 +253,6 @@ C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.WindModule.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.XRModule.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityScript.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityScript.Lang.dll
-C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Vuforia.UnityExtensions.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.ParticlesLegacyModule.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Unity.Cecil.dll
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Unity.SerializationLogic.dll
@@ -329,7 +328,6 @@ C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.XRModule.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.UI.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.Timeline.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.Networking.xml
-C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Vuforia.UnityExtensions.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\UnityEngine.SpatialTracking.xml

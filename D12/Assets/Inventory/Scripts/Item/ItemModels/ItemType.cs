@@ -7,8 +7,8 @@ namespace Assets.Inventory.Scripts.Item.ItemModels
 {
     public enum ItemType {
         Item,
-        Enchanted,
-        Tagged,
-        Weapon
+        Enchanted, // curios
+        Tagged, // Armor
+        Weapon // Weapons
     }
 }
