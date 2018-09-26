@@ -15,14 +15,22 @@ namespace Assets.Classes.Traits
 
         public CombatDisciplineTree CombatTree;
 
+        public AccumenDisciplineTree AccumenTree;
+
         public int TotalSkillExp;
 
         public int TotalCombatExp;
 
+        public int TotalAccumenExp;
+
         public TraitSystem()
         {
+            TotalSkillExp = 0;
+            TotalCombatExp = 0;
+            TotalAccumenExp = 0;
             SkillTree = new SkillDisciplineTree();
             CombatTree = new CombatDisciplineTree();
+            AccumenTree = new AccumenDisciplineTree();
         }
     }
 }

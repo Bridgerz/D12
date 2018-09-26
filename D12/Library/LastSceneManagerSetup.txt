@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SkillTreeBeta/SkillTreeBeta.unity
+- path: Assets/Scenes/TraitTree/TraitTree.unity
   isLoaded: 1
   isActive: 1

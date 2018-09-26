@@ -12,7 +12,7 @@
 /// (CTRL + M), (CTRL + O) to collapse all comments and functions
 
 using System;
-using Assets.Classes.Traits
+using Assets.Classes.Traits;
 
 namespace Assets.Classes.Character
 {

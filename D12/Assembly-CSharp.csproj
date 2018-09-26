@@ -68,6 +68,7 @@
     <Compile Include="Assets\Classes\ConstantsAndEnums.cs" />
     <Compile Include="Assets\Classes\Traits\ActionTraits\ActionTrait.cs" />
     <Compile Include="Assets\Classes\Traits\ActionTraits\Trait_Hamstring.cs" />
+    <Compile Include="Assets\Classes\Traits\DisciplineTrees\AccumenDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\CombatDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\DisciplineTrees\SkillDisciplineTree.cs" />
     <Compile Include="Assets\Classes\Traits\EffectTraits\EffectTrait.cs" />
@@ -105,8 +106,8 @@
     <Compile Include="Assets\Inventory\Scripts\Misc\IntVector2.cs" />
     <Compile Include="Assets\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
-    <Compile Include="Assets\Scenes\SkillTreeBeta\Scripts\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scenes\SkillTreeBeta\Scripts\SkillTreeManager.cs" />
+    <Compile Include="Assets\Scenes\TraitTree\Scripts\TraitScript.cs" />
+    <Compile Include="Assets\Scenes\TraitTree\Scripts\TraitTreeDriver.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -126,16 +127,16 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -336,16 +337,16 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Assets/LitJson.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Assets/LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>J:/~CODE PROJECTS KEEP ORGANIZED/D12/D12/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/jrosc/Documents/Code Projects/D12/D12/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/Jonnie/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Users/jrosc/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/Jonnie/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/jrosc/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
