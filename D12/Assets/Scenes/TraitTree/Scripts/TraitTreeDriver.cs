@@ -3,18 +3,25 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Classes.Character;
+using Assets.Classes.Traits;
 using UnityEngine;
 
-public class TraitTreeDriver : MonoBehaviour {
+public class TraitTreeDriver : MonoBehaviour
+{
 
     // Character in context of the scene. The scene should reflect the character's internal TraitSystem.
     public BaseCharacter character;
 
     public GameObject ling1, ling2, ling3, ling4, ling5, multilinguist, transcriber, archlinguist, globalLinguist;
 
-	// Use this for initialization
-	void Start () {
+    public Trait selectedTrait;
+
+    // Use this for initialization
+    void Start()
+    {
+
         // will need to modify this when saving is implemented
         character = new BaseCharacter();
 
@@ -31,9 +38,18 @@ public class TraitTreeDriver : MonoBehaviour {
         archlinguist.GetComponent<TraitScript>().trait = tree.archlinguist;
         globalLinguist.GetComponent<TraitScript>().trait = tree.globalLocal;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    public void TryPurchase()
+    {
+        if (selectedTrait.parents.Any(i => i.Active == true))
+        {
+
+            selectedTrait.Active = true;
+        }
+    }
 }
