@@ -79,8 +79,10 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
-    <Compile Include="Assets\EquipManager.cs" />
-    <Compile Include="Assets\EquipSlot.cs" />
+    <Compile Include="Assets\Inventory\Equipment\Scripts\EquipManager.cs" />
+    <Compile Include="Assets\Inventory\Equipment\Scripts\EquipSlot.cs" />
+    <Compile Include="Assets\Inventory\Equipment\Scripts\InventoryBook.cs" />
+    <Compile Include="Assets\Inventory\Equipment\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\ItemConverter.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
     <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
@@ -105,8 +107,6 @@
     <Compile Include="Assets\Inventory\Scripts\Misc\IntVector2.cs" />
     <Compile Include="Assets\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
-    <Compile Include="Assets\InventoryBook.cs" />
-    <Compile Include="Assets\InventoryManager.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
