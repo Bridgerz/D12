@@ -8,9 +8,6 @@ using UnityEngine;
 
 public class TraitScript : MonoBehaviour
 {
-
-    public GameObject character;
-
     public Trait trait;
 
     // Use this for initialization
