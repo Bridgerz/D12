@@ -62,7 +62,7 @@ public class EquipManager : MonoBehaviour {
         LoadEquipment();
 	}
 
-    public void Equip(GameObject itemObject, GameObject selectedSlot)
+    public void EquipCheck(GameObject itemObject, GameObject selectedSlot)
     {
         var item = itemObject.GetComponent<ItemOm>().Item;
         var slot = selectedSlot.GetComponent<EquipSlot>();
@@ -74,11 +74,13 @@ public class EquipManager : MonoBehaviour {
                 {
                     if (item.Tags.Contains(Tag.TwoHanded))
                     {
-                        // drop both slots (if any) and equip to mainhand
+                        UnEquipItem(MainHandSlot.Item);
+                        UnEquipItem(OffHandSlot.Item);
+                        Equip(itemObject, selectedSlot);
                     }
                     else if (item.Tags.Contains(Tag.Light) || selectedSlot == MainHandSlot)
                     {
-                        // swap or equip
+                        Equip(itemObject, selectedSlot);
                     }
                 }
                 else
@@ -87,23 +89,23 @@ public class EquipManager : MonoBehaviour {
                     {
                         if (selectedSlot == OffHandSlot)
                         {
-                            // swap or equip
+                            Equip(itemObject, selectedSlot);
                         }
                     }
                     else
                     {
-                        // swap or equip
+                        Equip(itemObject, selectedSlot);
                     }
                 }
             }
             else
             {
-                StoreItem(itemObject, selectedSlot);
+                Equip(itemObject, selectedSlot);
             }
         }
     }
 
-    public void StoreItem(GameObject itemObject, GameObject selectedSlot)
+    public void Equip(GameObject itemObject, GameObject selectedSlot)
     {
         var item = itemObject.GetComponent<ItemOm>().Item;
         var slot = selectedSlot.GetComponent<EquipSlot>();
@@ -131,6 +133,16 @@ public class EquipManager : MonoBehaviour {
         }
     }
 
+    private void UnEquipItem(GameObject itemObject)
+    {
+        if (itemObject != null)
+        {
+            // move itemObject from equipment panel to first available spot.
+            // go through slot list, checking each slot if itemObject would fit
+            // 
+        }
+    }
+
     public void Swap(GameObject itemObject, GameObject selectedSlot)
     {
         var item = itemObject.GetComponent<ItemOm>().Item;
@@ -138,7 +150,7 @@ public class EquipManager : MonoBehaviour {
         if (item.Type == slot.SlotType)
         {
             GameObject preItem = slot.Item;
-            Equip(itemObject, selectedSlot);
+            EquipCheck(itemObject, selectedSlot);
             ItemOm.SetSelectedItem(preItem);
             preItem.transform.SetParent(GameObject.Find("DragParent").transform);
             ItemOm.IsDragging = true;
@@ -147,7 +159,7 @@ public class EquipManager : MonoBehaviour {
 
     private void LoadEquipment()
     {
-        // load equipment 
+        // load equipment
     }
 
     private void SaveEquipment()

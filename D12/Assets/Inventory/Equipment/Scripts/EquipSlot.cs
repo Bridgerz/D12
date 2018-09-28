@@ -33,7 +33,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (!Occupied)
             {
-                Manager.Equip(ItemOm.SelectedItem, gameObject);
+                Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
             }
             else
             {
