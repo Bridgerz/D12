@@ -91,6 +91,7 @@
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InventoryDataManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotSectorScript.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Item\ArmorDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\EnchantedDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\InventoryItemSave.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemDm.cs" />
@@ -100,8 +101,8 @@
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\SlotLocation.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Tag.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\ItemOm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\TaggedDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\Item\WeaponDm.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Item\WieldableDm.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemButtonScript.cs" />
     <Compile Include="Assets\Inventory\Scripts\ItemList\ItemListManager.cs" />
     <Compile Include="Assets\Inventory\Scripts\Misc\IntVector2.cs" />

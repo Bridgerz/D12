@@ -19,18 +19,15 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (ItemOm.SelectedItem == null)
         {
-            if (Occupied)
-            {
-                ItemOm.SelectedItem = Item;
-                Item.transform.SetParent(GameObject.Find("DragParent").transform);
-                ItemOm.IsDragging = true;
-                Occupied = false;
-                transform.GetComponent<Image>().color = SlotColorHighlights.Green;
-            }
-            else
+            if (!Occupied) // if click on empty slot
             {
                 return;
             }
+            ItemOm.SetSelectedItem(Item);
+            Item.transform.SetParent(GameObject.Find("DragParent").transform);
+            ItemOm.IsDragging = true;
+            Occupied = false;
+            transform.GetComponent<Image>().color = SlotColorHighlights.Green;
         }
         else
         {
@@ -40,7 +37,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
             else
             {
-                //Manager.Swap(ItemOm.SelectedItem, gameObject);
+                Manager.Swap(ItemOm.SelectedItem, gameObject);
             }
         }
     }

@@ -10,11 +10,11 @@ using UnityEngine;
 /// </summary>
 
 [System.Serializable]
-public class EnchantedDm : ItemDm
+public class CurioDm : ItemDm
 {
     public override List<Enchantment> Enchantments { get; set; }
 
-    public EnchantedDm(int globalID, ItemType type, string title,
+    public CurioDm(int globalID, ItemType type, string title,
         string defenition, List<Enchantment> enchantments, Quality quality,
         int weight) : base(globalID, type, title, defenition, quality, weight)
     {

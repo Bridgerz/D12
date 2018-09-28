@@ -1,4 +1,5 @@
-﻿using Assets.Inventory.Scripts.Item.ItemModels;
+﻿using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.Item.ItemModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -23,15 +24,21 @@ namespace Assets.Inventory.Scripts.CreateItem
             var value = item["Type"].Value<int>();
             if (value == 1)
             {
-                return item.ToObject<EnchantedDm>();
+                return item.ToObject<CurioDm>();
             }
             else if (value == 2)
             {
-                return item.ToObject<TaggedDm>();
+                return item.ToObject<ArmorDm>();
             }
             else if (value == 3)
             {
-                return item.ToObject<WeaponDm>();
+                var newItem = item.ToObject<WeaponDm>();
+                newItem.Type = ItemType.Wielded;
+                return newItem;
+            }
+            else if (value == 4)
+            {
+                return item.ToObject<WieldableDm>();
             }
             else
             {

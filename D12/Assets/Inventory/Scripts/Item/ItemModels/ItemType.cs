@@ -6,9 +6,10 @@ using System.Text;
 namespace Assets.Inventory.Scripts.Item.ItemModels
 {
     public enum ItemType {
-        Item,
-        Enchanted, // curios
-        Tagged, // Armor
-        Weapon // Weapons
+        Item,       // All other Items
+        Curio,      // curios
+        Armor,      // Armor
+        Weapon,     // Weapons
+        Wielded     // Wieldable Items 
     }
 }
