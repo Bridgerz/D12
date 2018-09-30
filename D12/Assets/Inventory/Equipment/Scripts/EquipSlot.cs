@@ -1,4 +1,5 @@
 ﻿using Assets.Inventory.Scripts.Item.ItemModels;
+using Assets.Inventory.Scripts.Item.OM;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -31,34 +32,28 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
         else
         {
-            if (!Occupied)
-            {
-                Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
-            }
-            else
-            {
-                Manager.Swap(ItemOm.SelectedItem, gameObject);
-            }
+            Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
         }
     }
-
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (ItemOm.SelectedItem == null)
         {
             return;
         }
-        if (ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Type != SlotType)
+        int status = Manager.EquipStatus(ItemOm.SelectedItem, gameObject);
+        if (status == 0)
         {
             transform.GetComponent<Image>().color = SlotColorHighlights.Red;
         }
-        else if (Occupied)
+        else if (status == 1)
         {
-            transform.GetComponent<Image>().color = SlotColorHighlights.Yellow;
+            transform.GetComponent<Image>().color = SlotColorHighlights.Green;
         }
         else
         {
-            transform.GetComponent<Image>().color = SlotColorHighlights.Green;
+            transform.GetComponent<Image>().color = SlotColorHighlights.Yellow;
         }
     }
 

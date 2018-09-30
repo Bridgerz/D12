@@ -62,41 +62,49 @@ public class EquipManager : MonoBehaviour {
         LoadEquipment();
 	}
 
-    public void EquipCheck(GameObject itemObject, GameObject selectedSlot)
+    public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
     {
+        // return 0 if current item can't be equipped in slot
+        // return 1 if current item can be equipped in slot
+        // return 2 if current item can be swapped with item in slot
         var item = itemObject.GetComponent<ItemOm>().Item;
         var slot = selectedSlot.GetComponent<EquipSlot>();
-        if (item.Type == slot.SlotType)
+        if (item.Type != slot.SlotType) 
         {
-            if (item.Type == ItemType.Wielded)
+            return 0;
+        }
+        if (item.Type == ItemType.Wielded) // if this item can be weilded
+        {
+            if (!item.Tags.Contains(Tag.Light) && slot == OffHandSlot)
             {
-                if (item.GetType() == typeof(WeaponDm))
-                {
-                    if (item.Tags.Contains(Tag.TwoHanded))
-                    {
-                        UnEquipItem(MainHandSlot.Item);
-                        UnEquipItem(OffHandSlot.Item);
-                        Equip(itemObject, selectedSlot);
-                    }
-                    else if (item.Tags.Contains(Tag.Light) || selectedSlot == MainHandSlot)
-                    {
-                        Equip(itemObject, selectedSlot);
-                    }
-                }
-                else
-                {
-                    if (item.IsShield)
-                    {
-                        if (selectedSlot == OffHandSlot)
-                        {
-                            Equip(itemObject, selectedSlot);
-                        }
-                    }
-                    else
-                    {
-                        Equip(itemObject, selectedSlot);
-                    }
-                }
+                return 0;
+            }
+        }
+        if (slot.Occupied)
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    public void EquipCheck(GameObject itemObject, GameObject selectedSlot)
+    {
+        var status = EquipStatus(itemObject, selectedSlot);
+        var item = itemObject.GetComponent<ItemOm>().Item;
+        var slot = selectedSlot.GetComponent<EquipSlot>();
+        if (status == 1)
+        {
+            Equip(itemObject, selectedSlot);
+        }
+        else if (status == 2)
+        {
+            if (item.Tags.Contains(Tag.TwoHanded))
+            {
+                UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item); // drop item in offhand (if any)
+                Equip(itemObject, selectedSlot); // equip/swap item in mainhand
             }
             else
             {
@@ -150,9 +158,10 @@ public class EquipManager : MonoBehaviour {
         if (item.Type == slot.SlotType)
         {
             GameObject preItem = slot.Item;
-            EquipCheck(itemObject, selectedSlot);
-            ItemOm.SetSelectedItem(preItem);
             preItem.transform.SetParent(GameObject.Find("DragParent").transform);
+            slot.Occupied = false;
+            Equip(itemObject, selectedSlot);
+            ItemOm.SetSelectedItem(preItem);
             ItemOm.IsDragging = true;
         }
     }

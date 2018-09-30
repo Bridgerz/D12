@@ -17,8 +17,6 @@ public class ItemDm
     public Quality Quality { get; set; }
 
     public int Weight { get; set; }
-
-    public virtual bool IsShield { get; set; }
     public virtual int Damage { get; set; }
     public virtual bool MainHand { get; set; }
     public virtual List<Tag> Tags { get; set; }

@@ -7,7 +7,7 @@
         "Damage": 69,
         "MainHand": true,
         "Tags": [
-            6,
+            9,
             7
         ],
         "Enchantments": [
@@ -31,7 +31,7 @@
         "Defenition": "A fuckin lit mace",
         "Damage": 69,
         "Tags": [
-            4,
+            9,
             7
         ],
         "Enchantments": [
@@ -56,7 +56,7 @@
         "MainHand": true,
         "Tags": [
             4,
-            7
+            5
         ],
         "Enchantments": [
             {
@@ -79,7 +79,7 @@
         "Damage": 69,
         "MainHand": true,
         "Tags": [
-            4,
+            9,
             7
         ],
         "Enchantments": [
@@ -103,8 +103,7 @@
         "Damage": 69,
         "MainHand": true,
         "Tags": [
-            4,
-            7
+            2
         ],
         "Enchantments": [
             {

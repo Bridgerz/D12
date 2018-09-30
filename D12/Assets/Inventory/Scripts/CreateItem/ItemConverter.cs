@@ -38,7 +38,9 @@ namespace Assets.Inventory.Scripts.CreateItem
             }
             else if (value == 4)
             {
-                return item.ToObject<WieldableDm>();
+                var newItem = item.ToObject<ItemDm>();
+                newItem.Type = ItemType.Wielded;
+                return newItem;
             }
             else
             {
