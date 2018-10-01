@@ -18,21 +18,28 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (ItemOm.SelectedItem == null)
+        if (Input.GetMouseButtonUp(0)) // left click
         {
-            if (!Occupied) // if click on empty slot
+            if (ItemOm.SelectedItem == null)
             {
-                return;
+                if (!Occupied) // if click on empty slot
+                {
+                    return;
+                }
+                ItemOm.SetSelectedItem(Item);
+                Item.transform.SetParent(GameObject.Find("DragParent").transform);
+                ItemOm.IsDragging = true;
+                Occupied = false;
+                transform.GetComponent<Image>().color = SlotColorHighlights.Green;
             }
-            ItemOm.SetSelectedItem(Item);
-            Item.transform.SetParent(GameObject.Find("DragParent").transform);
-            ItemOm.IsDragging = true;
-            Occupied = false;
-            transform.GetComponent<Image>().color = SlotColorHighlights.Green;
+            else
+            {
+                Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
+            }
         }
-        else
+        else if (Input.GetMouseButtonUp(1))
         {
-            Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
+            Manager.UnEquipItem(Item, gameObject);
         }
     }
     

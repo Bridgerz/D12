@@ -15,8 +15,9 @@ public class InvenGridManager : MonoBehaviour {
     
     public ItemListManager listManager;
     public GameObject selectedButton;
+    public IntVector2 checkSize;
 
-    private IntVector2 totalOffset, checkSize, checkStartPos;
+    private IntVector2 totalOffset, checkStartPos;
     private IntVector2 otherItemPos, otherItemSize;
 
     private int checkState;
@@ -33,7 +34,7 @@ public class InvenGridManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) // left click
         {
             if (highlightedSlot != null && ItemOm.SelectedItem != null && !isOverEdge)
             {
@@ -60,6 +61,13 @@ public class InvenGridManager : MonoBehaviour {
                 ItemOm.SetSelectedItem(GetItem(highlightedSlot));
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
+            }
+        }
+        else if (Input.GetMouseButtonUp(1)) // right click
+        {
+            if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
+            {
+                // Equip Item???
             }
         }
     }
@@ -102,7 +110,7 @@ public class InvenGridManager : MonoBehaviour {
         highlightedSlot = null;
     }
 
-    private void CheckArea(IntVector2 itemSize) //*2
+    public void CheckArea(IntVector2 itemSize) //*2
     {
         IntVector2 halfOffset;
         IntVector2 overCheck;
@@ -138,7 +146,7 @@ public class InvenGridManager : MonoBehaviour {
         }
     }
 
-    private int SlotCheck(IntVector2 itemSize)//*2
+    public int SlotCheck(IntVector2 itemSize)//*2
     {
         GameObject obj = null;
         SlotScript instanceScript;
@@ -228,7 +236,7 @@ public class InvenGridManager : MonoBehaviour {
         }
     }
 
-    private void StoreItem(GameObject itemObject)
+    public void StoreItem(GameObject itemObject)
     {
         SlotScript instanceScript;
         IntVector2 itemSizeL = itemObject.GetComponent<ItemOm>().Item.Size;

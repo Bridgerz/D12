@@ -103,7 +103,7 @@ public class EquipManager : MonoBehaviour {
         {
             if (item.Tags.Contains(Tag.TwoHanded))
             {
-                UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item); // drop item in offhand (if any)
+                UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, selectedSlot); // drop item in offhand (if any)
                 Equip(itemObject, selectedSlot); // equip/swap item in mainhand
             }
             else
@@ -141,13 +141,28 @@ public class EquipManager : MonoBehaviour {
         }
     }
 
-    private void UnEquipItem(GameObject itemObject)
+    public void UnEquipItem(GameObject itemObject, GameObject selectedSlot)
     {
         if (itemObject != null)
         {
             // move itemObject from equipment panel to first available spot.
             // go through slot list, checking each slot if itemObject would fit
-            // 
+            foreach (var slot in GridManager.slotGrid)
+            {
+                GridManager.highlightedSlot = slot;
+                GridManager.CheckArea(itemObject.GetComponent<ItemOm>().Item.Size);
+                var checkState = GridManager.SlotCheck(GridManager.checkSize);
+                if (checkState == 0)
+                {
+                    GridManager.StoreItem(itemObject);
+                    var equipSlot = selectedSlot.GetComponent<EquipSlot>();
+                    equipSlot.Occupied = false;
+                    equipSlot.Item = null;
+                    GridManager.highlightedSlot = null;
+                    ItemOm.SelectedItem = null;
+                    return;
+                }
+            }
         }
     }
 
