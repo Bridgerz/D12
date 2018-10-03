@@ -35,11 +35,16 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             else
             {
                 Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
+                transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
             }
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            Manager.UnEquipItem(Item, gameObject);
+            if (Occupied && ItemOm.SelectedItem == null) // if selected slot is occupied and there is no selected item
+            {
+                Manager.UnEquipItem(Item, gameObject);
+                transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
+            }
         }
     }
     

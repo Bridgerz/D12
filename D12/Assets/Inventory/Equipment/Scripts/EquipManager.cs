@@ -18,6 +18,8 @@ public class EquipManager : MonoBehaviour {
     public int CurioSlotX;
     public EquipSlot MainHandSlot;
     public EquipSlot OffHandSlot;
+    public EquipSlot ArmorSlot;
+    public List<EquipSlot> CurioSlots;
     public int CurioNum;
 
 
@@ -39,6 +41,7 @@ public class EquipManager : MonoBehaviour {
                 case 1:
                     obj.transform.name = "Armor Slot";
                     obj.GetComponent<EquipSlot>().SlotType = ItemType.Armor;
+                    ArmorSlot = obj.GetComponent<EquipSlot>();
                     break;
                 case 2:
                     obj.transform.name = "Off Hand Slot";
@@ -47,7 +50,7 @@ public class EquipManager : MonoBehaviour {
                     break;
             }
         }
-
+        CurioSlots = new List<EquipSlot>();
         for (int i = 0; i < CurioNum; i++)
         {
             GameObject obj = (GameObject)Instantiate(EquipSlotPrefab);
@@ -58,6 +61,7 @@ public class EquipManager : MonoBehaviour {
             obj.GetComponent<RectTransform>().localScale = Vector3.one;
             obj.transform.name = "Curio " + i;
             obj.GetComponent<EquipSlot>().SlotType = ItemType.Curio;
+            CurioSlots.Add(obj.GetComponent<EquipSlot>());
         }
         LoadEquipment();
 	}
@@ -69,23 +73,39 @@ public class EquipManager : MonoBehaviour {
         // return 2 if current item can be swapped with item in slot
         var item = itemObject.GetComponent<ItemOm>().Item;
         var slot = selectedSlot.GetComponent<EquipSlot>();
-        if (item.Type != slot.SlotType) 
+        if (item.Type != slot.SlotType)
         {
             return 0;
         }
         if (item.Type == ItemType.Wielded) // if this item can be weilded
         {
-            if (!item.Tags.Contains(Tag.Light) && slot == OffHandSlot)
+            if (MainHandSlot.Occupied && MainHandSlot.Item.GetComponent<ItemOm>().Item.Tags.Contains(Tag.TwoHanded) && slot == OffHandSlot) // if two handed equipped
+            {
+                return 0;
+            }
+            if (!item.Tags.Contains(Tag.Light) && !item.Tags.Contains(Tag.Shielding) && slot == OffHandSlot)// item isn't light/shield and hover over offhand
             {
                 return 0;
             }
         }
         if (slot.Occupied)
         {
+            if (slot == MainHandSlot && item.Tags.Contains(Tag.Shielding))
+            {
+                return 0;
+            }
             return 2;
         }
         else
         {
+            if (slot == OffHandSlot && item.Tags.Contains(Tag.Shielding))
+            {
+                return 1;
+            }
+            if (slot == MainHandSlot && item.Tags.Contains(Tag.Shielding))
+            {
+                return 0;
+            }
             return 1;
         }
     }
@@ -95,21 +115,13 @@ public class EquipManager : MonoBehaviour {
         var status = EquipStatus(itemObject, selectedSlot);
         var item = itemObject.GetComponent<ItemOm>().Item;
         var slot = selectedSlot.GetComponent<EquipSlot>();
-        if (status == 1)
+        if (status == 1 || status == 2)
         {
-            Equip(itemObject, selectedSlot);
-        }
-        else if (status == 2)
-        {
-            if (item.Tags.Contains(Tag.TwoHanded))
+            if (item.Tags != null && item.Tags.Contains(Tag.TwoHanded))
             {
-                UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, selectedSlot); // drop item in offhand (if any)
-                Equip(itemObject, selectedSlot); // equip/swap item in mainhand
+                UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, OffHandSlot.gameObject); // drop item in offhand (if any)
             }
-            else
-            {
-                Equip(itemObject, selectedSlot);
-            }
+            Equip(itemObject, selectedSlot); // equip/swap item in mainhand
         }
     }
 
@@ -145,8 +157,6 @@ public class EquipManager : MonoBehaviour {
     {
         if (itemObject != null)
         {
-            // move itemObject from equipment panel to first available spot.
-            // go through slot list, checking each slot if itemObject would fit
             foreach (var slot in GridManager.slotGrid)
             {
                 GridManager.highlightedSlot = slot;
