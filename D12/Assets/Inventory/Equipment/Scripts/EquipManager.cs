@@ -63,8 +63,9 @@ public class EquipManager : MonoBehaviour {
             obj.GetComponent<EquipSlot>().SlotType = ItemType.Curio;
             CurioSlots.Add(obj.GetComponent<EquipSlot>());
         }
-        LoadEquipment();
-	}
+        var saveItem = ListManager.InvManager.LoadEquipment(ListManager.itemDB);
+
+    }
 
     public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
     {
@@ -114,7 +115,6 @@ public class EquipManager : MonoBehaviour {
     {
         var status = EquipStatus(itemObject, selectedSlot);
         var item = itemObject.GetComponent<ItemOm>().Item;
-        var slot = selectedSlot.GetComponent<EquipSlot>();
         if (status == 1 || status == 2)
         {
             if (item.Tags != null && item.Tags.Contains(Tag.TwoHanded))
@@ -189,15 +189,5 @@ public class EquipManager : MonoBehaviour {
             ItemOm.SetSelectedItem(preItem);
             ItemOm.IsDragging = true;
         }
-    }
-
-    private void LoadEquipment()
-    {
-        // load equipment
-    }
-
-    private void SaveEquipment()
-    {
-
     }
 }

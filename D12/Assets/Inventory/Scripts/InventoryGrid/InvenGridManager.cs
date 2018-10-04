@@ -141,6 +141,7 @@ public class InvenGridManager : MonoBehaviour {
                     default:
                         break;
                 }
+                listManager.InvManager.SaveEquipment(Equipment);
             }
         }
     }

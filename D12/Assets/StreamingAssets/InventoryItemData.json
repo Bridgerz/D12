@@ -1,14 +1,6 @@
 [
   {
-    "GlobalID": 7,
-    "Quantity": 1,
-    "Location": {
-      "X": 12,
-      "Y": 3
-    }
-  },
-  {
-    "GlobalID": 5,
+    "GlobalID": 0,
     "Quantity": 1,
     "Location": {
       "X": 2,
@@ -16,11 +8,11 @@
     }
   },
   {
-    "GlobalID": 2,
+    "GlobalID": 5,
     "Quantity": 1,
     "Location": {
-      "X": 0,
-      "Y": 0
+      "X": 4,
+      "Y": 4
     }
   },
   {
@@ -28,11 +20,19 @@
     "Quantity": 1,
     "Location": {
       "X": 0,
+      "Y": 0
+    }
+  },
+  {
+    "GlobalID": 2,
+    "Quantity": 1,
+    "Location": {
+      "X": 0,
       "Y": 4
     }
   },
   {
-    "GlobalID": 14,
+    "GlobalID": 4,
     "Quantity": 1,
     "Location": {
       "X": 2,
@@ -40,11 +40,27 @@
     }
   },
   {
+    "GlobalID": 7,
+    "Quantity": 1,
+    "Location": {
+      "X": 4,
+      "Y": 0
+    }
+  },
+  {
+    "GlobalID": 14,
+    "Quantity": 1,
+    "Location": {
+      "X": 4,
+      "Y": 2
+    }
+  },
+  {
     "GlobalID": 15,
     "Quantity": 1,
     "Location": {
-      "X": 2,
-      "Y": 2
+      "X": 6,
+      "Y": 6
     }
   }
 ]

@@ -15,8 +15,8 @@ namespace Assets.Inventory.Scripts.InventoryGrid
     public class InventoryDataManager
     {
 
-        private string JsonFile = "Assets/StreamingAssets/InventoryItemData.json";
-        
+        private string InventoryJsonFile = "Assets/StreamingAssets/InventoryItemData.json";
+        private string EquipmentJsonFile = "Assets/StreamingAssets/EquipmentItemData.json";
 
         public void SaveInventory(List<ItemDm> inventory)
         {
@@ -27,16 +27,16 @@ namespace Assets.Inventory.Scripts.InventoryGrid
                 saveList.Add(saveItem);
             }
             var json = JsonConvert.SerializeObject(saveList, Formatting.Indented, new ItemConverter());
-            File.WriteAllText(JsonFile, json);
+            File.WriteAllText(InventoryJsonFile, json);
         }
         
         public List<ItemDm> LoadInventory(LoadItemDatabase database)
         {
             List<InventoryItemSave> saveList = new List<InventoryItemSave>();
             List<ItemDm> newList = new List<ItemDm>();
-            if (File.Exists(JsonFile))
+            if (File.Exists(InventoryJsonFile))
             {
-                string dataAsJason = File.ReadAllText(JsonFile);
+                string dataAsJason = File.ReadAllText(InventoryJsonFile);
                 saveList = JsonConvert.DeserializeObject<List<InventoryItemSave>>(dataAsJason, new ItemConverter());
             }
             if (saveList.Count > 0)
@@ -50,6 +50,23 @@ namespace Assets.Inventory.Scripts.InventoryGrid
                 }
             }
             return newList;
+        }
+
+        public EquipmentSave LoadEquipment(LoadItemDatabase database)
+        {
+            EquipmentSave equipmentSave = new EquipmentSave();
+            List<ItemDm> newList = new List<ItemDm>();
+            if (File.Exists(EquipmentJsonFile))
+            {
+                string dataAsJason = File.ReadAllText(EquipmentJsonFile);
+                equipmentSave = JsonConvert.DeserializeObject<EquipmentSave>(dataAsJason, new ItemConverter());
+            }
+            return equipmentSave;
+        }
+
+        public void SaveEquipment(EquipManager inventory)
+        {
+
         }
     }
 }
