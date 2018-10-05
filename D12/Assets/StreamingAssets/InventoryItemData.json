@@ -1,30 +1,6 @@
 [
   {
-    "GlobalID": 0,
-    "Quantity": 1,
-    "Location": {
-      "X": 2,
-      "Y": 4
-    }
-  },
-  {
-    "GlobalID": 5,
-    "Quantity": 1,
-    "Location": {
-      "X": 4,
-      "Y": 4
-    }
-  },
-  {
-    "GlobalID": 3,
-    "Quantity": 1,
-    "Location": {
-      "X": 0,
-      "Y": 0
-    }
-  },
-  {
-    "GlobalID": 2,
+    "GlobalID": 1,
     "Quantity": 1,
     "Location": {
       "X": 0,
@@ -35,6 +11,22 @@
     "GlobalID": 4,
     "Quantity": 1,
     "Location": {
+      "X": 0,
+      "Y": 0
+    }
+  },
+  {
+    "GlobalID": 5,
+    "Quantity": 1,
+    "Location": {
+      "X": 2,
+      "Y": 4
+    }
+  },
+  {
+    "GlobalID": 2,
+    "Quantity": 1,
+    "Location": {
       "X": 2,
       "Y": 0
     }
@@ -43,8 +35,16 @@
     "GlobalID": 7,
     "Quantity": 1,
     "Location": {
+      "X": 9,
+      "Y": 3
+    }
+  },
+  {
+    "GlobalID": 6,
+    "Quantity": 1,
+    "Location": {
       "X": 4,
-      "Y": 0
+      "Y": 4
     }
   },
   {
@@ -59,7 +59,7 @@
     "GlobalID": 15,
     "Quantity": 1,
     "Location": {
-      "X": 6,
+      "X": 4,
       "Y": 6
     }
   }

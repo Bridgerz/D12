@@ -508,3 +508,5 @@ C:\Users\Bridger Zoske\Desktop\D12\D12\obj\Debug\Assembly-CSharp.csproj.CoreComp
 C:\Users\Bridger Zoske\Desktop\D12\D12\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Bridger Zoske\Desktop\D12\D12\obj\Debug\Assembly-CSharp.dll
 C:\Users\Bridger Zoske\Desktop\D12\D12\obj\Debug\Assembly-CSharp.pdb
+C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Vuforia.UnityExtensions.dll
+C:\Users\bridg\Desktop\D12\D12\Temp\bin\Debug\Vuforia.UnityExtensions.xml

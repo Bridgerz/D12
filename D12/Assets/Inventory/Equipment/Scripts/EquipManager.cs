@@ -1,5 +1,6 @@
 ﻿using Assets.Inventory.Scripts.Item.ItemModels;
 using Assets.Inventory.Scripts.Item.OM;
+using Assets.Inventory.Scripts.ItemList;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,8 +64,6 @@ public class EquipManager : MonoBehaviour {
             obj.GetComponent<EquipSlot>().SlotType = ItemType.Curio;
             CurioSlots.Add(obj.GetComponent<EquipSlot>());
         }
-        var saveItem = ListManager.InvManager.LoadEquipment(ListManager.itemDB);
-
     }
 
     public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
@@ -117,11 +116,11 @@ public class EquipManager : MonoBehaviour {
         var item = itemObject.GetComponent<ItemOm>().Item;
         if (status == 1 || status == 2)
         {
+            Equip(itemObject, selectedSlot); // equip/swap item in mainhand
             if (item.Tags != null && item.Tags.Contains(Tag.TwoHanded))
             {
                 UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, OffHandSlot.gameObject); // drop item in offhand (if any)
             }
-            Equip(itemObject, selectedSlot); // equip/swap item in mainhand
         }
     }
 
@@ -153,6 +152,27 @@ public class EquipManager : MonoBehaviour {
         }
     }
 
+    public void Swap(GameObject selectedItem, GameObject selectedSlot)
+    {
+        var invenItem = selectedItem.GetComponent<ItemOm>().Item;
+        var equipSlot = selectedSlot.GetComponent<EquipSlot>();
+
+        if (invenItem.Type == equipSlot.SlotType)
+        {
+            // pull item out of equipment Slot and store in highlighted slot
+            var equipItem = selectedSlot.GetComponent<EquipSlot>().Item;
+            var invenSlot = GridManager.slotGrid[invenItem.Location.X + invenItem.Size.x / 2, invenItem.Location.Y + invenItem.Size.y / 2];
+            GridManager.highlightedSlot = invenSlot;
+            GridManager.CheckArea(invenItem.Size);
+            GridManager.StoreItem(equipItem);
+
+            // equip selectedItem to equipSlot
+            ItemOm.SetSelectedItem(selectedItem);
+            equipSlot.Occupied = false;
+            EquipCheck(selectedItem, selectedSlot);
+        }
+    }
+
     public void UnEquipItem(GameObject itemObject, GameObject selectedSlot)
     {
         if (itemObject != null)
@@ -165,9 +185,12 @@ public class EquipManager : MonoBehaviour {
                 if (checkState == 0)
                 {
                     GridManager.StoreItem(itemObject);
-                    var equipSlot = selectedSlot.GetComponent<EquipSlot>();
-                    equipSlot.Occupied = false;
-                    equipSlot.Item = null;
+                    if (selectedSlot != null)
+                    {
+                        var equipSlot = selectedSlot.GetComponent<EquipSlot>();
+                        equipSlot.Occupied = false;
+                        equipSlot.Item = null;
+                    }
                     GridManager.highlightedSlot = null;
                     ItemOm.SelectedItem = null;
                     return;
@@ -176,18 +199,22 @@ public class EquipManager : MonoBehaviour {
         }
     }
 
-    public void Swap(GameObject itemObject, GameObject selectedSlot)
+    public EquipmentItems LoadEquipment(LoadItemDatabase database)
     {
-        var item = itemObject.GetComponent<ItemOm>().Item;
-        var slot = selectedSlot.GetComponent<EquipSlot>();
-        if (item.Type == slot.SlotType)
-        {
-            GameObject preItem = slot.Item;
-            preItem.transform.SetParent(GameObject.Find("DragParent").transform);
-            slot.Occupied = false;
-            Equip(itemObject, selectedSlot);
-            ItemOm.SetSelectedItem(preItem);
-            ItemOm.IsDragging = true;
-        }
+        //foreach (var item in inventory)
+        //{
+        //    // create object
+        //    GameObject newItem = listManager.itemEquipPool.GetObject();
+
+        //    newItem.GetComponent<ItemOm>().SetItemObject(item);
+        //    // store object
+        //    var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
+        //    highlightedSlot = slot;
+        //    CheckArea(item.Size);
+        //    StoreItem(newItem);
+        //    newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        //}
+        //highlightedSlot = null;
+        return null;
     }
 }

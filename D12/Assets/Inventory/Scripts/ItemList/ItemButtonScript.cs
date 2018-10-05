@@ -36,6 +36,13 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
                 SpawnStoredItem();
             }
         }
+        else if (Input.GetMouseButtonDown(1) && invenManager.selectedButton == null)
+        {
+            SpawnStoredItem();
+            invenManager.Equipment.UnEquipItem(ItemOm.SelectedItem, null);
+            ItemOm.IsDragging = false;
+            listManager.invenManager.RemoveSelectedButton();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

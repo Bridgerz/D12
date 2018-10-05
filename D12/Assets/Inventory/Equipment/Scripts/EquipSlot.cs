@@ -36,6 +36,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             {
                 Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
                 transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
+                Manager.GridManager.highlightedSlot = null;
             }
         }
         else if (Input.GetMouseButtonUp(1))

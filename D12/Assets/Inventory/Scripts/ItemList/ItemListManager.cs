@@ -1,5 +1,6 @@
 ﻿using Assets.Inventory.Scripts.InventoryGrid;
 using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.ItemList;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class ItemListManager : MonoBehaviour {
     public LoadItemDatabase itemDB;
     public SortAndFilterManager sortManager;
     public InventoryDataManager InvManager;
+    public EquipManager EquipManager;
 
     public float iconSize;
     
@@ -17,6 +19,7 @@ public class ItemListManager : MonoBehaviour {
     public List<GameObject> currentButtonList;
     public List<ItemDm> currentItemList;
     public List<ItemDm> Inventory;
+    public EquipmentItems Equipment; 
 
     private Transform contentPanel;
 
@@ -24,6 +27,7 @@ public class ItemListManager : MonoBehaviour {
     {
         InvManager = new InventoryDataManager();
         Inventory = InvManager.LoadInventory(itemDB);
+        //Equipment = EquipManager.LoadEquipment(itemDB);
         contentPanel = this.transform;
     }
 
