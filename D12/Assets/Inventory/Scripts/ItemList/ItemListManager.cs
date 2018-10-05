@@ -10,7 +10,7 @@ public class ItemListManager : MonoBehaviour {
     public InvenGridManager invenManager;
     public LoadItemDatabase itemDB;
     public SortAndFilterManager sortManager;
-    public InventoryDataManager InvManager;
+    public InventoryDataManager InvDataManager;
     public EquipManager EquipManager;
 
     public float iconSize;
@@ -25,9 +25,12 @@ public class ItemListManager : MonoBehaviour {
 
     private void Start()
     {
-        InvManager = new InventoryDataManager();
-        Inventory = InvManager.LoadInventory(itemDB);
-        //Equipment = EquipManager.LoadEquipment(itemDB);
+        InvDataManager = new InventoryDataManager();
+        Inventory = InvDataManager.LoadInventory(itemDB);
+
+        Equipment = new EquipmentItems(null, null, null, new List<ItemDm>());
+        //Equipment = InvDataManager.LoadEquipment(itemDB);
+
         contentPanel = this.transform;
     }
 
@@ -53,7 +56,7 @@ public class ItemListManager : MonoBehaviour {
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);
             Inventory.RemoveAll(x => x.GlobalID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.GlobalID);
-            InvManager.SaveInventory(Inventory);
+            InvDataManager.SaveInventory(Inventory);
             ItemOm.ResetSelectedItem();
         }
     }

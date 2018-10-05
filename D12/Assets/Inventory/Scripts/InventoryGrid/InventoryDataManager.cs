@@ -9,6 +9,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 using Assets.Inventory.Scripts.CreateItem;
+using Assets.Inventory.Scripts.ItemList;
 
 namespace Assets.Inventory.Scripts.InventoryGrid
 {
@@ -52,21 +53,40 @@ namespace Assets.Inventory.Scripts.InventoryGrid
             return newList;
         }
 
-        public EquipmentSave LoadEquipment(LoadItemDatabase database)
+        public EquipmentItems LoadEquipment(LoadItemDatabase database)
         {
             EquipmentSave equipmentSave = new EquipmentSave();
-            List<ItemDm> newList = new List<ItemDm>();
             if (File.Exists(EquipmentJsonFile))
             {
                 string dataAsJason = File.ReadAllText(EquipmentJsonFile);
                 equipmentSave = JsonConvert.DeserializeObject<EquipmentSave>(dataAsJason, new ItemConverter());
             }
-            return equipmentSave;
+            var mainHand = database.dbList.Where(x => x.GlobalID == equipmentSave.MainHand.GlobalID).First();
+            var offhand = database.dbList.Where(x => x.GlobalID == equipmentSave.Offhand.GlobalID).First();
+            var armor = database.dbList.Where(x => x.GlobalID == equipmentSave.Armor.GlobalID).First();
+            var curios = new List<ItemDm>();
+            foreach (var curio in equipmentSave.Curios)
+            {
+                curios.Add(database.dbList.Where(x => x.GlobalID == curio.GlobalID).First());
+            }
+            return new EquipmentItems(mainHand, armor, offhand, curios);
         }
 
-        public void SaveEquipment(EquipManager inventory)
+        public void SaveEquipment(EquipmentItems equipment)
         {
+            var mainHand = new InventoryItemSave(equipment.MainHand.GlobalID, equipment.MainHand.Quantity, null);
+            var offhand = new InventoryItemSave(equipment.Offhand.GlobalID, equipment.Offhand.Quantity, null);
+            var armor = new InventoryItemSave(equipment.Armor.GlobalID, equipment.Armor.Quantity, null);
+            var curios = new List<InventoryItemSave>();
+            foreach (var curio in equipment.Curios)
+            {
+                var curioSave = new InventoryItemSave(curio.GlobalID, curio.Quantity, null);
+                curios.Add(curioSave);
+            }
+            var equipmentSave = new EquipmentSave(mainHand, armor, offhand, curios);
 
+            var json = JsonConvert.SerializeObject(equipmentSave, Formatting.Indented, new ItemConverter());
+            File.WriteAllText(EquipmentJsonFile, json);
         }
     }
 }

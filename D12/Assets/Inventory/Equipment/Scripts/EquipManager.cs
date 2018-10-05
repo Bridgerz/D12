@@ -21,6 +21,7 @@ public class EquipManager : MonoBehaviour {
     public EquipSlot OffHandSlot;
     public EquipSlot ArmorSlot;
     public List<EquipSlot> CurioSlots;
+    public List<ItemDm> CurioItems;
     public int CurioNum;
 
 
@@ -64,6 +65,7 @@ public class EquipManager : MonoBehaviour {
             obj.GetComponent<EquipSlot>().SlotType = ItemType.Curio;
             CurioSlots.Add(obj.GetComponent<EquipSlot>());
         }
+        //LoadEquipment();
     }
 
     public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
@@ -121,6 +123,8 @@ public class EquipManager : MonoBehaviour {
             {
                 UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, OffHandSlot.gameObject); // drop item in offhand (if any)
             }
+            GridManager.UpdateEquipment();
+            GridManager.listManager.InvDataManager.SaveEquipment(GridManager.listManager.Equipment);
         }
     }
 
@@ -148,7 +152,7 @@ public class EquipManager : MonoBehaviour {
             {
                 ListManager.Inventory.RemoveAt(index);
             }
-            ListManager.InvManager.SaveInventory(ListManager.Inventory);
+            ListManager.InvDataManager.SaveInventory(ListManager.Inventory);
         }
     }
 
@@ -196,25 +200,44 @@ public class EquipManager : MonoBehaviour {
                     return;
                 }
             }
+            if (itemObject.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
+            {
+                var index = CurioItems.FindIndex(x => x.GlobalID == itemObject.GetComponent<ItemOm>().Item.GlobalID);
+                CurioItems.RemoveAt(index);
+            }
         }
     }
 
-    public EquipmentItems LoadEquipment(LoadItemDatabase database)
+    public EquipmentItems LoadEquipment()
     {
-        //foreach (var item in inventory)
-        //{
-        //    // create object
-        //    GameObject newItem = listManager.itemEquipPool.GetObject();
-
-        //    newItem.GetComponent<ItemOm>().SetItemObject(item);
-        //    // store object
-        //    var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
-        //    highlightedSlot = slot;
-        //    CheckArea(item.Size);
-        //    StoreItem(newItem);
-        //    newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        //}
-        //highlightedSlot = null;
+        var equipment = ListManager.Equipment;
+        if (equipment.MainHand != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+            EquipCheck(newItem, MainHandSlot.gameObject);
+        }
+        if (equipment.Armor != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Armor);
+            EquipCheck(newItem, ArmorSlot.gameObject);
+        }
+        if (equipment.Offhand != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Offhand);
+            EquipCheck(newItem, OffHandSlot.gameObject);
+        }
+        if (equipment.Curios.Count > 0)
+        {
+            for (int i = 0; i < equipment.Curios.Count; i++)
+            {
+                GameObject newItem = ListManager.itemEquipPool.GetObject();
+                newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+                EquipCheck(newItem, CurioSlots[i].gameObject);
+            }
+        }
         return null;
     }
 }

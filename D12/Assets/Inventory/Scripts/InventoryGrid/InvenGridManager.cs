@@ -78,6 +78,7 @@ public class InvenGridManager : MonoBehaviour {
                     case ItemType.Armor :
                         ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
                         SlotSectorScript.sectorScript.ZeroOffset();
+                        GetItem(highlightedSlot);
                         Equipment.EquipCheck(item, Equipment.ArmorSlot.gameObject);
                         RefrechColor(false);
                         highlightedSlot = tempHighlightedSlot;
@@ -95,6 +96,7 @@ public class InvenGridManager : MonoBehaviour {
                                 break;
                             }
                         }
+                        Equipment.CurioItems.Add(item.GetComponent<ItemOm>().Item);
                         break;
                     case ItemType.Wielded:
                         var mainHandStatus = Equipment.EquipStatus(item, Equipment.MainHandSlot.gameObject);
@@ -130,10 +132,47 @@ public class InvenGridManager : MonoBehaviour {
                     default:
                         break;
                 }
-                listManager.InvManager.SaveEquipment(Equipment);
+                UpdateEquipment();
             }
         }
     }
+
+    public void UpdateEquipment()
+    {
+        if (Equipment.MainHandSlot.Occupied)
+        {
+            listManager.Equipment.MainHand = Equipment.MainHandSlot.Item.GetComponent<ItemOm>().Item;
+        }
+        else
+        {
+            listManager.Equipment.MainHand = null;
+        }
+        if (Equipment.OffHandSlot.Occupied)
+        {
+            listManager.Equipment.Offhand = Equipment.OffHandSlot.Item.GetComponent<ItemOm>().Item;
+        }
+        else
+        {
+            listManager.Equipment.Offhand = null;
+        }
+        if (Equipment.ArmorSlot.Occupied)
+        {
+            listManager.Equipment.Armor = Equipment.ArmorSlot.Item.GetComponent<ItemOm>().Item;
+        }
+        else
+        {
+            listManager.Equipment.Armor = null;
+        }
+        if (Equipment.CurioItems.Count > 0)
+        {
+            listManager.Equipment.Curios = Equipment.CurioItems;
+        }
+        else
+        {
+            listManager.Equipment.Curios = new List<ItemDm>();
+        }
+    }
+
 
     private void LoadInventory(List<ItemDm> inventory)
     {
@@ -317,7 +356,7 @@ public class InvenGridManager : MonoBehaviour {
         {
             listManager.Inventory.Add(item);
         }
-        listManager.InvManager.SaveInventory(listManager.Inventory);
+        listManager.InvDataManager.SaveInventory(listManager.Inventory);
     }
 
     private GameObject GetItem(GameObject slotObject)
