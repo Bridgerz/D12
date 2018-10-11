@@ -37,6 +37,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
                 transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
                 Manager.GridManager.highlightedSlot = null;
+                Manager.UpdateEquipment(this);
             }
         }
         else if (Input.GetMouseButtonUp(1))
@@ -46,6 +47,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 Manager.UnEquipItem(Item, gameObject);
                 transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
             }
+            Manager.UpdateEquipment(this);
         }
     }
     
@@ -68,16 +70,6 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             transform.GetComponent<Image>().color = SlotColorHighlights.Yellow;
         }
-    }
-
-    public void Equip(GameObject item)
-    {
-        Item = item;
-    }
-
-    public void Drop()
-    {
-
     }
 
     public void OnPointerExit(PointerEventData eventData)

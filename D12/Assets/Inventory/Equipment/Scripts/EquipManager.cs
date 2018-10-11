@@ -25,8 +25,17 @@ public class EquipManager : MonoBehaviour {
     public int CurioNum;
 
 
-	void Start () {
-        for (int i = 0; i < 3; i++) {
+	void Start ()
+    {
+        LoadEquipSlots();
+        LoadEquipmentObjects();
+    }
+    
+    private void LoadEquipSlots()
+    {
+        // load Equipment slots
+        for (int i = 0; i < 3; i++)
+        {
             GameObject obj = (GameObject)Instantiate(EquipSlotPrefab);
             obj.transform.SetParent(MainSlotPanel.transform);
             RectTransform rect = obj.transform.GetComponent<RectTransform>();
@@ -52,6 +61,7 @@ public class EquipManager : MonoBehaviour {
                     break;
             }
         }
+        // load curio slots
         CurioSlots = new List<EquipSlot>();
         for (int i = 0; i < CurioNum; i++)
         {
@@ -65,7 +75,43 @@ public class EquipManager : MonoBehaviour {
             obj.GetComponent<EquipSlot>().SlotType = ItemType.Curio;
             CurioSlots.Add(obj.GetComponent<EquipSlot>());
         }
-        //LoadEquipment();
+    }
+
+    public EquipmentItems LoadEquipmentObjects()
+    {
+        var equipment = ListManager.Equipment;
+        if (equipment.MainHand != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+            EquipCheck(newItem, MainHandSlot.gameObject);
+            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+        if (equipment.Armor != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Armor);
+            EquipCheck(newItem, ArmorSlot.gameObject);
+            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+        if (equipment.Offhand != null)
+        {
+            GameObject newItem = ListManager.itemEquipPool.GetObject();
+            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Offhand);
+            EquipCheck(newItem, OffHandSlot.gameObject);
+            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+        if (equipment.Curios.Count > 0)
+        {
+            for (int i = 0; i < equipment.Curios.Count; i++)
+            {
+                GameObject newItem = ListManager.itemEquipPool.GetObject();
+                newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+                EquipCheck(newItem, CurioSlots[i].gameObject);
+                newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+            }
+        }
+        return null;
     }
 
     public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
@@ -123,8 +169,7 @@ public class EquipManager : MonoBehaviour {
             {
                 UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, OffHandSlot.gameObject); // drop item in offhand (if any)
             }
-            GridManager.UpdateEquipment();
-            GridManager.listManager.InvDataManager.SaveEquipment(GridManager.listManager.Equipment);
+            UpdateEquipment(selectedSlot.GetComponent<EquipSlot>());
         }
     }
 
@@ -147,12 +192,12 @@ public class EquipManager : MonoBehaviour {
             itemObject.GetComponent<CanvasGroup>().alpha = 1f;
             ItemOm.SelectedItem = null;
             ItemOm.IsDragging = false;
+            item.Location = null;
             var index = ListManager.Inventory.FindIndex(x => x.GlobalID == item.GlobalID);
             if (index >= 0)
             {
                 ListManager.Inventory.RemoveAt(index);
             }
-            ListManager.InvDataManager.SaveInventory(ListManager.Inventory);
         }
     }
 
@@ -160,11 +205,19 @@ public class EquipManager : MonoBehaviour {
     {
         var invenItem = selectedItem.GetComponent<ItemOm>().Item;
         var equipSlot = selectedSlot.GetComponent<EquipSlot>();
+        var equipItem = selectedSlot.GetComponent<EquipSlot>().Item;
 
-        if (invenItem.Type == equipSlot.SlotType)
+        if (invenItem.Location == null)
+        {
+            UnEquipItem(equipItem.gameObject, selectedSlot);
+            // equip selectedItem to equipSlot
+            ItemOm.SetSelectedItem(selectedItem);
+            equipSlot.Occupied = false;
+            EquipCheck(selectedItem, selectedSlot);
+        }
+        else if (invenItem.Type == equipSlot.SlotType)
         {
             // pull item out of equipment Slot and store in highlighted slot
-            var equipItem = selectedSlot.GetComponent<EquipSlot>().Item;
             var invenSlot = GridManager.slotGrid[invenItem.Location.X + invenItem.Size.x / 2, invenItem.Location.Y + invenItem.Size.y / 2];
             GridManager.highlightedSlot = invenSlot;
             GridManager.CheckArea(invenItem.Size);
@@ -205,39 +258,43 @@ public class EquipManager : MonoBehaviour {
                 var index = CurioItems.FindIndex(x => x.GlobalID == itemObject.GetComponent<ItemOm>().Item.GlobalID);
                 CurioItems.RemoveAt(index);
             }
+            UpdateEquipment(selectedSlot.GetComponent<EquipSlot>());
         }
     }
 
-    public EquipmentItems LoadEquipment()
+    public void UpdateEquipment(EquipSlot selectedSlot)
     {
-        var equipment = ListManager.Equipment;
-        if (equipment.MainHand != null)
+        if (MainHandSlot.Occupied)
         {
-            GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
-            EquipCheck(newItem, MainHandSlot.gameObject);
+            ListManager.Equipment.MainHand = MainHandSlot.Item.GetComponent<ItemOm>().Item;
         }
-        if (equipment.Armor != null)
+        else
         {
-            GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Armor);
-            EquipCheck(newItem, ArmorSlot.gameObject);
+            ListManager.Equipment.MainHand = null;
         }
-        if (equipment.Offhand != null)
+        if (OffHandSlot.Occupied)
         {
-            GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Offhand);
-            EquipCheck(newItem, OffHandSlot.gameObject);
+            ListManager.Equipment.Offhand = OffHandSlot.Item.GetComponent<ItemOm>().Item;
         }
-        if (equipment.Curios.Count > 0)
+        else
         {
-            for (int i = 0; i < equipment.Curios.Count; i++)
-            {
-                GameObject newItem = ListManager.itemEquipPool.GetObject();
-                newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
-                EquipCheck(newItem, CurioSlots[i].gameObject);
-            }
+            ListManager.Equipment.Offhand = null;
         }
-        return null;
+        if (ArmorSlot.Occupied)
+        {
+            ListManager.Equipment.Armor = ArmorSlot.Item.GetComponent<ItemOm>().Item;
+        }
+        else
+        {
+            ListManager.Equipment.Armor = null;
+        }
+        if (CurioItems.Count > 0)
+        {
+            ListManager.Equipment.Curios = CurioItems;
+        }
+        else
+        {
+            ListManager.Equipment.Curios = new List<ItemDm>();
+        }
     }
 }

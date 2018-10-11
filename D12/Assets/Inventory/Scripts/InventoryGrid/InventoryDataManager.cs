@@ -61,9 +61,22 @@ namespace Assets.Inventory.Scripts.InventoryGrid
                 string dataAsJason = File.ReadAllText(EquipmentJsonFile);
                 equipmentSave = JsonConvert.DeserializeObject<EquipmentSave>(dataAsJason, new ItemConverter());
             }
-            var mainHand = database.dbList.Where(x => x.GlobalID == equipmentSave.MainHand.GlobalID).First();
-            var offhand = database.dbList.Where(x => x.GlobalID == equipmentSave.Offhand.GlobalID).First();
-            var armor = database.dbList.Where(x => x.GlobalID == equipmentSave.Armor.GlobalID).First();
+            ItemDm mainHand = null;
+            if (equipmentSave.MainHand != null)
+            {
+                mainHand = database.dbList.Where(x => x.GlobalID == equipmentSave.MainHand.GlobalID).First();
+                
+            }
+            ItemDm offhand = null;
+            if (equipmentSave.Offhand != null)
+            {
+                offhand = database.dbList.Where(x => x.GlobalID == equipmentSave.Offhand.GlobalID).First();
+            }
+            ItemDm armor = null;
+            if (equipmentSave.Armor != null)
+            {
+                armor = database.dbList.Where(x => x.GlobalID == equipmentSave.Armor.GlobalID).First();
+            }
             var curios = new List<ItemDm>();
             foreach (var curio in equipmentSave.Curios)
             {
@@ -74,9 +87,21 @@ namespace Assets.Inventory.Scripts.InventoryGrid
 
         public void SaveEquipment(EquipmentItems equipment)
         {
-            var mainHand = new InventoryItemSave(equipment.MainHand.GlobalID, equipment.MainHand.Quantity, null);
-            var offhand = new InventoryItemSave(equipment.Offhand.GlobalID, equipment.Offhand.Quantity, null);
-            var armor = new InventoryItemSave(equipment.Armor.GlobalID, equipment.Armor.Quantity, null);
+            InventoryItemSave mainHand = null;
+            if (equipment.MainHand != null)
+            {
+                mainHand = new InventoryItemSave(equipment.MainHand.GlobalID, equipment.MainHand.Quantity, null);
+            }
+            InventoryItemSave offhand = null;
+            if (equipment.Offhand != null)
+            {
+                offhand = new InventoryItemSave(equipment.Offhand.GlobalID, equipment.Offhand.Quantity, null);
+            }
+            InventoryItemSave armor = null;
+            if (equipment.Armor != null)
+            {
+                armor = new InventoryItemSave(equipment.Armor.GlobalID, equipment.Armor.Quantity, null);
+            }
             var curios = new List<InventoryItemSave>();
             foreach (var curio in equipment.Curios)
             {

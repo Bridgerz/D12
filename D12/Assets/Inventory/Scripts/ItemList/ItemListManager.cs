@@ -27,10 +27,7 @@ public class ItemListManager : MonoBehaviour {
     {
         InvDataManager = new InventoryDataManager();
         Inventory = InvDataManager.LoadInventory(itemDB);
-
-        Equipment = new EquipmentItems(null, null, null, new List<ItemDm>());
-        //Equipment = InvDataManager.LoadEquipment(itemDB);
-
+        Equipment = InvDataManager.LoadEquipment(itemDB);
         contentPanel = this.transform;
     }
 
@@ -101,5 +98,4 @@ public class ItemListManager : MonoBehaviour {
             currentItemList.RemoveAt(i);
         }
     }
-
 }

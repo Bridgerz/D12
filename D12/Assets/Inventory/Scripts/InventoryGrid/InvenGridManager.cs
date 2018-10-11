@@ -31,7 +31,7 @@ public class InvenGridManager : MonoBehaviour {
         ItemButtonScript.invenManager = this;
         if (listManager.Inventory.Count > 0)
         {
-            LoadInventory(listManager.Inventory);
+            LoadInventoryObjects(listManager.Inventory);
         }
     }
 
@@ -43,13 +43,15 @@ public class InvenGridManager : MonoBehaviour {
             {
                 switch (checkState)
                 {
-                    case 0: //store on empty slots
+                    //store on empty slots
+                    case 0: 
                         StoreItem(ItemOm.SelectedItem);
                         ColorChangeLoop(SlotColorHighlights.Blue, ItemOm.SelectedItemSize, totalOffset);
                         ItemOm.ResetSelectedItem();
                         RemoveSelectedButton();
                         break;
-                    case 1: //swap items
+                    //swap items
+                    case 1: 
                         ItemOm.SetSelectedItem(SwapItem(ItemOm.SelectedItem));
                         SlotSectorScript.sectorScript.PosOffset();
                         ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); //*1
@@ -57,124 +59,111 @@ public class InvenGridManager : MonoBehaviour {
                         RemoveSelectedButton();
                         break;
                 }
-            }// retrieve items
+                listManager.InvDataManager.SaveInventory(listManager.Inventory);
+            }
+            // retrieve items
             else if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
                 ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
                 ItemOm.SetSelectedItem(GetItem(highlightedSlot));
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
+                listManager.InvDataManager.SaveInventory(listManager.Inventory);
             }
+            
         }
         else if (Input.GetMouseButtonUp(1)) // right click
         {
             if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                var item = highlightedSlot.GetComponent<SlotScript>().storedItemObject;
-                var type = highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item.Type;
-                var tempHighlightedSlot = highlightedSlot;
-                switch (type)
-                {
-                    case ItemType.Armor :
-                        ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                        SlotSectorScript.sectorScript.ZeroOffset();
-                        GetItem(highlightedSlot);
-                        Equipment.EquipCheck(item, Equipment.ArmorSlot.gameObject);
-                        RefrechColor(false);
-                        highlightedSlot = tempHighlightedSlot;
-                        break;
-                    case ItemType.Curio :
-                        foreach (var slot in Equipment.CurioSlots)
-                        {
-                            if (!slot.Occupied)
-                            {
-                                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                                GetItem(highlightedSlot);
-                                Equipment.EquipCheck(item, slot.gameObject);
-                                RefrechColor(false);
-                                highlightedSlot = tempHighlightedSlot;
-                                break;
-                            }
-                        }
-                        Equipment.CurioItems.Add(item.GetComponent<ItemOm>().Item);
-                        break;
-                    case ItemType.Wielded:
-                        var mainHandStatus = Equipment.EquipStatus(item, Equipment.MainHandSlot.gameObject);
-                        var offHandStatus = Equipment.EquipStatus(item, Equipment.OffHandSlot.gameObject);
-                        ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                        GetItem(highlightedSlot);
-                        SlotSectorScript.sectorScript.ZeroOffset();
-                        if (mainHandStatus == 1) // if mainhand is green equip 
-                        {
-                            Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
-                        }
-                        else if (offHandStatus == 1) // if offhand is green equip 
-                        {
-                            Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
-                        }
-                        else if (mainHandStatus == 2) // if mainhand is swapable swap 
-                        {
-                            Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);   
-                        }
-                        else if (offHandStatus == 2)
-                        {
-                            Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
-                            
-                        }
-                        else // shields
-                        {
-                            Equipment.UnEquipItem(Equipment.MainHandSlot.GetComponent<EquipSlot>().Item, Equipment.MainHandSlot.gameObject);
-                            Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
-                        }
-                        highlightedSlot = tempHighlightedSlot;
-                        RefrechColor(false);
-                        break;
-                    default:
-                        break;
-                }
-                UpdateEquipment();
+                RightClickEquip();
             }
         }
     }
 
-    public void UpdateEquipment()
+    private void RightClickEquip()
     {
-        if (Equipment.MainHandSlot.Occupied)
+        var item = highlightedSlot.GetComponent<SlotScript>().storedItemObject;
+        var type = highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item.Type;
+        var tempHighlightedSlot = highlightedSlot;
+        EquipSlot selectedSlot = null;
+        switch (type)
         {
-            listManager.Equipment.MainHand = Equipment.MainHandSlot.Item.GetComponent<ItemOm>().Item;
+            case ItemType.Armor:
+                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                GetItem(highlightedSlot);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                selectedSlot = Equipment.ArmorSlot;
+                Equipment.EquipCheck(item, Equipment.ArmorSlot.gameObject);
+                highlightedSlot = tempHighlightedSlot;
+                RefrechColor(false);
+                break;
+            case ItemType.Curio:
+                foreach (var slot in Equipment.CurioSlots)
+                {
+                    if (!slot.Occupied)
+                    {
+                        ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                        GetItem(highlightedSlot);
+                        SlotSectorScript.sectorScript.ZeroOffset();
+                        selectedSlot = slot;
+                        Equipment.EquipCheck(item, slot.gameObject);
+                        highlightedSlot = tempHighlightedSlot;
+                        RefrechColor(false);
+                        break;
+                    }
+                }
+                Equipment.CurioItems.Add(item.GetComponent<ItemOm>().Item);
+                break;
+            case ItemType.Wielded:
+                var mainHandStatus = Equipment.EquipStatus(item, Equipment.MainHandSlot.gameObject);
+                var offHandStatus = Equipment.EquipStatus(item, Equipment.OffHandSlot.gameObject);
+                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                GetItem(highlightedSlot);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                if (mainHandStatus == 1) // if mainhand is green equip 
+                {
+                    selectedSlot = Equipment.MainHandSlot;
+                    Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
+                }
+                else if (offHandStatus == 1) // if offhand is green equip 
+                {
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+                }
+                else if (mainHandStatus == 2) // if mainhand is swapable swap 
+                {
+                    selectedSlot = Equipment.MainHandSlot;
+                    Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
+                }
+                else if (offHandStatus == 2)
+                {
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+
+                }
+                else // shields
+                {
+                    Equipment.UnEquipItem(Equipment.MainHandSlot.GetComponent<EquipSlot>().Item, Equipment.MainHandSlot.gameObject);
+                    Equipment.UpdateEquipment(Equipment.MainHandSlot);
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+                }
+                highlightedSlot = tempHighlightedSlot;
+                RefrechColor(false);
+                break;
+            default:
+                break;
         }
-        else
-        {
-            listManager.Equipment.MainHand = null;
-        }
-        if (Equipment.OffHandSlot.Occupied)
-        {
-            listManager.Equipment.Offhand = Equipment.OffHandSlot.Item.GetComponent<ItemOm>().Item;
-        }
-        else
-        {
-            listManager.Equipment.Offhand = null;
-        }
-        if (Equipment.ArmorSlot.Occupied)
-        {
-            listManager.Equipment.Armor = Equipment.ArmorSlot.Item.GetComponent<ItemOm>().Item;
-        }
-        else
-        {
-            listManager.Equipment.Armor = null;
-        }
-        if (Equipment.CurioItems.Count > 0)
-        {
-            listManager.Equipment.Curios = Equipment.CurioItems;
-        }
-        else
-        {
-            listManager.Equipment.Curios = new List<ItemDm>();
-        }
+
+        Equipment.UpdateEquipment(selectedSlot);
+
+        listManager.InvDataManager.SaveEquipment(listManager.Equipment);
+        listManager.InvDataManager.SaveInventory(listManager.Inventory);
     }
 
-
-    private void LoadInventory(List<ItemDm> inventory)
+    private void LoadInventoryObjects(List<ItemDm> inventory)
     {
         foreach (var item in inventory)
         {
@@ -356,7 +345,6 @@ public class InvenGridManager : MonoBehaviour {
         {
             listManager.Inventory.Add(item);
         }
-        listManager.InvDataManager.SaveInventory(listManager.Inventory);
     }
 
     private GameObject GetItem(GameObject slotObject)
@@ -379,11 +367,11 @@ public class InvenGridManager : MonoBehaviour {
                 instanceScript.storedItemClass = null;
                 instanceScript.isOccupied = false;
             }
-        }//returned item set item parameters
+        }
+        //returned item set item parameters
         retItem.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         retItem.GetComponent<CanvasGroup>().alpha = 0.5f;
         retItem.transform.position = Input.mousePosition;
-        //overlayScript.UpdateOverlay(null);
         return retItem;
     }
 
