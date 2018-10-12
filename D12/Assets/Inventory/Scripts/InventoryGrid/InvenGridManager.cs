@@ -35,6 +35,25 @@ public class InvenGridManager : MonoBehaviour {
         }
     }
 
+    private void LoadInventoryObjects(List<ItemDm> inventory)
+    {
+        foreach (var item in inventory)
+        {
+            // create object
+            GameObject newItem = listManager.itemEquipPool.GetObject();
+            var newItemDm = item.Clone() as ItemDm;
+            var testItem = item;
+            newItem.GetComponent<ItemOm>().SetItemObject(item.Clone() as ItemDm);
+            // store object
+            var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
+            highlightedSlot = slot;
+            CheckArea(item.Size);
+            StoreItem(newItem);
+            newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        }
+        highlightedSlot = null;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonUp(0)) // left click
@@ -69,6 +88,7 @@ public class InvenGridManager : MonoBehaviour {
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
                 listManager.InvDataManager.SaveInventory(listManager.Inventory);
+                Debug.Log(ItemOm.SelectedItem.GetComponent<ItemOm>().Item.InstanceID);
             }
             
         }
@@ -161,24 +181,6 @@ public class InvenGridManager : MonoBehaviour {
 
         listManager.InvDataManager.SaveEquipment(listManager.Equipment);
         listManager.InvDataManager.SaveInventory(listManager.Inventory);
-    }
-
-    private void LoadInventoryObjects(List<ItemDm> inventory)
-    {
-        foreach (var item in inventory)
-        {
-            // create object
-            GameObject newItem = listManager.itemEquipPool.GetObject();
-            
-            newItem.GetComponent<ItemOm>().SetItemObject(item);
-            // store object
-            var slot = slotGrid[item.Location.X + item.Size.x/2, item.Location.Y + item.Size.y / 2];
-            highlightedSlot = slot;
-            CheckArea(item.Size);
-            StoreItem(newItem);
-            newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        }
-        highlightedSlot = null;
     }
 
     public void CheckArea(IntVector2 itemSize) //*2

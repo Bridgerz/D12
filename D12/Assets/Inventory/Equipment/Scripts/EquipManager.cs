@@ -83,21 +83,24 @@ public class EquipManager : MonoBehaviour {
         if (equipment.MainHand != null)
         {
             GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+            var tempItem = equipment.MainHand.Clone() as ItemDm;
+            newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, MainHandSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
         }
         if (equipment.Armor != null)
         {
             GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Armor);
+            var tempItem = equipment.Armor.Clone() as ItemDm;
+            newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, ArmorSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
         }
         if (equipment.Offhand != null)
         {
             GameObject newItem = ListManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(equipment.Offhand);
+            var tempItem = equipment.Offhand.Clone() as ItemDm;
+            newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, OffHandSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
         }
@@ -106,7 +109,8 @@ public class EquipManager : MonoBehaviour {
             for (int i = 0; i < equipment.Curios.Count; i++)
             {
                 GameObject newItem = ListManager.itemEquipPool.GetObject();
-                newItem.GetComponent<ItemOm>().SetItemObject(equipment.MainHand);
+                var tempItem = equipment.Curios[i].Clone() as ItemDm;
+                newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
                 EquipCheck(newItem, CurioSlots[i].gameObject);
                 newItem.GetComponent<RectTransform>().localScale = Vector3.one;
             }

@@ -17,6 +17,7 @@ public class WeaponDm : ItemDm
     public override List<Tag> Tags { get; set; }
     public override List<Enchantment> Enchantments { get; set; }
 
+    [JsonConstructor]
     public WeaponDm(int globalID, ItemType type, string title,
         string defenition, int damage, bool mainHand, List<Tag> tags,
         List<Enchantment> enchantments, Quality quality,
@@ -26,5 +27,18 @@ public class WeaponDm : ItemDm
         MainHand = mainHand;
         Tags = tags;
         Enchantments = enchantments;
+    }
+
+    public WeaponDm(WeaponDm right) : base(right)
+    {
+        Damage = right.Damage;
+        MainHand = right.MainHand;
+        Tags = right.Tags;
+        Enchantments = right.Enchantments;
+    }
+
+    public override object Clone()
+    {
+        return new WeaponDm(this);
     }
 }

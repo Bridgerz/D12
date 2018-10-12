@@ -8,9 +8,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ItemDm
+public class ItemDm : ICloneable
 {
     public int GlobalID { get; set; }
+    public Guid InstanceID { get; set; }
     public ItemType Type { get; set; }
     public string Title { get; set; }
     public string Defenition { get; set; }
@@ -28,10 +29,12 @@ public class ItemDm
     [HideInInspector] public Sprite Icon;
     [HideInInspector] public IntVector2 Size;
 
+    [JsonConstructor]
     public ItemDm(int globalID, ItemType type, string title,
         string defenition, Quality quality, int weight)
     {
         GlobalID = globalID;
+        InstanceID = Guid.NewGuid();
         Type = type;
         Title = title;
         Defenition = defenition;
@@ -40,4 +43,24 @@ public class ItemDm
         Quantity = 1;
         Icon = Resources.Load<Sprite>("ItemImages/" + Title);
     }
+
+    public ItemDm(ItemDm right)
+    {
+        GlobalID = right.GlobalID;
+        InstanceID = Guid.NewGuid();
+        Type = right.Type;
+        Title = right.Title;
+        Defenition = right.Defenition;
+        Quality = right.Quality;
+        Weight = right.Weight;
+        Quantity = right.Quantity;
+        Icon = right.Icon;
+        Size = right.Size;
+    }
+
+    public virtual object Clone()
+    {
+        return new ItemDm(this);
+    }
+
 }

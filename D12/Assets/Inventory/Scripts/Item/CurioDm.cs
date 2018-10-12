@@ -14,10 +14,21 @@ public class CurioDm : ItemDm
 {
     public override List<Enchantment> Enchantments { get; set; }
 
+    [JsonConstructor]
     public CurioDm(int globalID, ItemType type, string title,
         string defenition, List<Enchantment> enchantments, Quality quality,
         int weight) : base(globalID, type, title, defenition, quality, weight)
     {
         Enchantments = enchantments;
+    }
+
+    public CurioDm(CurioDm right) : base(right)
+    {
+        Enchantments = right.Enchantments;
+    }
+
+    public override object Clone()
+    {
+        return new CurioDm(this);
     }
 }
