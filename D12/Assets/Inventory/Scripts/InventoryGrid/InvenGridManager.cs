@@ -338,7 +338,7 @@ public class InvenGridManager : MonoBehaviour {
         itemObject.GetComponent<CanvasGroup>().alpha = 1f;
 
         // check if item was already in Inventory
-        var index = listManager.Inventory.FindIndex(x => x.GlobalID == item.GlobalID);
+        var index = listManager.Inventory.FindIndex(x => x.InstanceID == item.InstanceID);
         if (index >= 0)
         {
             listManager.Inventory[index].Location = item.Location;

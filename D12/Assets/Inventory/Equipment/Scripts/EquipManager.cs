@@ -197,7 +197,7 @@ public class EquipManager : MonoBehaviour {
             ItemOm.SelectedItem = null;
             ItemOm.IsDragging = false;
             item.Location = null;
-            var index = ListManager.Inventory.FindIndex(x => x.GlobalID == item.GlobalID);
+            var index = ListManager.Inventory.FindIndex(x => x.InstanceID == item.InstanceID);
             if (index >= 0)
             {
                 ListManager.Inventory.RemoveAt(index);
@@ -259,7 +259,7 @@ public class EquipManager : MonoBehaviour {
             }
             if (itemObject.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
             {
-                var index = CurioItems.FindIndex(x => x.GlobalID == itemObject.GetComponent<ItemOm>().Item.GlobalID);
+                var index = CurioItems.FindIndex(x => x.InstanceID == itemObject.GetComponent<ItemOm>().Item.InstanceID);
                 CurioItems.RemoveAt(index);
             }
             UpdateEquipment(selectedSlot.GetComponent<EquipSlot>());

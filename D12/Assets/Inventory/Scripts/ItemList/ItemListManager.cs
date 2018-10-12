@@ -52,7 +52,7 @@ public class ItemListManager : MonoBehaviour {
             ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);
-            Inventory.RemoveAll(x => x.GlobalID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.GlobalID);
+            Inventory.RemoveAll(x => x.InstanceID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.InstanceID);
             InvDataManager.SaveInventory(Inventory);
             ItemOm.ResetSelectedItem();
         }
@@ -92,7 +92,7 @@ public class ItemListManager : MonoBehaviour {
     //used to remove from list when placing item on grid or deleting item
     public void RevomeItemFromList(ItemDm itemToRemove)
     {
-        var i = currentItemList.FindIndex(x => x.GlobalID == itemToRemove.GlobalID);
+        var i = currentItemList.FindIndex(x => x.InstanceID == itemToRemove.InstanceID);
         if (i >= 0)
         {
             currentItemList.RemoveAt(i);
