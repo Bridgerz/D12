@@ -10,12 +10,13 @@ using UnityEngine;
 /// </summary>
 
 [Serializable]
-public class TaggedDm : ItemDm
+public class ArmorDm : ItemDm
 {
     public override List<Tag> Tags { get; set; }
     public override List<Enchantment> Enchantments { get; set; }
 
-    public TaggedDm(int globalID, ItemType type, string title,
+    [JsonConstructor]
+    public ArmorDm(int globalID, ItemType type, string title,
         string defenition, int damage, List<Tag> tags,
         List<Enchantment> enchantments, Quality quality,
         int weight) : base (globalID, type, title, defenition, quality, weight)
@@ -23,5 +24,16 @@ public class TaggedDm : ItemDm
 
         Tags = tags;
         Enchantments = enchantments;
+    }
+
+    public ArmorDm(ArmorDm right) : base(right)
+    {
+        Tags = right.Tags;
+        Enchantments = right.Enchantments;
+    }
+
+    public override object Clone()
+    {
+        return new ArmorDm(this);
     }
 }

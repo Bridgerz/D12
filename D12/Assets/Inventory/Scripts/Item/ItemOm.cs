@@ -12,6 +12,7 @@ public class ItemOm : MonoBehaviour
 
     public ItemDm Item;
     public static GameObject SelectedItem;
+    public static bool SelectedFromEquipment;
     public static IntVector2 SelectedItemSize;
     public static bool IsDragging = false;
 

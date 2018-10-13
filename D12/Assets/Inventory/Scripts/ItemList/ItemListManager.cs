@@ -1,5 +1,6 @@
 ﻿using Assets.Inventory.Scripts.InventoryGrid;
 using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.ItemList;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ public class ItemListManager : MonoBehaviour {
     public InvenGridManager invenManager;
     public LoadItemDatabase itemDB;
     public SortAndFilterManager sortManager;
-    public InventoryDataManager InvManager;
+    public InventoryDataManager InvDataManager;
+    public EquipManager EquipManager;
 
     public float iconSize;
     
@@ -17,13 +19,15 @@ public class ItemListManager : MonoBehaviour {
     public List<GameObject> currentButtonList;
     public List<ItemDm> currentItemList;
     public List<ItemDm> Inventory;
+    public EquipmentItems Equipment; 
 
     private Transform contentPanel;
 
     private void Start()
     {
-        InvManager = new InventoryDataManager();
-        Inventory = InvManager.LoadInventory(itemDB);
+        InvDataManager = new InventoryDataManager();
+        Inventory = InvDataManager.LoadInventory(itemDB);
+        Equipment = InvDataManager.LoadEquipment(itemDB);
         contentPanel = this.transform;
     }
 
@@ -48,8 +52,8 @@ public class ItemListManager : MonoBehaviour {
             ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);
-            Inventory.RemoveAll(x => x.GlobalID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.GlobalID);
-            InvManager.SaveInventory(Inventory);
+            Inventory.RemoveAll(x => x.InstanceID == ItemOm.SelectedItem.GetComponent<ItemOm>().Item.InstanceID);
+            InvDataManager.SaveInventory(Inventory);
             ItemOm.ResetSelectedItem();
         }
     }
@@ -88,11 +92,10 @@ public class ItemListManager : MonoBehaviour {
     //used to remove from list when placing item on grid or deleting item
     public void RevomeItemFromList(ItemDm itemToRemove)
     {
-        var i = currentItemList.FindIndex(x => x.GlobalID == itemToRemove.GlobalID);
+        var i = currentItemList.FindIndex(x => x.InstanceID == itemToRemove.InstanceID);
         if (i >= 0)
         {
             currentItemList.RemoveAt(i);
         }
     }
-
 }

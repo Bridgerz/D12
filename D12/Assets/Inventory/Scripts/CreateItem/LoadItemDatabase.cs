@@ -22,7 +22,6 @@ public class LoadItemDatabase : MonoBehaviour
 
     private void LoadJson()
     {
-        var list = new List<ItemDm>();
         if (File.Exists(JsonFile))
         {
             string dataAsJason = File.ReadAllText(JsonFile);

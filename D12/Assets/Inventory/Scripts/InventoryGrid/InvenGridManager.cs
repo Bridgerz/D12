@@ -1,5 +1,7 @@
 ﻿using Assets.Inventory.Scripts.InventoryGrid;
 using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.Item.ItemModels;
+using Assets.Inventory.Scripts.Item.OM;
 using Assets.Inventory.Scripts.ItemObject;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,37 +17,63 @@ public class InvenGridManager : MonoBehaviour {
     
     public ItemListManager listManager;
     public GameObject selectedButton;
-
-    private IntVector2 totalOffset, checkSize, checkStartPos;
-    private IntVector2 otherItemPos, otherItemSize; //*3
+    public IntVector2 checkSize;
+    public EquipManager Equipment;
+    
+    public IntVector2 totalOffset, checkStartPos;
+    public IntVector2 otherItemPos, otherItemSize;
 
     private int checkState;
     private bool isOverEdge = false;
+
+    public List<ItemDm> TESTLIST;
 
     private void Start()
     {
         ItemButtonScript.invenManager = this;
         if (listManager.Inventory.Count > 0)
         {
-            LoadInventory(listManager.Inventory);
+            LoadInventoryObjects(listManager.Inventory);
         }
+        TESTLIST = listManager.Inventory;
+    }
+
+    private void LoadInventoryObjects(List<ItemDm> inventory)
+    {
+        foreach (var item in inventory)
+        {
+            // create object
+            GameObject newItem = listManager.itemEquipPool.GetObject();
+            var newItemDm = item.Clone() as ItemDm;
+            item.InstanceID = newItemDm.InstanceID;
+            newItem.GetComponent<ItemOm>().SetItemObject(newItemDm);
+            // store object
+            var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
+            highlightedSlot = slot;
+            CheckArea(item.Size);
+            StoreItem(newItem);
+            newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        }
+        highlightedSlot = null;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) // left click
         {
             if (highlightedSlot != null && ItemOm.SelectedItem != null && !isOverEdge)
             {
                 switch (checkState)
                 {
-                    case 0: //store on empty slots
+                    //store on empty slots
+                    case 0: 
                         StoreItem(ItemOm.SelectedItem);
                         ColorChangeLoop(SlotColorHighlights.Blue, ItemOm.SelectedItemSize, totalOffset);
                         ItemOm.ResetSelectedItem();
                         RemoveSelectedButton();
                         break;
-                    case 1: //swap items
+                    //swap items
+                    case 1: 
                         ItemOm.SetSelectedItem(SwapItem(ItemOm.SelectedItem));
                         SlotSectorScript.sectorScript.PosOffset();
                         ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); //*1
@@ -53,56 +81,107 @@ public class InvenGridManager : MonoBehaviour {
                         RemoveSelectedButton();
                         break;
                 }
-            }// retrieve items
+                listManager.InvDataManager.SaveInventory(listManager.Inventory);
+            }
+            // retrieve items
             else if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
                 ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
                 ItemOm.SetSelectedItem(GetItem(highlightedSlot));
+                ItemOm.SelectedFromEquipment = false;
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
+                listManager.InvDataManager.SaveInventory(listManager.Inventory);
             }
+            
         }
-    }
-
-    private void LoadInventory(List<ItemDm> inventory)
-    {
-        foreach (var item in inventory)
+        else if (Input.GetMouseButtonUp(1)) // right click
         {
-            // create object
-            GameObject newItem = listManager.itemEquipPool.GetObject();
-            newItem.GetComponent<ItemOm>().SetItemObject(item);
-            // store object
-            var slot = slotGrid[item.Location.X + item.Size.x/2, item.Location.Y + item.Size.y / 2];
-            highlightedSlot = slot;
-            CheckArea(item.Size);
-           
-            SlotScript instanceScript;
-            IntVector2 itemSizeL = item.Size;
-            for (int y = 0; y < itemSizeL.y; y++)
+            if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                for (int x = 0; x < itemSizeL.x; x++)
-                {
-                    //set each slot parameters
-                    instanceScript = slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<SlotScript>();
-                    instanceScript.storedItemObject = newItem;
-                    instanceScript.storedItemClass = newItem.GetComponent<ItemOm>();
-                    instanceScript.storedItemSize = itemSizeL;
-                    instanceScript.storedItemStartPos = totalOffset;
-                    instanceScript.isOccupied = true;
-                    slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<Image>().color = SlotColorHighlights.Gray;
-                }
+                RightClickEquip();
             }
-            //set dropped parameters
-            newItem.transform.SetParent(dropParent);
-            newItem.GetComponent<RectTransform>().pivot = Vector2.zero;
-            newItem.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
-            newItem.GetComponent<CanvasGroup>().alpha = 1f;
-            newItem.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
-        highlightedSlot = null;
     }
 
-    private void CheckArea(IntVector2 itemSize) //*2
+    private void RightClickEquip()
+    {
+        var item = highlightedSlot.GetComponent<SlotScript>().storedItemObject;
+        var type = highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item.Type;
+        var tempHighlightedSlot = highlightedSlot;
+        EquipSlot selectedSlot = null;
+        switch (type)
+        {
+            case ItemType.Armor:
+                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                GetItem(highlightedSlot);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                selectedSlot = Equipment.ArmorSlot;
+                Equipment.EquipCheck(item, Equipment.ArmorSlot.gameObject);
+                highlightedSlot = tempHighlightedSlot;
+                RefrechColor(false);
+                break;
+            case ItemType.Curio:
+                foreach (var slot in Equipment.CurioSlots)
+                {
+                    if (!slot.Occupied)
+                    {
+                        ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                        GetItem(highlightedSlot);
+                        SlotSectorScript.sectorScript.ZeroOffset();
+                        selectedSlot = slot;
+                        Equipment.EquipCheck(item, slot.gameObject);
+                        highlightedSlot = tempHighlightedSlot;
+                        RefrechColor(false);
+                        break;
+                    }
+                }
+                break;
+            case ItemType.Wielded:
+                var mainHandStatus = Equipment.EquipStatus(item, Equipment.MainHandSlot.gameObject);
+                var offHandStatus = Equipment.EquipStatus(item, Equipment.OffHandSlot.gameObject);
+                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                GetItem(highlightedSlot);
+                SlotSectorScript.sectorScript.ZeroOffset();
+                if (mainHandStatus == 1) // if mainhand is green equip 
+                {
+                    selectedSlot = Equipment.MainHandSlot;
+                    Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
+                }
+                else if (offHandStatus == 1) // if offhand is green equip 
+                {
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+                }
+                else if (mainHandStatus == 2) // if mainhand is swapable swap 
+                {
+                    selectedSlot = Equipment.MainHandSlot;
+                    Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
+                }
+                else if (offHandStatus == 2)
+                {
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+
+                }
+                else // shields
+                {
+                    Equipment.UnEquipItem(Equipment.MainHandSlot.GetComponent<EquipSlot>().Item, Equipment.MainHandSlot.gameObject);
+                    selectedSlot = Equipment.OffHandSlot;
+                    Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
+                }
+                highlightedSlot = tempHighlightedSlot;
+                RefrechColor(false);
+                break;
+            default:
+                break;
+        }
+        Equipment.UpdateEquipment();
+        listManager.InvDataManager.SaveInventory(listManager.Inventory);
+    }
+
+    public void CheckArea(IntVector2 itemSize) //*2
     {
         IntVector2 halfOffset;
         IntVector2 overCheck;
@@ -138,7 +217,7 @@ public class InvenGridManager : MonoBehaviour {
         }
     }
 
-    private int SlotCheck(IntVector2 itemSize)//*2
+    public int SlotCheck(IntVector2 itemSize)//*2
     {
         GameObject obj = null;
         SlotScript instanceScript;
@@ -158,7 +237,9 @@ public class InvenGridManager : MonoBehaviour {
                             otherItemSize = obj.GetComponent<ItemOm>().Item.Size;
                         }
                         else if (obj != instanceScript.storedItemObject)
+                        {
                             return 2; // if cheack Area has 1+ item occupied
+                        }
                     }
                 }
             }
@@ -189,8 +270,6 @@ public class InvenGridManager : MonoBehaviour {
         else //on pointer exit. resets colors
         {
             isOverEdge = false;
-            //checkArea(); //commented out for performance. may cause bugs if not included
-            
             ColorChangeLoop2(checkSize, checkStartPos);
             if (checkState == 1)
             {
@@ -230,12 +309,11 @@ public class InvenGridManager : MonoBehaviour {
         }
     }
 
-    private void StoreItem(GameObject itemObject)
+    public void StoreItem(GameObject itemObject)
     {
         SlotScript instanceScript;
         IntVector2 itemSizeL = itemObject.GetComponent<ItemOm>().Item.Size;
         var item = itemObject.GetComponent<ItemOm>().Item;
-        var position = highlightedSlot.GetComponent<SlotScript>().gridPos;
         item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
         for (int y = 0; y < itemSizeL.y; y++)
         {
@@ -258,7 +336,7 @@ public class InvenGridManager : MonoBehaviour {
         itemObject.GetComponent<CanvasGroup>().alpha = 1f;
 
         // check if item was already in Inventory
-        var index = listManager.Inventory.FindIndex(x => x.GlobalID == item.GlobalID);
+        var index = listManager.Inventory.FindIndex(x => x.InstanceID == item.InstanceID);
         if (index >= 0)
         {
             listManager.Inventory[index].Location = item.Location;
@@ -267,7 +345,21 @@ public class InvenGridManager : MonoBehaviour {
         {
             listManager.Inventory.Add(item);
         }
-        listManager.InvManager.SaveInventory(listManager.Inventory);
+
+        // save both equipment and inventory if both were affected else save inventory
+        if (ItemOm.SelectedFromEquipment)
+        {
+            if (ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
+            {
+                Equipment.CurioItems.Remove(ItemOm.SelectedItem.GetComponent<ItemOm>().Item);
+            }
+            Equipment.UpdateEquipment();
+            listManager.InvDataManager.SaveEquipAndInv(listManager.Equipment, listManager.Inventory);
+        }
+        else
+        {
+            listManager.InvDataManager.SaveInventory(listManager.Inventory);
+        }
     }
 
     private GameObject GetItem(GameObject slotObject)
@@ -290,15 +382,15 @@ public class InvenGridManager : MonoBehaviour {
                 instanceScript.storedItemClass = null;
                 instanceScript.isOccupied = false;
             }
-        }//returned item set item parameters
+        }
+        //returned item set item parameters
         retItem.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         retItem.GetComponent<CanvasGroup>().alpha = 0.5f;
         retItem.transform.position = Input.mousePosition;
-        //overlayScript.UpdateOverlay(null);
         return retItem;
     }
 
-    private GameObject SwapItem(GameObject item)
+    public GameObject SwapItem(GameObject item)
     {
         GameObject tempItem;
         tempItem = GetItem(slotGrid[otherItemPos.x, otherItemPos.y]);

@@ -5,11 +5,11 @@
         // Weapon Tags
         Simple,
         Ranged,
+        Shielding,
         Finesse,
         Thrown,
         Light,
         Reach,
-        Concealable,
         Versatile,
         Heavy,
         TwoHanded,
@@ -19,7 +19,7 @@
         Signature,
         Keen,
         Husk,
-        Studded,
+        Concealable,
         Serrated,
         Magnum,
         Quiet,
@@ -32,7 +32,7 @@
         LightArmor,
         MediumArmor,
         HeavyArmor,
-        Loud ,
+        Loud,
         Slow
     }
 }

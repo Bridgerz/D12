@@ -38,7 +38,12 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             // insert tool tip call boiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
         }
+    }
 
+    public void ZeroOffset()
+    {
+        posOffset.x = 0;
+        posOffset.y = 0;
     }
 
     public void PosOffset()
