@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.Item.ItemModels;
 
 public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler{
 
@@ -27,6 +28,12 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
             {
                 SpawnStoredItem(); //swap item when no selectedButton and selectedItem
             }
+            if (ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
+            {
+                invenManager.Equipment.CurioItems.Remove(ItemOm.SelectedItem.GetComponent<ItemOm>().Item);
+            }
+            invenManager.Equipment.UpdateEquipment();
+            listManager.InvDataManager.SaveInventory(listManager.Inventory);
             listManager.AddSelectedItemToList();
             if (ItemOm.SelectedItem != null && invenManager.selectedButton != this.gameObject) // reset selected button when item is from list
             {
@@ -40,6 +47,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         {
             SpawnStoredItem();
             invenManager.Equipment.UnEquipItem(ItemOm.SelectedItem, null);
+            listManager.InvDataManager.SaveInventory(listManager.Inventory);
             ItemOm.IsDragging = false;
             listManager.invenManager.RemoveSelectedButton();
         }
@@ -58,7 +66,8 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     private void SpawnStoredItem()
     {
         GameObject newItem = itemEquipPool.GetObject();
-        newItem.GetComponent<ItemOm>().SetItemObject(item);
+
+        newItem.GetComponent<ItemOm>().SetItemObject(item.Clone() as ItemDm);
 
         ItemOm.SetSelectedItem(newItem);
         invenManager.selectedButton = this.gameObject;

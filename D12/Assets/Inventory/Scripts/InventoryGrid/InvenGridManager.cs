@@ -26,6 +26,8 @@ public class InvenGridManager : MonoBehaviour {
     private int checkState;
     private bool isOverEdge = false;
 
+    public List<ItemDm> TESTLIST;
+
     private void Start()
     {
         ItemButtonScript.invenManager = this;
@@ -33,6 +35,7 @@ public class InvenGridManager : MonoBehaviour {
         {
             LoadInventoryObjects(listManager.Inventory);
         }
+        TESTLIST = listManager.Inventory;
     }
 
     private void LoadInventoryObjects(List<ItemDm> inventory)
@@ -42,8 +45,8 @@ public class InvenGridManager : MonoBehaviour {
             // create object
             GameObject newItem = listManager.itemEquipPool.GetObject();
             var newItemDm = item.Clone() as ItemDm;
-            var testItem = item;
-            newItem.GetComponent<ItemOm>().SetItemObject(item.Clone() as ItemDm);
+            item.InstanceID = newItemDm.InstanceID;
+            newItem.GetComponent<ItemOm>().SetItemObject(newItemDm);
             // store object
             var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
             highlightedSlot = slot;
@@ -85,10 +88,10 @@ public class InvenGridManager : MonoBehaviour {
             {
                 ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
                 ItemOm.SetSelectedItem(GetItem(highlightedSlot));
+                ItemOm.SelectedFromEquipment = false;
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
                 listManager.InvDataManager.SaveInventory(listManager.Inventory);
-                Debug.Log(ItemOm.SelectedItem.GetComponent<ItemOm>().Item.InstanceID);
             }
             
         }
@@ -134,7 +137,6 @@ public class InvenGridManager : MonoBehaviour {
                         break;
                     }
                 }
-                Equipment.CurioItems.Add(item.GetComponent<ItemOm>().Item);
                 break;
             case ItemType.Wielded:
                 var mainHandStatus = Equipment.EquipStatus(item, Equipment.MainHandSlot.gameObject);
@@ -166,7 +168,6 @@ public class InvenGridManager : MonoBehaviour {
                 else // shields
                 {
                     Equipment.UnEquipItem(Equipment.MainHandSlot.GetComponent<EquipSlot>().Item, Equipment.MainHandSlot.gameObject);
-                    Equipment.UpdateEquipment(Equipment.MainHandSlot);
                     selectedSlot = Equipment.OffHandSlot;
                     Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
                 }
@@ -176,10 +177,7 @@ public class InvenGridManager : MonoBehaviour {
             default:
                 break;
         }
-
-        Equipment.UpdateEquipment(selectedSlot);
-
-        listManager.InvDataManager.SaveEquipment(listManager.Equipment);
+        Equipment.UpdateEquipment();
         listManager.InvDataManager.SaveInventory(listManager.Inventory);
     }
 
@@ -346,6 +344,21 @@ public class InvenGridManager : MonoBehaviour {
         else
         {
             listManager.Inventory.Add(item);
+        }
+
+        // save both equipment and inventory if both were affected else save inventory
+        if (ItemOm.SelectedFromEquipment)
+        {
+            if (ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
+            {
+                Equipment.CurioItems.Remove(ItemOm.SelectedItem.GetComponent<ItemOm>().Item);
+            }
+            Equipment.UpdateEquipment();
+            listManager.InvDataManager.SaveEquipAndInv(listManager.Equipment, listManager.Inventory);
+        }
+        else
+        {
+            listManager.InvDataManager.SaveInventory(listManager.Inventory);
         }
     }
 

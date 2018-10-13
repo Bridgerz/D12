@@ -1,6 +1,7 @@
 ﻿using Assets.Inventory.Scripts.Item.ItemModels;
 using Assets.Inventory.Scripts.Item.OM;
 using Assets.Inventory.Scripts.ItemList;
+using Assets.Inventory.Scripts.ItemObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ public class EquipManager : MonoBehaviour {
         }
     }
 
-    public EquipmentItems LoadEquipmentObjects()
+    public void LoadEquipmentObjects()
     {
         var equipment = ListManager.Equipment;
         if (equipment.MainHand != null)
@@ -115,7 +116,7 @@ public class EquipManager : MonoBehaviour {
                 newItem.GetComponent<RectTransform>().localScale = Vector3.one;
             }
         }
-        return null;
+        UpdateEquipment();
     }
 
     public int EquipStatus(GameObject itemObject, GameObject selectedSlot)
@@ -173,8 +174,8 @@ public class EquipManager : MonoBehaviour {
             {
                 UnEquipItem(OffHandSlot.GetComponent<EquipSlot>().Item, OffHandSlot.gameObject); // drop item in offhand (if any)
             }
-            UpdateEquipment(selectedSlot.GetComponent<EquipSlot>());
         }
+        ListManager.InvDataManager.SaveEquipment(ListManager.Equipment);
     }
 
     public void Equip(GameObject itemObject, GameObject selectedSlot)
@@ -201,6 +202,10 @@ public class EquipManager : MonoBehaviour {
             if (index >= 0)
             {
                 ListManager.Inventory.RemoveAt(index);
+            }
+            if (item.Type == ItemType.Curio)
+            {
+                CurioItems.Add(item);
             }
         }
     }
@@ -238,6 +243,11 @@ public class EquipManager : MonoBehaviour {
     {
         if (itemObject != null)
         {
+            // if item is a curio, remove from curio list
+            if (itemObject.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
+            {
+                CurioItems.Remove(itemObject.GetComponent<ItemOm>().Item);
+            }
             foreach (var slot in GridManager.slotGrid)
             {
                 GridManager.highlightedSlot = slot;
@@ -257,48 +267,36 @@ public class EquipManager : MonoBehaviour {
                     return;
                 }
             }
-            if (itemObject.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
-            {
-                var index = CurioItems.FindIndex(x => x.InstanceID == itemObject.GetComponent<ItemOm>().Item.InstanceID);
-                CurioItems.RemoveAt(index);
-            }
-            UpdateEquipment(selectedSlot.GetComponent<EquipSlot>());
         }
     }
 
-    public void UpdateEquipment(EquipSlot selectedSlot)
+    public void UpdateEquipment()
     {
-        if (MainHandSlot.Occupied)
+        if (MainHandSlot != null && MainHandSlot.Occupied)
         {
             ListManager.Equipment.MainHand = MainHandSlot.Item.GetComponent<ItemOm>().Item;
         }
-        else
+        else if (MainHandSlot != null)
         {
             ListManager.Equipment.MainHand = null;
         }
-        if (OffHandSlot.Occupied)
-        {
-            ListManager.Equipment.Offhand = OffHandSlot.Item.GetComponent<ItemOm>().Item;
-        }
-        else
-        {
-            ListManager.Equipment.Offhand = null;
-        }
-        if (ArmorSlot.Occupied)
+        if (ArmorSlot != null && ArmorSlot.Occupied)
         {
             ListManager.Equipment.Armor = ArmorSlot.Item.GetComponent<ItemOm>().Item;
         }
-        else
+        else if (ArmorSlot != null)
         {
             ListManager.Equipment.Armor = null;
         }
-        if (CurioItems.Count > 0)
+        if (OffHandSlot != null && OffHandSlot.Occupied)
         {
-            ListManager.Equipment.Curios = CurioItems;
+            ListManager.Equipment.Offhand = OffHandSlot.Item.GetComponent<ItemOm>().Item;
         }
-        else
+        else if (OffHandSlot != null)
         {
-            ListManager.Equipment.Curios = new List<ItemDm>();
+            ListManager.Equipment.Offhand = null;
         }
+        ListManager.Equipment.Curios = CurioItems;
+        ListManager.InvDataManager.SaveEquipment(ListManager.Equipment);
     }
 }

@@ -44,7 +44,7 @@ namespace Assets.Inventory.Scripts.InventoryGrid
             {
                 foreach (var item in saveList)
                 {
-                    var newItem = database.dbList.Where(x => x.GlobalID == item.GlobalID).First();
+                    var newItem = database.dbList.Where(x => x.GlobalID == item.GlobalID).First().Clone() as ItemDm;
                     newItem.Location = item.Location;
                     newItem.Quantity = item.Quantity;
                     newList.Add(newItem);
@@ -112,6 +112,12 @@ namespace Assets.Inventory.Scripts.InventoryGrid
 
             var json = JsonConvert.SerializeObject(equipmentSave, Formatting.Indented, new ItemConverter());
             File.WriteAllText(EquipmentJsonFile, json);
+        }
+
+        public void SaveEquipAndInv(EquipmentItems equipment, List<ItemDm> inventory)
+        {
+            SaveEquipment(equipment);
+            SaveInventory(inventory);
         }
     }
 }

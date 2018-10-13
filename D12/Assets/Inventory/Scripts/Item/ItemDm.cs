@@ -42,6 +42,7 @@ public class ItemDm : ICloneable
         Weight = weight;
         Quantity = 1;
         Icon = Resources.Load<Sprite>("ItemImages/" + Title);
+        Location = new SlotLocation();
     }
 
     public ItemDm(ItemDm right)

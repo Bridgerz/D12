@@ -27,6 +27,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     return;
                 }
                 ItemOm.SetSelectedItem(Item);
+                ItemOm.SelectedFromEquipment = true;
                 Item.transform.SetParent(GameObject.Find("DragParent").transform);
                 ItemOm.IsDragging = true;
                 Occupied = false;
@@ -34,10 +35,15 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
             else
             {
+                //Equip selected Item to this slot;
                 Manager.EquipCheck(ItemOm.SelectedItem, gameObject);
+                Manager.UpdateEquipment();
+                if (!ItemOm.SelectedFromEquipment)
+                {
+                    Manager.ListManager.InvDataManager.SaveInventory(Manager.ListManager.Inventory);
+                }
                 transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
                 Manager.GridManager.highlightedSlot = null;
-                Manager.UpdateEquipment(this);
             }
         }
         else if (Input.GetMouseButtonUp(1))
@@ -45,9 +51,10 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (Occupied && ItemOm.SelectedItem == null) // if selected slot is occupied and there is no selected item
             {
                 Manager.UnEquipItem(Item, gameObject);
+                Manager.UpdateEquipment();
+                Manager.ListManager.InvDataManager.SaveInventory(Manager.ListManager.Inventory);
                 transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
             }
-            Manager.UpdateEquipment(this);
         }
     }
     
@@ -76,6 +83,4 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
     }
-
-
 }
