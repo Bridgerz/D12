@@ -49,7 +49,7 @@ public class InvenGridManager : MonoBehaviour {
             var newItemDm = item.Clone() as ItemDm;
             item.InstanceID = newItemDm.InstanceID;
             newItem.GetComponent<ItemOm>().SetItemObject(newItemDm);
-            CurrentWeight += item.Weight;
+            AddWeight(item.Weight);
             // store object
             var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
             highlightedSlot = slot;
