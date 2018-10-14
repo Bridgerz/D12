@@ -16,8 +16,8 @@ namespace Assets.Inventory.Scripts.InventoryGrid
     public class InventoryDataManager
     {
 
-        private string InventoryJsonFile = "Assets/StreamingAssets/InventoryItemData.json";
-        private string EquipmentJsonFile = "Assets/StreamingAssets/EquipmentItemData.json";
+        private string InventoryJsonFile = Path.Combine(Application.streamingAssetsPath, "InventoryItemData.json");
+        private string EquipmentJsonFile = Path.Combine(Application.streamingAssetsPath, "EquipmentItemData.json");
 
         public void SaveInventory(List<ItemDm> inventory)
         {

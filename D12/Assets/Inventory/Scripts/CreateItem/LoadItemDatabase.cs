@@ -11,10 +11,11 @@ using Assets.Inventory.Scripts.CreateItem;
 [Serializable]
 public class LoadItemDatabase : MonoBehaviour
 {
-    private string JsonFile = "Assets/StreamingAssets/ItemData.json";
+    private string JsonFile;
 
     private void Awake()
     {
+        JsonFile = Path.Combine(Application.streamingAssetsPath, "ItemData.json");
         LoadJson();
     }    
 

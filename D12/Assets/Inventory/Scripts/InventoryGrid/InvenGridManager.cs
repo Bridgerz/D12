@@ -109,7 +109,6 @@ public class InvenGridManager : MonoBehaviour {
         var item = highlightedSlot.GetComponent<SlotScript>().storedItemObject;
         var type = highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item.Type;
         var tempHighlightedSlot = highlightedSlot;
-        EquipSlot selectedSlot = null;
         switch (type)
         {
             case ItemType.Armor:
@@ -117,7 +116,6 @@ public class InvenGridManager : MonoBehaviour {
                 SlotSectorScript.sectorScript.ZeroOffset();
                 GetItem(highlightedSlot);
                 SlotSectorScript.sectorScript.ZeroOffset();
-                selectedSlot = Equipment.ArmorSlot;
                 Equipment.EquipCheck(item, Equipment.ArmorSlot.gameObject);
                 highlightedSlot = tempHighlightedSlot;
                 RefrechColor(false);
@@ -130,7 +128,6 @@ public class InvenGridManager : MonoBehaviour {
                         ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
                         GetItem(highlightedSlot);
                         SlotSectorScript.sectorScript.ZeroOffset();
-                        selectedSlot = slot;
                         Equipment.EquipCheck(item, slot.gameObject);
                         highlightedSlot = tempHighlightedSlot;
                         RefrechColor(false);
@@ -146,29 +143,24 @@ public class InvenGridManager : MonoBehaviour {
                 SlotSectorScript.sectorScript.ZeroOffset();
                 if (mainHandStatus == 1) // if mainhand is green equip 
                 {
-                    selectedSlot = Equipment.MainHandSlot;
                     Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
                 }
                 else if (offHandStatus == 1) // if offhand is green equip 
                 {
-                    selectedSlot = Equipment.OffHandSlot;
                     Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
                 }
                 else if (mainHandStatus == 2) // if mainhand is swapable swap 
                 {
-                    selectedSlot = Equipment.MainHandSlot;
                     Equipment.EquipCheck(item, Equipment.MainHandSlot.gameObject);
                 }
                 else if (offHandStatus == 2)
                 {
-                    selectedSlot = Equipment.OffHandSlot;
                     Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
 
                 }
                 else // shields
                 {
                     Equipment.UnEquipItem(Equipment.MainHandSlot.GetComponent<EquipSlot>().Item, Equipment.MainHandSlot.gameObject);
-                    selectedSlot = Equipment.OffHandSlot;
                     Equipment.EquipCheck(item, Equipment.OffHandSlot.gameObject);
                 }
                 highlightedSlot = tempHighlightedSlot;
