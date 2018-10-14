@@ -1,5 +1,9 @@
 {
-  "MainHand": null,
+  "MainHand": {
+    "GlobalID": 1,
+    "Quantity": 1,
+    "Location": null
+  },
   "Armor": {
     "GlobalID": 6,
     "Quantity": 1,

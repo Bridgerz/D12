@@ -14,7 +14,7 @@ public class InvenGridManager : MonoBehaviour {
     public Transform dropParent;
     [HideInInspector]
     public IntVector2 gridSize;
-    
+
     public ItemListManager listManager;
     public GameObject selectedButton;
     public IntVector2 checkSize;
@@ -26,16 +26,18 @@ public class InvenGridManager : MonoBehaviour {
     private int checkState;
     private bool isOverEdge = false;
 
-    public List<ItemDm> TESTLIST;
+    public int MaxWeight;
+    public int CurrentWeight;
 
     private void Start()
     {
+        MaxWeight = 50;
+        CurrentWeight = 0;
         ItemButtonScript.invenManager = this;
         if (listManager.Inventory.Count > 0)
         {
             LoadInventoryObjects(listManager.Inventory);
         }
-        TESTLIST = listManager.Inventory;
     }
 
     private void LoadInventoryObjects(List<ItemDm> inventory)
@@ -47,6 +49,7 @@ public class InvenGridManager : MonoBehaviour {
             var newItemDm = item.Clone() as ItemDm;
             item.InstanceID = newItemDm.InstanceID;
             newItem.GetComponent<ItemOm>().SetItemObject(newItemDm);
+            CurrentWeight += item.Weight;
             // store object
             var slot = slotGrid[item.Location.X + item.Size.x / 2, item.Location.Y + item.Size.y / 2];
             highlightedSlot = slot;
@@ -303,9 +306,9 @@ public class InvenGridManager : MonoBehaviour {
 
     public void StoreItem(GameObject itemObject)
     {
+        var item = itemObject.GetComponent<ItemOm>().Item;
         SlotScript instanceScript;
         IntVector2 itemSizeL = itemObject.GetComponent<ItemOm>().Item.Size;
-        var item = itemObject.GetComponent<ItemOm>().Item;
         item.Location = new SlotLocation(totalOffset.x, totalOffset.y);
         for (int y = 0; y < itemSizeL.y; y++)
         {
@@ -399,6 +402,21 @@ public class InvenGridManager : MonoBehaviour {
             listManager.sortManager.SortAndFilterList();
             selectedButton = null;
         }
+    }
+
+    public bool AddWeight(int weight)
+    {
+        if (CurrentWeight + weight <= MaxWeight)
+        {
+            CurrentWeight += weight;
+            return true;
+        }
+        return false;
+    }
+
+    public void SubtractWeight(int weight)
+    {
+        CurrentWeight -= weight;
     }
 }
 
