@@ -36,6 +36,8 @@ public class ItemListManager : MonoBehaviour {
         //right click to return item to list if item is from list
         if (Input.GetMouseButtonDown(1) && invenManager.selectedButton != null) 
         {
+            invenManager.SubtractWeight(ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Weight);
+            EquipManager.UpdateWeight();
             invenManager.RefrechColor(false);
             invenManager.selectedButton.GetComponent<CanvasGroup>().alpha = 1f;
             invenManager.selectedButton = null;
@@ -49,6 +51,8 @@ public class ItemListManager : MonoBehaviour {
         //add item to list if item is not from list
         if (invenManager.selectedButton == null && ItemOm.SelectedItem != null) 
         {
+            invenManager.SubtractWeight(ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Weight);
+            EquipManager.UpdateWeight();
             ItemDm item = ItemOm.SelectedItem.GetComponent<ItemOm>().Item;
             sortManager.AddItemToList(item);
             itemEquipPool.ReturnObject(ItemOm.SelectedItem);

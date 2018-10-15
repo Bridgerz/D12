@@ -26,7 +26,11 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         {
             if (ItemOm.SelectedItem == null)
             {
-                SpawnStoredItem(); //swap item when no selectedButton and selectedItem
+                 SpawnStoredItem(); //swap item when no selectedButton and selectedItem
+            }
+            if (ItemOm.SelectedItem == null) // if selectedItem is still null then turn on too much weight animation
+            {
+                return;
             }
             if (ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Type == ItemType.Curio)
             {
@@ -37,6 +41,8 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
             listManager.AddSelectedItemToList();
             if (ItemOm.SelectedItem != null && invenManager.selectedButton != this.gameObject) // reset selected button when item is from list
             {
+                invenManager.SubtractWeight(ItemOm.SelectedItem.GetComponent<ItemOm>().Item.Weight);
+                invenManager.Equipment.UpdateWeight();
                 invenManager.selectedButton.GetComponent<CanvasGroup>().alpha = 1f;
                 invenManager.selectedButton = null;
                 listManager.itemEquipPool.ReturnObject(ItemOm.SelectedItem);
@@ -65,14 +71,22 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
 
     private void SpawnStoredItem()
     {
-        GameObject newItem = itemEquipPool.GetObject();
+        if (invenManager.AddWeight(item.Weight))
+        {
+            GameObject newItem = itemEquipPool.GetObject();
 
-        newItem.GetComponent<ItemOm>().SetItemObject(item.Clone() as ItemDm);
+            newItem.GetComponent<ItemOm>().SetItemObject(item.Clone() as ItemDm);
 
-        ItemOm.SetSelectedItem(newItem);
-        invenManager.selectedButton = this.gameObject;
+            ItemOm.SetSelectedItem(newItem);
+            invenManager.selectedButton = this.gameObject;
 
-        GetComponent<CanvasGroup>().alpha = 0.5f;
+            GetComponent<CanvasGroup>().alpha = 0.5f;
+            invenManager.Equipment.UpdateWeight();
+        }
+        else
+        {
+            ItemOm.SelectedItem = null;
+        }
     }
 
     public void SetUpButton(ItemDm passedItem, ItemListManager passedListManager)

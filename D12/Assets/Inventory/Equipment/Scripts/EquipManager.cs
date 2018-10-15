@@ -5,6 +5,7 @@ using Assets.Inventory.Scripts.ItemObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +25,15 @@ public class EquipManager : MonoBehaviour {
     public List<EquipSlot> CurioSlots;
     public List<ItemDm> CurioItems;
     public int CurioNum;
+    public TextMeshProUGUI CurrentWeightLabel;
+    public TextMeshProUGUI MaximumWeightLabel;
 
 
-	void Start ()
+    void Start ()
     {
         LoadEquipSlots();
         LoadEquipmentObjects();
+        UpdateWeight();
     }
     
     private void LoadEquipSlots()
@@ -88,6 +92,7 @@ public class EquipManager : MonoBehaviour {
             newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, MainHandSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+            GridManager.AddWeight(ListManager.Equipment.MainHand.Weight);
         }
         if (equipment.Armor != null)
         {
@@ -96,6 +101,7 @@ public class EquipManager : MonoBehaviour {
             newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, ArmorSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+            GridManager.AddWeight(ListManager.Equipment.Armor.Weight);
         }
         if (equipment.Offhand != null)
         {
@@ -104,6 +110,7 @@ public class EquipManager : MonoBehaviour {
             newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
             EquipCheck(newItem, OffHandSlot.gameObject);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+            GridManager.AddWeight(ListManager.Equipment.Offhand.Weight);
         }
         if (equipment.Curios.Count > 0)
         {
@@ -114,6 +121,7 @@ public class EquipManager : MonoBehaviour {
                 newItem.GetComponent<ItemOm>().SetItemObject(tempItem);
                 EquipCheck(newItem, CurioSlots[i].gameObject);
                 newItem.GetComponent<RectTransform>().localScale = Vector3.one;
+                GridManager.AddWeight(equipment.Curios[i].Weight);
             }
         }
         UpdateEquipment();
@@ -205,7 +213,10 @@ public class EquipManager : MonoBehaviour {
             }
             if (item.Type == ItemType.Curio)
             {
-                CurioItems.Add(item);
+                if (!CurioItems.Contains(item))
+                {
+                    CurioItems.Add(item);
+                }
             }
         }
     }
@@ -298,5 +309,11 @@ public class EquipManager : MonoBehaviour {
         }
         ListManager.Equipment.Curios = CurioItems;
         ListManager.InvDataManager.SaveEquipment(ListManager.Equipment);
+    }
+
+    public void UpdateWeight()
+    {
+        MaximumWeightLabel.text = GridManager.MaxWeight.ToString();
+        CurrentWeightLabel.text = GridManager.CurrentWeight.ToString();
     }
 }
