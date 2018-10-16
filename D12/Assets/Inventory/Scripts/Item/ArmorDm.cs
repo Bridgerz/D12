@@ -13,6 +13,7 @@ using UnityEngine;
 public class ArmorDm : ItemDm
 {
     public override List<Tag> Tags { get; set; }
+    //public override WeaponType SubType { get; set; }
     public override List<Enchantment> Enchantments { get; set; }
 
     [JsonConstructor]

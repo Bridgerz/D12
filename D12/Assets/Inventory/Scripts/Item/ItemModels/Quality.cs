@@ -7,9 +7,10 @@ namespace Assets.Inventory.Scripts.Item.OM
 {
     public enum Quality
     {
-        Unexceptional,
+        Unexceptional, 
         Fine,
         Masterpiece,
-        ExquisitLegacy
+        Exquisit,
+        Legacy
     }
 }

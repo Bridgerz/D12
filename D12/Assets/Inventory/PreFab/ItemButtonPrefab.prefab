@@ -117,8 +117,14 @@ MonoBehaviour:
   LvlText: {fileID: 0}
   QualityText: {fileID: 114599840135510484}
   QualityColor: {fileID: 114570358166529952}
-  item: {fileID: 0}
+  item:
+    Quantity: 0
+    Icon: {fileID: 0}
+    Size:
+      x: 0
+      y: 0
   itemEquipPool: {fileID: 0}
+  toolTip: {fileID: 0}
 --- !u!114 &114260221189163482
 MonoBehaviour:
   m_ObjectHideFlags: 1

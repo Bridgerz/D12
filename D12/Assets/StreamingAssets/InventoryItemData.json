@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "GlobalID": 1,
+    "Quantity": 1,
+    "Location": {
+      "X": 1,
+      "Y": 1
+    }
+  },
+  {
+    "GlobalID": 0,
+    "Quantity": 1,
+    "Location": {
+      "X": 3,
+      "Y": 4
+    }
+  },
+  {
+    "GlobalID": 1,
+    "Quantity": 1,
+    "Location": {
+      "X": 5,
+      "Y": 4
+    }
+  },
+  {
+    "GlobalID": 0,
+    "Quantity": 1,
+    "Location": {
+      "X": 5,
+      "Y": 0
+    }
+  },
+  {
+    "GlobalID": 5,
+    "Quantity": 1,
+    "Location": {
+      "X": 8,
+      "Y": 2
+    }
+  },
+  {
+    "GlobalID": 2,
+    "Quantity": 1,
+    "Location": {
+      "X": 3,
+      "Y": 0
+    }
+  }
+]

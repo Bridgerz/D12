@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.Inventory.Scripts.Item;
 using Assets.Inventory.Scripts.Item.ItemModels;
+using Assets.Inventory.Scripts.Misc;
 
 public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler{
 
@@ -17,8 +18,16 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     private ItemListManager listManager;
     public ObjectPoolScript itemEquipPool;
 
+    public GameObject toolTip;
+
     public static InvenGridManager invenManager;
     //public static ItemOverlayScript overlayScript;
+
+    private void Start()
+    {
+        toolTip = GameObject.FindGameObjectWithTag("ToolTip");
+    }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -61,12 +70,13 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // insert tool tip boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+        toolTip.SetActive(true);
+        toolTip.GetComponent<ItemToolTip>().UpdateActivate(item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // remove tool tip boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+        //toolTip.SetActive(false);
     }
 
     private void SpawnStoredItem()
