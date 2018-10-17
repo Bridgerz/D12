@@ -1,4 +1,5 @@
 ﻿using Assets.Inventory.Scripts.Item;
+using Assets.Inventory.Scripts.Misc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +37,9 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         if (parentSlotScript.storedItemObject != null)
         {
-            // insert tool tip call boiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+            invenGridManager.listManager.ToolTip.SetActive(true);
+            invenGridManager.listManager.ToolTip.GetComponent<RectTransform>().pivot = new Vector2(-.05f, 1.05f);
+            invenGridManager.listManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(parentSlotScript.storedItemClass.Item);
         }
     }
 
@@ -84,7 +87,7 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         sectorScript = null;
         invenGridManager.highlightedSlot = null;
-        // insert tool tip remove boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+        invenGridManager.listManager.ToolTip.SetActive(false);
         if (ItemOm.SelectedItem != null)
         {
             invenGridManager.RefrechColor(false);

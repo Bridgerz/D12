@@ -53,5 +53,4 @@ public class ItemOm : MonoBehaviour
         SelectedItemSize = IntVector2.Zero;
         IsDragging = false;
     }
-
 }

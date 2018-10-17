@@ -12,6 +12,7 @@ public class ItemListManager : MonoBehaviour {
     public SortAndFilterManager sortManager;
     public InventoryDataManager InvDataManager;
     public EquipManager EquipManager;
+    public GameObject ToolTip;
 
     public float iconSize;
     
@@ -83,6 +84,7 @@ public class ItemListManager : MonoBehaviour {
         newButton.transform.SetParent(contentPanel);
         newButton.GetComponent<RectTransform>().localScale = Vector3.one;
         newButton.GetComponent<ItemButtonScript>().SetUpButton(addItem, this);
+        newButton.GetComponent<ItemButtonScript>().toolTip = ToolTip;
         currentButtonList.Add(newButton);
     }
 

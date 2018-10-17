@@ -35,8 +35,8 @@
     "GlobalID": 5,
     "Quantity": 1,
     "Location": {
-      "X": 8,
-      "Y": 2
+      "X": 7,
+      "Y": 4
     }
   },
   {
@@ -45,6 +45,14 @@
     "Location": {
       "X": 3,
       "Y": 0
+    }
+  },
+  {
+    "GlobalID": 6,
+    "Quantity": 1,
+    "Location": {
+      "X": 0,
+      "Y": 5
     }
   }
 ]

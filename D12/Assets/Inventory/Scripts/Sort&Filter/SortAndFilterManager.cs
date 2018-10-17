@@ -20,6 +20,8 @@ public class SortAndFilterManager : MonoBehaviour {
     public List<ItemDm> sortedList;
     private int sortTypeInt = 0;
 
+    public GameObject ToolTip;
+
     private void Start()
     {
         selectedCatButton = categoryButtons[0];
@@ -27,6 +29,7 @@ public class SortAndFilterManager : MonoBehaviour {
         listManager.currentItemList = sortedList;
         listManager.PopulateList(sortedList);
         filteredList = sortedList;
+        ToolTip.SetActive(false);
     }
 
     #region filter list

@@ -12,12 +12,17 @@ namespace Assets.Inventory.Scripts.Misc
    
     public class ItemToolTip : MonoBehaviour
     {
+        // Simple Tool Tip
         public GameObject Weight;
         public GameObject Title;
-        public GameObject Defenition;
-        public GameObject Enchantments;
-        public GameObject Tags;
+        public GameObject QualitySubType;
+
         public GameObject Damage;
+        public GameObject Defence;
+
+        // Complex Tool Tip
+        public GameObject Tags;
+        public GameObject Enchantments;
   
 
         private void Update()
@@ -25,28 +30,25 @@ namespace Assets.Inventory.Scripts.Misc
             gameObject.transform.position = Input.mousePosition;
         }
 
-        public void UpdateActivate(ItemDm item)
+        public void UpdateActivateSimple(ItemDm item)
         {
+            gameObject.transform.position = Input.mousePosition;
             // deactivate variable attributes
             Enchantments.SetActive(false);
             Tags.SetActive(false);
             Damage.SetActive(false);
+            Defence.SetActive(false);
 
-            Weight.GetComponentInChildren<TextMeshProUGUI>().text = item.Weight.ToString();
+            Weight.GetComponentInChildren<TextMeshProUGUI>().text = item.Weight.ToString() + "lb";
             Title.GetComponentInChildren<TextMeshProUGUI>().text = item.Title;
-            Defenition.GetComponentInChildren<TextMeshProUGUI>().text = item.Defenition;
+            QualitySubType.GetComponentInChildren<TextMeshProUGUI>().text = item.Quality.ToString() + " "
+                + item.SubType;
             switch (item.Type)
             {
-                case ItemType.Curio:
-                    SetEnchantments(item);
-                    break;
                 case ItemType.Armor:
-                    SetEnchantments(item);
-                    SetTags(item);
+                    SetDefence(item);
                     break;
-                case ItemType.Weapon:
-                    SetEnchantments(item);
-                    SetTags(item);
+                case ItemType.Wielded:
                     SetDamage(item);
                     break;
                 default:
@@ -85,8 +87,15 @@ namespace Assets.Inventory.Scripts.Misc
             }
         }
 
+        private void SetDefence(ItemDm item)
+        {
+            Defence.SetActive(true);
+            Defence.GetComponentInChildren<TextMeshProUGUI>().text = item.Defence.ToString();
+        }
+
         private void SetDamage(ItemDm item)
         {
+            Damage.SetActive(true);
             Damage.GetComponentInChildren<TextMeshProUGUI>().text = item.Damage.ToString();
         }
     }

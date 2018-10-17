@@ -13,15 +13,14 @@ using UnityEngine;
 public class WeaponDm : ItemDm
 {
     public override int Damage { get; set; }
-    //public override WeaponType SubType { get; set; }
     public override List<Tag> Tags { get; set; }
     public override List<Enchantment> Enchantments { get; set; }
 
     [JsonConstructor]
     public WeaponDm(int globalID, ItemType type, string title,
         string defenition, int damage, List<Tag> tags,
-        List<Enchantment> enchantments, Quality quality,
-        int weight) : base(globalID, type, title, defenition, quality, weight)
+        List<Enchantment> enchantments, Quality quality, string subType,
+        int weight) : base(globalID, type, title, quality, subType, weight)
     {
         Damage = damage;
         Tags = tags;

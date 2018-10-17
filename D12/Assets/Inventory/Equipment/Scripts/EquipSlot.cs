@@ -1,5 +1,6 @@
 ﻿using Assets.Inventory.Scripts.Item.ItemModels;
 using Assets.Inventory.Scripts.Item.OM;
+using Assets.Inventory.Scripts.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,6 +31,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 ItemOm.SelectedFromEquipment = true;
                 Item.transform.SetParent(GameObject.Find("DragParent").transform);
                 ItemOm.IsDragging = true;
+                Manager.ListManager.ToolTip.SetActive(false);
                 Occupied = false;
                 transform.GetComponent<Image>().color = SlotColorHighlights.Green;
             }
@@ -60,6 +62,12 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (Occupied)
+        {
+            Manager.ListManager.ToolTip.GetComponent<RectTransform>().pivot = new Vector2(1.05f, 1.05f);
+            Manager.ListManager.ToolTip.SetActive(true);
+            Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(Item.GetComponent<ItemOm>().Item);
+        }
         if (ItemOm.SelectedItem == null)
         {
             return;
@@ -81,6 +89,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Manager.ListManager.ToolTip.SetActive(false);
         transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
     }
 }

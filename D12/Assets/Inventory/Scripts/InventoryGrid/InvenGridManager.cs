@@ -94,6 +94,7 @@ public class InvenGridManager : MonoBehaviour {
                 ItemOm.SelectedFromEquipment = false;
                 SlotSectorScript.sectorScript.PosOffset();
                 RefrechColor(true);
+                listManager.ToolTip.SetActive(false);
                 listManager.InvDataManager.SaveInventory(listManager.Inventory);
             }
             

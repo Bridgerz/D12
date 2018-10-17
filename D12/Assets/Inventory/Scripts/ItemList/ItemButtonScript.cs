@@ -23,11 +23,6 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     public static InvenGridManager invenManager;
     //public static ItemOverlayScript overlayScript;
 
-    private void Start()
-    {
-        toolTip = GameObject.FindGameObjectWithTag("ToolTip");
-    }
-
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -36,6 +31,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
             if (ItemOm.SelectedItem == null)
             {
                  SpawnStoredItem(); //swap item when no selectedButton and selectedItem
+                toolTip.SetActive(false);
             }
             if (ItemOm.SelectedItem == null) // if selectedItem is still null then turn on too much weight animation
             {
@@ -71,12 +67,13 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         toolTip.SetActive(true);
-        toolTip.GetComponent<ItemToolTip>().UpdateActivate(item);
+        toolTip.GetComponent<RectTransform>().pivot = new Vector2(1.05f, 1.05f);
+        toolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //toolTip.SetActive(false);
+        toolTip.SetActive(false);
     }
 
     private void SpawnStoredItem()

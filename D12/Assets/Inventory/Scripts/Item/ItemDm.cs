@@ -14,12 +14,12 @@ public class ItemDm : ICloneable
     public Guid InstanceID { get; set; }
     public ItemType Type { get; set; }
     public string Title { get; set; }
-    public string Defenition { get; set; }
     public Quality Quality { get; set; }
+    public string SubType { get; set; }
 
     public int Weight { get; set; }
     public virtual int Damage { get; set; }
-    public virtual bool MainHand { get; set; }
+    public virtual int Defence { get; set; }
     public virtual List<Tag> Tags { get; set; }
     public virtual List<Enchantment> Enchantments { get; set; }
 
@@ -31,14 +31,14 @@ public class ItemDm : ICloneable
 
     [JsonConstructor]
     public ItemDm(int globalID, ItemType type, string title,
-        string defenition, Quality quality, int weight)
+        Quality quality, string subType, int weight)
     {
         GlobalID = globalID;
         InstanceID = Guid.NewGuid();
         Type = type;
         Title = title;
-        Defenition = defenition;
         Quality = quality;
+        SubType = subType;
         Weight = weight;
         Quantity = 1;
         Icon = Resources.Load<Sprite>("ItemImages/" + Title);
@@ -51,8 +51,8 @@ public class ItemDm : ICloneable
         InstanceID = Guid.NewGuid();
         Type = right.Type;
         Title = right.Title;
-        Defenition = right.Defenition;
         Quality = right.Quality;
+        SubType = right.SubType;
         Weight = right.Weight;
         Quantity = right.Quantity;
         Icon = right.Icon;

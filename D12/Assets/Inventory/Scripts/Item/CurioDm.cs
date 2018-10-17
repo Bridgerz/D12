@@ -17,7 +17,7 @@ public class CurioDm : ItemDm
     [JsonConstructor]
     public CurioDm(int globalID, ItemType type, string title,
         string defenition, List<Enchantment> enchantments, Quality quality,
-        int weight) : base(globalID, type, title, defenition, quality, weight)
+        string subType, int weight) : base(globalID, type, title, quality, subType, weight)
     {
         Enchantments = enchantments;
     }
