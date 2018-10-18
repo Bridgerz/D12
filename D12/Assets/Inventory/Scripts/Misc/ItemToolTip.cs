@@ -39,21 +39,82 @@ namespace Assets.Inventory.Scripts.Misc
             Damage.SetActive(false);
             Defence.SetActive(false);
 
-            Weight.GetComponentInChildren<TextMeshProUGUI>().text = item.Weight.ToString() + "lb";
-            Title.GetComponentInChildren<TextMeshProUGUI>().text = item.Title;
-            QualitySubType.GetComponentInChildren<TextMeshProUGUI>().text = item.Quality.ToString() + " "
-                + item.SubType;
+            UpdateEssentials(item);
+
             switch (item.Type)
             {
                 case ItemType.Armor:
                     SetDefence(item);
                     break;
                 case ItemType.Wielded:
-                    SetDamage(item);
+                    SetSimpleDamage(item);
                     break;
                 default:
                     break;
             }
+        }
+
+        public void UpdateActivateComplex(ItemDm item)
+        {
+            Enchantments.SetActive(false);
+            Tags.SetActive(false);
+            Damage.SetActive(false);
+            Defence.SetActive(false);
+
+            // move object to specified relative point to item
+
+            // stretch size of tooltip to complex size.
+            var rect = gameObject.GetComponent<RectTransform>();
+            rect.sizeDelta = Vector2.Lerp(rect.sizeDelta, new Vector2(rect.sizeDelta.x + 100f, rect.sizeDelta.y), .75f);
+      
+            UpdateEssentials(item);
+
+            switch (item.Type)
+            {
+                case ItemType.Armor:
+                    SetDefence(item);
+                    SetTags(item);
+                    SetEnchantments(item);
+                    break;
+                case ItemType.Weapon:
+                    SetComplexDamage(item);
+                    SetTags(item);
+                    SetEnchantments(item);
+                    break;
+                case ItemType.Curio:
+                    SetEnchantments(item);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SetDefence(ItemDm item)
+        {
+            Defence.SetActive(true);
+            Defence.GetComponentInChildren<TextMeshProUGUI>().text = item.Defence.ToString();
+        }
+
+        private void SetSimpleDamage(ItemDm item)
+        {
+            // average damage per roll
+            Damage.SetActive(true);
+            Damage.GetComponentInChildren<TextMeshProUGUI>().text = item.Damage.ToString();
+        }
+
+        private void SetComplexDamage(ItemDm item)
+        {
+            // each individaul roll listed out 
+            Damage.SetActive(true);
+            Damage.GetComponentInChildren<TextMeshProUGUI>().text = item.Damage.ToString();
+        }
+
+        private void UpdateEssentials(ItemDm item)
+        {
+            Weight.GetComponentInChildren<TextMeshProUGUI>().text = item.Weight.ToString() + "lb";
+            Title.GetComponentInChildren<TextMeshProUGUI>().text = item.Title;
+            QualitySubType.GetComponentInChildren<TextMeshProUGUI>().text = item.Quality.ToString() + " "
+                + item.SubType;
         }
 
         private void SetEnchantments(ItemDm item)
@@ -85,18 +146,6 @@ namespace Assets.Inventory.Scripts.Misc
                 string finalString = tagString.Substring(0, tagString.Length - 2);
                 Tags.GetComponentInChildren<TextMeshProUGUI>().text = finalString;
             }
-        }
-
-        private void SetDefence(ItemDm item)
-        {
-            Defence.SetActive(true);
-            Defence.GetComponentInChildren<TextMeshProUGUI>().text = item.Defence.ToString();
-        }
-
-        private void SetDamage(ItemDm item)
-        {
-            Damage.SetActive(true);
-            Damage.GetComponentInChildren<TextMeshProUGUI>().text = item.Damage.ToString();
         }
     }
 }

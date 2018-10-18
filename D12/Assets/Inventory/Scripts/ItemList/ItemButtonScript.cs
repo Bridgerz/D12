@@ -30,7 +30,17 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         {
             if (ItemOm.SelectedItem == null)
             {
-                 SpawnStoredItem(); //swap item when no selectedButton and selectedItem
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+                {
+                    // auto add to inventory
+                    SpawnStoredItem();
+                    invenManager.Equipment.UnEquipItem(ItemOm.SelectedItem, null);
+                    listManager.InvDataManager.SaveInventory(listManager.Inventory);
+                    ItemOm.IsDragging = false;
+                    listManager.invenManager.RemoveSelectedButton();
+                    return;
+                }
+                SpawnStoredItem(); //swap item when no selectedButton and selectedItem
                 toolTip.SetActive(false);
             }
             if (ItemOm.SelectedItem == null) // if selectedItem is still null then turn on too much weight animation
@@ -56,11 +66,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         }
         else if (Input.GetMouseButtonDown(1) && invenManager.selectedButton == null && ItemOm.SelectedItem == null)
         {
-            SpawnStoredItem();
-            invenManager.Equipment.UnEquipItem(ItemOm.SelectedItem, null);
-            listManager.InvDataManager.SaveInventory(listManager.Inventory);
-            ItemOm.IsDragging = false;
-            listManager.invenManager.RemoveSelectedButton();
+            toolTip.GetComponent<ItemToolTip>().UpdateActivateComplex(item);
         }
     }
 

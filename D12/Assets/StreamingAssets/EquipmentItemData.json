@@ -1,21 +1,10 @@
 {
   "MainHand": {
-    "GlobalID": 3,
+    "GlobalID": 0,
     "Quantity": 1,
     "Location": null
   },
   "Armor": null,
   "Offhand": null,
-  "Curios": [
-    {
-      "GlobalID": 14,
-      "Quantity": 1,
-      "Location": null
-    },
-    {
-      "GlobalID": 15,
-      "Quantity": 1,
-      "Location": null
-    }
-  ]
+  "Curios": []
 }

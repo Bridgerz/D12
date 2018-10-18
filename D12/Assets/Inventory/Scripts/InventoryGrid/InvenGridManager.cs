@@ -3,6 +3,7 @@ using Assets.Inventory.Scripts.Item;
 using Assets.Inventory.Scripts.Item.ItemModels;
 using Assets.Inventory.Scripts.Item.OM;
 using Assets.Inventory.Scripts.ItemObject;
+using Assets.Inventory.Scripts.Misc;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,6 +63,7 @@ public class InvenGridManager : MonoBehaviour {
 
     private void Update()
     {
+        // shift left click
         if (Input.GetMouseButtonUp(0)) // left click
         {
             if (highlightedSlot != null && ItemOm.SelectedItem != null && !isOverEdge)
@@ -89,13 +91,20 @@ public class InvenGridManager : MonoBehaviour {
             // retrieve items
             else if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                ItemOm.SetSelectedItem(GetItem(highlightedSlot));
-                ItemOm.SelectedFromEquipment = false;
-                SlotSectorScript.sectorScript.PosOffset();
-                RefrechColor(true);
-                listManager.ToolTip.SetActive(false);
-                listManager.InvDataManager.SaveInventory(listManager.Inventory);
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    ShiftClickEquip();
+                }
+                else
+                {
+                    ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
+                    ItemOm.SetSelectedItem(GetItem(highlightedSlot));
+                    ItemOm.SelectedFromEquipment = false;
+                    SlotSectorScript.sectorScript.PosOffset();
+                    RefrechColor(true);
+                    listManager.ToolTip.SetActive(false);
+                    listManager.InvDataManager.SaveInventory(listManager.Inventory);
+                }
             }
             
         }
@@ -103,12 +112,13 @@ public class InvenGridManager : MonoBehaviour {
         {
             if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                RightClickEquip();
+                listManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateComplex
+                        (highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item);
             }
         }
     }
 
-    private void RightClickEquip()
+    private void ShiftClickEquip()
     {
         var item = highlightedSlot.GetComponent<SlotScript>().storedItemObject;
         var type = highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item.Type;

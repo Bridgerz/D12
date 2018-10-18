@@ -27,13 +27,24 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 {
                     return;
                 }
-                ItemOm.SetSelectedItem(Item);
-                ItemOm.SelectedFromEquipment = true;
-                Item.transform.SetParent(GameObject.Find("DragParent").transform);
-                ItemOm.IsDragging = true;
-                Manager.ListManager.ToolTip.SetActive(false);
-                Occupied = false;
-                transform.GetComponent<Image>().color = SlotColorHighlights.Green;
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    Manager.UnEquipItem(Item, gameObject);
+                    Manager.UpdateEquipment();
+                    Manager.ListManager.InvDataManager.SaveInventory(Manager.ListManager.Inventory);
+                    transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
+                }
+                else
+                {
+                    // retreive item 
+                    ItemOm.SetSelectedItem(Item);
+                    ItemOm.SelectedFromEquipment = true;
+                    Item.transform.SetParent(GameObject.Find("DragParent").transform);
+                    ItemOm.IsDragging = true;
+                    Manager.ListManager.ToolTip.SetActive(false);
+                    Occupied = false;
+                    transform.GetComponent<Image>().color = SlotColorHighlights.Green;
+                }
             }
             else
             {
@@ -52,10 +63,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (Occupied && ItemOm.SelectedItem == null) // if selected slot is occupied and there is no selected item
             {
-                Manager.UnEquipItem(Item, gameObject);
-                Manager.UpdateEquipment();
-                Manager.ListManager.InvDataManager.SaveInventory(Manager.ListManager.Inventory);
-                transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
+                Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateComplex(Item.GetComponent<ItemOm>().Item);
             }
         }
     }
