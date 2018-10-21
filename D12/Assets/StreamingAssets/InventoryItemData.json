@@ -1,41 +1,9 @@
 [
   {
-    "GlobalID": 5,
-    "Quantity": 1,
-    "Location": {
-      "X": 0,
-      "Y": 0
-    }
-  },
-  {
-    "GlobalID": 3,
-    "Quantity": 1,
-    "Location": {
-      "X": 0,
-      "Y": 4
-    }
-  },
-  {
-    "GlobalID": 6,
-    "Quantity": 1,
-    "Location": {
-      "X": 2,
-      "Y": 0
-    }
-  },
-  {
     "GlobalID": 2,
     "Quantity": 1,
     "Location": {
-      "X": 2,
-      "Y": 2
-    }
-  },
-  {
-    "GlobalID": 3,
-    "Quantity": 1,
-    "Location": {
-      "X": 4,
+      "X": 0,
       "Y": 0
     }
   }

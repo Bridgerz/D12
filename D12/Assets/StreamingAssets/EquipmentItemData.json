@@ -1,10 +1,79 @@
 {
   "MainHand": {
-    "GlobalID": 0,
+    "GlobalID": 5,
     "Quantity": 1,
     "Location": null
   },
-  "Armor": null,
-  "Offhand": null,
-  "Curios": []
+  "Armor": {
+    "GlobalID": 11,
+    "Quantity": 1,
+    "Location": null
+  },
+  "Offhand": {
+    "GlobalID": 2,
+    "Quantity": 1,
+    "Location": null
+  },
+  "Curios": [
+    {
+      "GlobalID": 15,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 14,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 6,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 7,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 8,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 9,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 10,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 12,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 13,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 14,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 15,
+      "Quantity": 1,
+      "Location": null
+    },
+    {
+      "GlobalID": 9,
+      "Quantity": 1,
+      "Location": null
+    }
+  ]
 }

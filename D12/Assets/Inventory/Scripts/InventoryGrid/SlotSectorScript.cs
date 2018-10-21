@@ -35,12 +35,6 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos);
         }
-        if (parentSlotScript.storedItemObject != null)
-        {
-            invenGridManager.listManager.ToolTip.SetActive(true);
-            invenGridManager.listManager.ToolTip.GetComponent<RectTransform>().pivot = new Vector2(-.05f, 1.05f);
-            invenGridManager.listManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(parentSlotScript.storedItemClass.Item);
-        }
     }
 
     public void ZeroOffset()
@@ -87,7 +81,6 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         sectorScript = null;
         invenGridManager.highlightedSlot = null;
-        invenGridManager.listManager.ToolTip.SetActive(false);
         if (ItemOm.SelectedItem != null)
         {
             invenGridManager.RefrechColor(false);

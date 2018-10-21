@@ -144,21 +144,9 @@
     },
     {
         "GlobalID":6,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Helm",
         "Defenition": "A Fuckin Lit helmet",
-        "Tags": [
-            4,
-            7
-        ],
-        "Enchantments": [
-            {
-            "Effect": "Protects against bitches"
-            },
-            {
-            "Effect": "Increases slut count"
-            }
-        ],
         "Quality": 1,
         "Weight": 2,
         "Size": 
@@ -169,21 +157,9 @@
     },
     {
         "GlobalID":7,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Conquest",
         "Defenition": "Fuckin Lit boots",
-        "Tags": [
-            4,
-            7
-        ],
-        "Enchantments": [
-            {
-            "Effect": "Protects against bitches"
-            },
-            {
-            "Effect": "Increases slut count"
-            }
-        ],
         "Quality": 1,
         "Weight": 2,
         "Size": 
@@ -194,21 +170,9 @@
     },
     {
         "GlobalID":8,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Presence",
         "Defenition": "A Fuckin Lit cape",
-        "Tags": [
-            4,
-            7
-        ],
-        "Enchantments": [
-            {
-            "Effect": "Protects against bitches"
-            },
-            {
-            "Effect": "Increases slut count"
-            }
-        ],
         "Quality": 1,
         "Weight": 2,
         "Size": 
@@ -219,21 +183,9 @@
     },
     {
         "GlobalID":9,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Stride",
         "Defenition": "Fuckin Lit pants",
-        "Tags": [
-            4,
-            7
-        ],
-        "Enchantments": [
-            {
-            "Effect": "Protects against bitches"
-            },
-            {
-            "Effect": "Increases slut count"
-            }
-        ],
         "Quality": 1,
         "Weight": 2,
         "Size": 
@@ -244,21 +196,9 @@
     },
     {
         "GlobalID":10,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Grasp of the Alpha",
         "Defenition": "Fuckin Lit gauntlets",
-        "Tags": [
-            4,
-            7
-        ],
-        "Enchantments": [
-            {
-            "Effect": "Protects against bitches"
-            },
-            {
-            "Effect": "Increases slut count"
-            }
-        ],
         "Quality": 1,
         "Weight": 2,
         "Size": 
@@ -294,17 +234,9 @@
     },
     {
         "GlobalID": 12,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Second Secret",
         "Defenition": "weird thing",
-        "Tags": [
-            1
-        ],
-        "Enchantments": [
-            {
-                "Effect": "You FUCK"
-            }
-        ],
         "Quality": 3,
         "Weight": 2,
         "Size":{
@@ -314,13 +246,9 @@
     },
     {
         "GlobalID": 13,
-        "Type" : 2,
+        "Type" : 1,
         "Title": "Alphas Shadow",
         "Defenition": "shadow thing",
-        "Tags": [
-            2
-        ],
-        "Enchantments": [],
         "Quality": 3,
         "Weight": 2,
         "Size":{

@@ -106,15 +106,29 @@ public class InvenGridManager : MonoBehaviour {
                     listManager.InvDataManager.SaveInventory(listManager.Inventory);
                 }
             }
-            
         }
         else if (Input.GetMouseButtonUp(1)) // right click
         {
             if (highlightedSlot != null && ItemOm.SelectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                listManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateComplex
+                listManager.ToolTip.GetComponent<ItemToolTip>().UpdateComplex
                         (highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item);
             }
+        }
+        if (highlightedSlot == null)
+        {
+            return;
+        }
+        if (highlightedSlot.GetComponent<SlotScript>().storedItemClass != null)
+        {
+            listManager.ToolTip.SetActive(true);
+            listManager.ToolTip.GetComponent<ItemToolTip>()
+                .UpdateSimple(highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item,
+                highlightedSlot.GetComponent<SlotScript>().storedItemObject, false);
+        }
+        else if (highlightedSlot.GetComponent<SlotScript>().storedItemClass == null)
+        {
+            listManager.ToolTip.GetComponent<ItemToolTip>().DeactivateReset();
         }
     }
 

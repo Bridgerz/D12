@@ -66,20 +66,19 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         }
         else if (Input.GetMouseButtonDown(1) && invenManager.selectedButton == null && ItemOm.SelectedItem == null)
         {
-            toolTip.GetComponent<ItemToolTip>().UpdateActivateComplex(item);
+            toolTip.GetComponent<ItemToolTip>().UpdateComplex(item);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         toolTip.SetActive(true);
-        toolTip.GetComponent<RectTransform>().pivot = new Vector2(1.05f, 1.05f);
-        toolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(item);
+        toolTip.GetComponent<ItemToolTip>().UpdateSimple(item, gameObject, true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        toolTip.SetActive(false);
+        toolTip.GetComponent<ItemToolTip>().DeactivateReset();
     }
 
     private void SpawnStoredItem()

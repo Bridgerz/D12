@@ -63,7 +63,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (Occupied && ItemOm.SelectedItem == null) // if selected slot is occupied and there is no selected item
             {
-                Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateComplex(Item.GetComponent<ItemOm>().Item);
+                Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateComplex(Item.GetComponent<ItemOm>().Item);
             }
         }
     }
@@ -72,9 +72,8 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (Occupied)
         {
-            Manager.ListManager.ToolTip.GetComponent<RectTransform>().pivot = new Vector2(1.05f, 1.05f);
             Manager.ListManager.ToolTip.SetActive(true);
-            Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateActivateSimple(Item.GetComponent<ItemOm>().Item);
+            Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateSimple(Item.GetComponent<ItemOm>().Item, gameObject, true);
         }
         if (ItemOm.SelectedItem == null)
         {
@@ -97,7 +96,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Manager.ListManager.ToolTip.SetActive(false);
+        Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().DeactivateReset();
         transform.GetComponent<Image>().color = SlotColorHighlights.Blue;
     }
 }

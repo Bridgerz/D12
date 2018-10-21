@@ -6,12 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Inventory.Scripts.Misc
 {
    
     public class ItemToolTip : MonoBehaviour
     {
+        private bool IsComplex;
+
         // Simple Tool Tip
         public GameObject Weight;
         public GameObject Title;
@@ -23,16 +26,28 @@ namespace Assets.Inventory.Scripts.Misc
         // Complex Tool Tip
         public GameObject Tags;
         public GameObject Enchantments;
-  
+
+        public static Vector2 SIMPLESIZE;
+
+        private void Start()
+        {
+            SIMPLESIZE = transform.GetComponent<RectTransform>().sizeDelta;
+            IsComplex = false;
+        }
 
         private void Update()
         {
-            gameObject.transform.position = Input.mousePosition;
+            if (Input.GetMouseButtonDown(0) && IsComplex)
+            {
+                gameObject.GetComponent<RectTransform>().sizeDelta = SIMPLESIZE;
+                gameObject.SetActive(false);
+            }
         }
 
-        public void UpdateActivateSimple(ItemDm item)
+        public void UpdateSimple(ItemDm item, GameObject itemObject, bool left)
         {
-            gameObject.transform.position = Input.mousePosition;
+            gameObject.GetComponent<Image>().raycastTarget = false;
+            SetPosition(itemObject, left);
             // deactivate variable attributes
             Enchantments.SetActive(false);
             Tags.SetActive(false);
@@ -52,40 +67,78 @@ namespace Assets.Inventory.Scripts.Misc
                 default:
                     break;
             }
+            IsComplex = false;
         }
 
-        public void UpdateActivateComplex(ItemDm item)
+        public void UpdateComplex(ItemDm item)
         {
-            Enchantments.SetActive(false);
-            Tags.SetActive(false);
-            Damage.SetActive(false);
-            Defence.SetActive(false);
-
-            // move object to specified relative point to item
-
-            // stretch size of tooltip to complex size.
-            var rect = gameObject.GetComponent<RectTransform>();
-            rect.sizeDelta = Vector2.Lerp(rect.sizeDelta, new Vector2(rect.sizeDelta.x + 100f, rect.sizeDelta.y), .75f);
-      
-            UpdateEssentials(item);
-
-            switch (item.Type)
+            gameObject.GetComponent<Image>().raycastTarget = true;
+            gameObject.GetComponent<RectTransform>().sizeDelta = SIMPLESIZE;
+            if (!IsComplex)
             {
-                case ItemType.Armor:
-                    SetDefence(item);
-                    SetTags(item);
-                    SetEnchantments(item);
-                    break;
-                case ItemType.Weapon:
-                    SetComplexDamage(item);
-                    SetTags(item);
-                    SetEnchantments(item);
-                    break;
-                case ItemType.Curio:
-                    SetEnchantments(item);
-                    break;
-                default:
-                    break;
+                Enchantments.SetActive(false);
+                Tags.SetActive(false);
+                Damage.SetActive(false);
+                Defence.SetActive(false);
+                var rect = gameObject.GetComponent<RectTransform>();
+                rect.sizeDelta = Vector2.Lerp(rect.sizeDelta, new Vector2(rect.sizeDelta.x + 100f, rect.sizeDelta.y), .75f);
+
+                UpdateEssentials(item);
+
+                switch (item.Type)
+                {
+                    case ItemType.Armor:
+                        SetDefence(item);
+                        SetTags(item);
+                        SetEnchantments(item);
+                        break;
+                    case ItemType.Wielded:
+                        SetComplexDamage(item);
+                        SetTags(item);
+                        SetEnchantments(item);
+                        break;
+                    case ItemType.Curio:
+                        SetEnchantments(item);
+                        break;
+                    default:
+                        break;
+                }
+                IsComplex = true;
+            }
+        }
+
+        private void SetPosition(GameObject itemObject, bool left)
+        {
+            var pivot = itemObject.GetComponent<RectTransform>().pivot;
+            var objectRect = itemObject.GetComponent<RectTransform>();
+            var offset = new Vector3();
+            if (pivot == new Vector2(.5f, .5f) && left)
+            {
+                offset = offset = new Vector3(-1 * objectRect.sizeDelta.x / 2, objectRect.sizeDelta.y / 2);
+            }
+            else
+            {
+                offset = new Vector3(objectRect.sizeDelta.x, objectRect.sizeDelta.y);
+                
+            }
+            gameObject.transform.position = itemObject.transform.position;
+            gameObject.transform.localPosition += offset;
+            if (left)
+            {
+                GetComponent<RectTransform>().pivot = new Vector2(1f, 1f);
+            }
+            else
+            {
+                GetComponent<RectTransform>().pivot = new Vector2(0f, 1f);
+            }
+        }
+
+        public void DeactivateReset()
+        {
+            if (!IsComplex)
+            { 
+                gameObject.GetComponent<RectTransform>().sizeDelta = SIMPLESIZE;
+                gameObject.SetActive(false);
             }
         }
 
@@ -119,7 +172,7 @@ namespace Assets.Inventory.Scripts.Misc
 
         private void SetEnchantments(ItemDm item)
         {
-            if (item.Enchantments.Count > 0)
+            if (item.Enchantments != null && item.Enchantments.Count > 0)
             {
                 Enchantments.SetActive(true);
                 string enchantString = "Enchantments: ";
