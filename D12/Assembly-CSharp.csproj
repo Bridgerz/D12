@@ -60,12 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3d Table Top\Book Page\Examples\scripts\BotAnimationControl.cs" />
-    <Compile Include="Assets\3d Table Top\Book Page\Scripts\AutoFlip.cs" />
-    <Compile Include="Assets\3d Table Top\Book Page\Scripts\BookPro.cs" />
-    <Compile Include="Assets\3d Table Top\Book Page\Scripts\PageFlipper.cs" />
-    <Compile Include="Assets\3d Table Top\Book Page\Scripts\Tween.cs" />
-    <Compile Include="Assets\3d Table Top\Scripts\BookPhysics.cs" />
     <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
     <Compile Include="Assets\Classes\Character\InfoManager\Information.cs" />
@@ -78,56 +72,58 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
-    <Compile Include="Assets\Inventory\Equipment\Scripts\EquipManager.cs" />
-    <Compile Include="Assets\Inventory\Equipment\Scripts\EquipSlot.cs" />
-    <Compile Include="Assets\Inventory\Equipment\Scripts\InventoryBook.cs" />
-    <Compile Include="Assets\Inventory\Equipment\Scripts\InventoryManager.cs" />
-    <Compile Include="Assets\Inventory\Scripts\CreateItem\ItemConverter.cs" />
-    <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
-    <Compile Include="Assets\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
-    <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InvenGridManager.cs" />
-    <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InvenGridScript.cs" />
-    <Compile Include="Assets\Inventory\Scripts\InventoryGrid\InventoryDataManager.cs" />
-    <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotScript.cs" />
-    <Compile Include="Assets\Inventory\Scripts\InventoryGrid\SlotSectorScript.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ArmorDm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\CurioDm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\EquipmentSave.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\InventoryItemSave.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemDm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Enchantment.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\ItemType.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Quality.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\SlotLocation.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemModels\Tag.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\ItemOm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Item\WeaponDm.cs" />
-    <Compile Include="Assets\Inventory\Scripts\ItemList\EquipmentItems.cs" />
-    <Compile Include="Assets\Inventory\Scripts\ItemList\ItemButtonScript.cs" />
-    <Compile Include="Assets\Inventory\Scripts\ItemList\ItemListManager.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Misc\IntVector2.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Misc\ItemToolTip.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
-    <Compile Include="Assets\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\3d Table Top\Art\InnerDriveStudios\ElementalTomes\readme.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\JsonDotNet\link.xml" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\EquipManager.cs" />
+    <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\EquipSlot.cs" />
+    <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\InventoryBook.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\CreateItem\ItemConverter.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\CreateItem\LoadItemDatabase.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\CreateItem\LoadLootItems.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\InventoryGrid\InvenGridManager.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\InventoryGrid\InvenGridScript.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\InventoryGrid\InventoryDataManager.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\InventoryGrid\SlotScript.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\InventoryGrid\SlotSectorScript.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ArmorDm.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\CurioDm.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\EquipmentSave.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\InventoryItemSave.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemDm.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemModels\Enchantment.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemModels\ItemType.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemModels\Quality.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemModels\SlotLocation.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemModels\Tag.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\ItemOm.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Item\WeaponDm.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\ItemList\EquipmentItems.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\ItemList\ItemButtonScript.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\ItemList\ItemListManager.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Misc\IntVector2.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Misc\ItemToolTip.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
+    <Compile Include="Assets\Tools\ToolBox\ToolBoxScript.cs" />
+    <Compile Include="Assets\Tools\ToolBox\ToolBoxToggle.cs" />
+    <Compile Include="Assets\Tools\ToolBox\ToolScript.cs" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Utilities\Art\InnerDriveStudios\ElementalTomes\readme.txt" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Utilities\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Utilities\JsonDotNet\link.xml" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/bridg/Desktop/D12/D12/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -338,14 +334,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files (x86)/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/bridg/Desktop/D12/D12/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/bridg/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/bridg/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Users/bridg/Desktop/D12/D12/Assets/Utilities/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files (x86)/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

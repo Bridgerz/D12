@@ -6,5 +6,21 @@
       "X": 0,
       "Y": 0
     }
+  },
+  {
+    "GlobalID": 5,
+    "Quantity": 1,
+    "Location": {
+      "X": 9,
+      "Y": 2
+    }
+  },
+  {
+    "GlobalID": 2,
+    "Quantity": 1,
+    "Location": {
+      "X": 0,
+      "Y": 4
+    }
   }
 ]

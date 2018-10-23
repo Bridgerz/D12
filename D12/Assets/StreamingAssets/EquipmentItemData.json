@@ -1,6 +1,6 @@
 {
   "MainHand": {
-    "GlobalID": 5,
+    "GlobalID": 0,
     "Quantity": 1,
     "Location": null
   },
@@ -9,11 +9,7 @@
     "Quantity": 1,
     "Location": null
   },
-  "Offhand": {
-    "GlobalID": 2,
-    "Quantity": 1,
-    "Location": null
-  },
+  "Offhand": null,
   "Curios": [
     {
       "GlobalID": 15,
