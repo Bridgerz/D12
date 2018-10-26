@@ -7,6 +7,7 @@ TagManager:
   - DragParent
   - InvenPanel
   - ItemDatabase
+  - ToolTip
   layers:
   - Default
   - TransparentFX
