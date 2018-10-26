@@ -72,7 +72,6 @@
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_Firebolt.cs" />
     <Compile Include="Assets\Classes\Traits\SpellTraits\Trait_LayOnHands.cs" />
     <Compile Include="Assets\Classes\Traits\Trait.cs" />
-    <Compile Include="Assets\FaceCamera.cs" />
     <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\EquipManager.cs" />
     <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\EquipSlot.cs" />
     <Compile Include="Assets\Tools\Inventory\Equipment\Scripts\InventoryBook.cs" />
@@ -104,6 +103,7 @@
     <Compile Include="Assets\Tools\Inventory\Scripts\Misc\ItemToolTip.cs" />
     <Compile Include="Assets\Tools\Inventory\Scripts\Misc\ObjectPoolScript.cs" />
     <Compile Include="Assets\Tools\Inventory\Scripts\Misc\SimpleToolTip.cs" />
+    <Compile Include="Assets\Tools\Inventory\Scripts\Misc\ToolTipOnHover.cs" />
     <Compile Include="Assets\Tools\Inventory\Scripts\Sort&amp;Filter\SortAndFilterManager.cs" />
     <Compile Include="Assets\Tools\ToolBox\ToolBoxScript.cs" />
     <Compile Include="Assets\Tools\ToolBox\ToolBoxToggle.cs" />

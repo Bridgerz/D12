@@ -116,19 +116,14 @@ public class InvenGridManager : MonoBehaviour {
                         highlightedSlot.GetComponent<SlotScript>().storedItemObject, false);
             }
         }
-        if (highlightedSlot == null)
-        {
-            listManager.ToolTip.GetComponent<ItemToolTip>().DeactivateReset();
-            return;
-        }
-        if (highlightedSlot.GetComponent<SlotScript>().storedItemClass != null)
+        if (highlightedSlot != null && highlightedSlot.GetComponent<SlotScript>().storedItemClass != null)
         {
             listManager.ToolTip.SetActive(true);
             listManager.ToolTip.GetComponent<ItemToolTip>()
                 .UpdateSimple(highlightedSlot.GetComponent<SlotScript>().storedItemClass.Item,
                 highlightedSlot.GetComponent<SlotScript>().storedItemObject, false);
         }
-        else if (highlightedSlot.GetComponent<SlotScript>().storedItemClass == null)
+        else if (highlightedSlot != null && highlightedSlot.GetComponent<SlotScript>().storedItemClass == null)
         {
             listManager.ToolTip.GetComponent<ItemToolTip>().DeactivateReset();
         }
