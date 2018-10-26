@@ -63,7 +63,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if (Occupied && ItemOm.SelectedItem == null) // if selected slot is occupied and there is no selected item
             {
-                Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateComplex(Item.GetComponent<ItemOm>().Item);
+                Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateComplex(Item.GetComponent<ItemOm>().Item, gameObject, true);
             }
         }
     }

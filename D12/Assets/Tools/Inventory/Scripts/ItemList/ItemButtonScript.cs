@@ -66,7 +66,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         }
         else if (Input.GetMouseButtonDown(1) && invenManager.selectedButton == null && ItemOm.SelectedItem == null)
         {
-            toolTip.GetComponent<ItemToolTip>().UpdateComplex(item);
+            toolTip.GetComponent<ItemToolTip>().UpdateComplex(item, gameObject, true);
         }
     }
 
