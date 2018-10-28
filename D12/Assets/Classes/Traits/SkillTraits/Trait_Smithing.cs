@@ -8,7 +8,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Smithing1 : SkillTrait
     {
-        public Smithing1(bool active) : base("Smithing 1", "+1 to Work rolls involving smith tools", 1, active) { }
+        public Smithing1(TraitStatus status) : base("Smithing 1", "+1 to Work rolls involving smith tools", 1, status) { }
     }
 
     /// <summary>
@@ -16,7 +16,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Smithing2 : SkillTrait
     {
-        public Smithing2(bool active) : base("Smithing 2", "+2 to Work rolls involving smith tools", 1, active) { }
+        public Smithing2(TraitStatus status) : base("Smithing 2", "+2 to Work rolls involving smith tools", 1, status) { }
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Smithing3 : SkillTrait
     {
-        public Smithing3(bool active) : base("Smithing 3", "+3 to Work rolls involving smith tools", 1, active) { }
+        public Smithing3(TraitStatus status) : base("Smithing 3", "+3 to Work rolls involving smith tools", 1, status) { }
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Smithing4 : SkillTrait
     {
-        public Smithing4(bool active) : base("Smithing 4", "+4 to Work rolls involving smith tools", 1, active) { }
+        public Smithing4(TraitStatus status) : base("Smithing 4", "+4 to Work rolls involving smith tools", 1, status) { }
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Smithing5 : SkillTrait
     {
-        public Smithing5(bool active) : base("Smithing 5", "+5 to Work rolls involving smith tools", 1, active) { }
+        public Smithing5(TraitStatus status) : base("Smithing 5", "+5 to Work rolls involving smith tools", 1, status) { }
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Weaponsmith : SkillTrait
     {
-        public Weaponsmith(bool active) : base("Weaponsmith", "+2 free points to weapon blanks, does not count towards Apathy", 1, active) { IsCrossroad = true; }
+        public Weaponsmith(TraitStatus status) : base("Weaponsmith", "+2 free points to weapon blanks, does not count towards Apathy", 1, status) { IsCrossroad = true; }
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Armorsmith : SkillTrait
     {
-        public Armorsmith(bool active) : base("Armorsmith", "+1 Defence to armors you make, counts towards Apathy", 1, active) { IsCrossroad = true; }
+        public Armorsmith(TraitStatus status) : base("Armorsmith", "+1 Defence to armors you make, counts towards Apathy", 1, status) { IsCrossroad = true; }
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Artificer : SkillTrait
     {
-        public Artificer(bool active) : base("Artificer", "arts you make have -1 Apathy", 1, active) { IsCrossroad = true; }
+        public Artificer(TraitStatus status) : base("Artificer", "arts you make have -1 Apathy", 1, status) { IsCrossroad = true; }
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Gilder : SkillTrait
     {
-        public Gilder(bool active) : base("Gilder", "ignore the gilded tags negative effects", 1, active) { IsCrossroad = true; }
+        public Gilder(TraitStatus status) : base("Gilder", "ignore the gilded tags negative effects", 1, status) { IsCrossroad = true; }
     }
 
     /// <summary>
@@ -80,6 +80,6 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Engraver : SkillTrait
     {
-        public Engraver(bool active) : base("Engraver", "ignore ingraving's negative effects", 1, active) { IsCrossroad = true; }
+        public Engraver(TraitStatus status) : base("Engraver", "ignore ingraving's negative effects", 1, status) { IsCrossroad = true; }
     }
 }

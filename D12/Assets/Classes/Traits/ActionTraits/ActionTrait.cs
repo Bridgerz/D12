@@ -36,7 +36,7 @@ namespace Assets.Classes.Traits
         /// <param name="numTargets">Number of targets for the action</param>
         /// <param name="active">Flag indicating if trait has been purchased (unlocked)</param>
         /// <param name="currentCount">Number of times action has been used today</param>
-        public ActionTrait(string name, string desc, int cost, int dailyCount, int numTargets, bool active, int currentCount = 0) : base(name, desc, cost, active)
+        public ActionTrait(string name, string desc, int cost, int dailyCount, int numTargets, TraitStatus status, int currentCount = 0) : base(name, desc, cost, status)
         {
             this.DailyCount = dailyCount;
             this.NumTargets = numTargets;

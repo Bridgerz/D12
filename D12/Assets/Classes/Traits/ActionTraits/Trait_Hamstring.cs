@@ -11,7 +11,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Hamstring1 : ActionTrait
     {
-        public Hamstring1(bool active) : base("Hamstring 1", "make a basic attack which slows the target by 30% if it hits", 1, 3, 1, active) { }
+        public Hamstring1(TraitStatus status) : base("Hamstring 1", "make a basic attack which slows the target by 30% if it hits", 1, 3, 1, status) { }
 
         public override bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -24,7 +24,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Hamstring2 : ActionTrait
     {
-        public Hamstring2(bool active) : base("Hamstring 2", "make a basic attack which slows the target by 40% if it hits", 1, 3, 1, active) { }
+        public Hamstring2(TraitStatus status) : base("Hamstring 2", "make a basic attack which slows the target by 40% if it hits", 1, 3, 1, status) { }
 
         public override bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -37,7 +37,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Hamstring3 : ActionTrait
     {
-        public Hamstring3(bool active) : base("Hamstring 3", "make a basic attack which slows the target by 40% if it hits", 1, 4, 1, active) { }
+        public Hamstring3(TraitStatus status) : base("Hamstring 3", "make a basic attack which slows the target by 40% if it hits", 1, 4, 1, status) { }
 
         public override bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -50,7 +50,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Hamstring4 : ActionTrait
     {
-        public Hamstring4(bool active) : base("Hamstring 4", "make a basic attack which slows the target by 50% if it hits", 1, 4, 1, active) { }
+        public Hamstring4(TraitStatus status) : base("Hamstring 4", "make a basic attack which slows the target by 50% if it hits", 1, 4, 1, status) { }
 
         public override bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -63,7 +63,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Hamstring5 : ActionTrait
     {
-        public Hamstring5(bool active) : base("Hamstring 5", "make a basic attack which slows the target by 50% if it hits", 1, 5, 1, active) { }
+        public Hamstring5(TraitStatus status) : base("Hamstring 5", "make a basic attack which slows the target by 50% if it hits", 1, 5, 1, status) { }
 
         public override bool Perform(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -76,7 +76,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class DeepWound : SkillTrait
     {
-        public DeepWound(bool active) : base("Deep Wound", "1-5's on damage rolls for Hamstring are 6's", 1, active) { IsCrossroad = true; }
+        public DeepWound(TraitStatus status) : base("Deep Wound", "1-5's on damage rolls for Hamstring are 6's", 1, status) { IsCrossroad = true; }
     }
 
 
@@ -85,7 +85,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Achilles : EffectTrait
     {
-        public Achilles(bool active) : base("Achilles","slow is increased by 20%", 1, active) { IsCrossroad = true; }
+        public Achilles(TraitStatus status) : base("Achilles","slow is increased by 20%", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {
@@ -98,7 +98,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Backswing : EffectTrait
     {
-        public Backswing(bool active) : base("Backswing", "if Hamstring misses once, it is used again for free.", 1, active) { IsCrossroad = true; }
+        public Backswing(TraitStatus status) : base("Backswing", "if Hamstring misses once, it is used again for free.", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {
@@ -111,7 +111,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class LeaveItBleeding : EffectTrait
     {
-        public LeaveItBleeding(bool active) : base("LeaveItBleeding", "targets slowed by Hamstring take 1 damage when they take the move.", 1, active) { IsCrossroad = true; }
+        public LeaveItBleeding(TraitStatus status) : base("LeaveItBleeding", "targets slowed by Hamstring take 1 damage when they take the move.", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {

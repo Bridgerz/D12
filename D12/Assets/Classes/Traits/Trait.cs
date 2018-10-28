@@ -29,7 +29,7 @@ namespace Assets.Classes.Traits
         /// <summary>
         /// Flag if trait has been unlocked and is active
         /// </summary>
-        public bool Active { get; set; }
+        public TraitStatus Status { get; set; }
 
         /// <summary>
         /// Flag if trait is a crossroad trait
@@ -53,14 +53,23 @@ namespace Assets.Classes.Traits
         /// <param name="desc">Description of trait and its effects</param>
         /// <param name="cost">EXP cost to purchase (unlock) trait</param>
         /// <param name="active">Flag indicating trait's lock/unlock status</param>
-        public Trait(string name, string desc, int cost, bool active)
+        public Trait(string name, string desc, int cost, TraitStatus status)
         {
             children = new List<Trait>();
             parents = new List<Trait>();
-            Active = active;
+            Status = status;
             Cost = cost;
             Desc = desc;
             Name = name;
+            IsCrossroad = false;
         }
+    }
+
+    public enum TraitStatus
+    {
+        locked,
+        purchasble,
+        active,
+        inactive
     }
 }

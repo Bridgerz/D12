@@ -12,7 +12,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Firebolt1 : SpellTrait
     {
-        public Firebolt1(bool active) : base("Firebolt 1", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, active) { }
+        public Firebolt1(TraitStatus status) : base("Firebolt 1", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, status) { }
 
         public override bool Cast(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -43,7 +43,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Firebolt2 : SpellTrait
     {
-        public Firebolt2(bool active) : base("Firebolt 2", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, active) { }
+        public Firebolt2(TraitStatus status) : base("Firebolt 2", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, status) { }
 
         public override bool Cast(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -56,7 +56,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Firebolt3 : SpellTrait
     {
-        public Firebolt3(bool active) : base("Firebolt 3", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, active) { }
+        public Firebolt3(TraitStatus status) : base("Firebolt 3", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, status) { }
 
         public override bool Cast(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -69,7 +69,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Firebolt4 : SpellTrait
     {
-        public Firebolt4(bool active) : base("Firebolt 4", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, active) { }
+        public Firebolt4(TraitStatus status) : base("Firebolt 4", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, status) { }
 
         public override bool Cast(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -83,7 +83,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class Firebolt5 : SpellTrait
     {
-        public Firebolt5(bool active) : base("Firebolt 5", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, active) { }
+        public Firebolt5(TraitStatus status) : base("Firebolt 5", "sling hissing fire at a target, dealing a hit of fire damage", 1, 1, 80, 1, status) { }
 
         public override bool Cast(out string msg, int roll, List<BaseCharacter> badTargets = null, List<BaseCharacter> goodTargets = null, List<object> additionalObjects = null)
         {
@@ -96,7 +96,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class HomeseekingEmbers : EffectTrait
     {
-        public HomeseekingEmbers(bool active) : base("Homeseeking Embers", "missed firebolts consume no mana", 1, active) { IsCrossroad = true; }
+        public HomeseekingEmbers(TraitStatus status) : base("Homeseeking Embers", "missed firebolts consume no mana", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {
@@ -109,7 +109,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class UnerringBolt : SkillTrait
     {
-        public UnerringBolt(bool active) : base("Unerring Bolt", "+3 to rolls when attacking with firebolt", 1, active) { IsCrossroad = true; }
+        public UnerringBolt(TraitStatus status) : base("Unerring Bolt", "+3 to rolls when attacking with firebolt", 1, status) { IsCrossroad = true; }
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class TwoEmbers : EffectTrait
     {
-        public TwoEmbers(bool active) : base("Two Embers", "firebolt casts twice targeting two different targets", 1, active) { IsCrossroad = true; }
+        public TwoEmbers(TraitStatus status) : base("Two Embers", "firebolt casts twice targeting two different targets", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {
@@ -130,7 +130,7 @@ namespace Assets.Classes.Traits
     /// </summary>
     public class IgneosBirth : EffectTrait
     {
-        public IgneosBirth(bool active) : base("Igneos Birth", "after casting firebolt you may choose to continue casting firebolt for free as long as no other action is taken", 1, active) { IsCrossroad = true; }
+        public IgneosBirth(TraitStatus status) : base("Igneos Birth", "after casting firebolt you may choose to continue casting firebolt for free as long as no other action is taken", 1, status) { IsCrossroad = true; }
 
         public override bool DoSomething(out string msg, List<object> additionalObjects = null)
         {

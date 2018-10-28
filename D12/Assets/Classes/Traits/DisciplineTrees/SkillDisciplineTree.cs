@@ -15,16 +15,16 @@ namespace Assets.Classes.Traits
 
         public SkillDisciplineTree()
         {
-            root = new Trait("root", "root of skill tree", 0, true);
+            root = new Trait("root", "root of skill tree", 0, TraitStatus.active);
 
             // Lockpicking
-            Lockpicking1 l1 = new Lockpicking1(false);
-            Lockpicking2 l2 = new Lockpicking2(false);
-            Lockpicking3 l3 = new Lockpicking3(false);
-            Lockpicking4 l4 = new Lockpicking4(false);
-            Lockpicking5 l5 = new Lockpicking5(false);
-            Safebreaker l5_1= new Safebreaker(false);
-            Vandal l5_2 = new Vandal(false);
+            Lockpicking1 l1 = new Lockpicking1(TraitStatus.inactive);
+            Lockpicking2 l2 = new Lockpicking2(TraitStatus.inactive);
+            Lockpicking3 l3 = new Lockpicking3(TraitStatus.inactive);
+            Lockpicking4 l4 = new Lockpicking4(TraitStatus.inactive);
+            Lockpicking5 l5 = new Lockpicking5(TraitStatus.inactive);
+            Safebreaker l5_1= new Safebreaker(TraitStatus.inactive);
+            Vandal l5_2 = new Vandal(TraitStatus.inactive);
             Link(root, l1);
             Link(l1, l2);
             Link(l2, l3);
@@ -34,13 +34,13 @@ namespace Assets.Classes.Traits
             Link(l5, l5_2);
 
             // Deception
-            Deception1 d1 = new Deception1(false);
-            Deception2 d2 = new Deception2(false);
-            Deception3 d3 = new Deception3(false);
-            Pawner d3_1 = new Pawner(false);
-            SmoothTalker d3_2 = new SmoothTalker(false);
-            Deception4 d4 = new Deception4(false);
-            Deception5 d5 = new Deception5(false);
+            Deception1 d1 = new Deception1(TraitStatus.inactive);
+            Deception2 d2 = new Deception2(TraitStatus.inactive);
+            Deception3 d3 = new Deception3(TraitStatus.inactive);
+            Pawner d3_1 = new Pawner(TraitStatus.inactive);
+            SmoothTalker d3_2 = new SmoothTalker(TraitStatus.inactive);
+            Deception4 d4 = new Deception4(TraitStatus.inactive);
+            Deception5 d5 = new Deception5(TraitStatus.inactive);
             Link(root, d1);
             Link(d1, d2);
             Link(d2, d3);
@@ -51,16 +51,16 @@ namespace Assets.Classes.Traits
             Link(d4, d5);
 
             // Smithing
-            Smithing1 s1 = new Smithing1(false);
-            Smithing2 s2 = new Smithing2(false);
-            Smithing3 s3 = new Smithing3(false);
-            Weaponsmith s3_1 = new Weaponsmith(false);
-            Armorsmith s3_2 = new Armorsmith(false);
-            Artificer s3_3 = new Artificer(false);
-            Smithing4 s4 = new Smithing4(false);
-            Smithing5 s5 = new Smithing5(false);
-            Gilder s5_1 = new Gilder(false);
-            Engraver s5_2 = new Engraver(false);
+            Smithing1 s1 = new Smithing1(TraitStatus.inactive);
+            Smithing2 s2 = new Smithing2(TraitStatus.inactive);
+            Smithing3 s3 = new Smithing3(TraitStatus.inactive);
+            Weaponsmith s3_1 = new Weaponsmith(TraitStatus.inactive);
+            Armorsmith s3_2 = new Armorsmith(TraitStatus.inactive);
+            Artificer s3_3 = new Artificer(TraitStatus.inactive);
+            Smithing4 s4 = new Smithing4(TraitStatus.inactive);
+            Smithing5 s5 = new Smithing5(TraitStatus.inactive);
+            Gilder s5_1 = new Gilder(TraitStatus.inactive);
+            Engraver s5_2 = new Engraver(TraitStatus.inactive);
             Link(root, s1);
             Link(s1, s2);
             Link(s2, s3);

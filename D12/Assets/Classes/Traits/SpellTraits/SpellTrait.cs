@@ -36,12 +36,11 @@ namespace Assets.Classes.Traits
         /// <param name="range">Spell's range in meters</param>
         /// <param name="numTargets">Number of targets spell affects</param>
         /// <param name="active">Flag indicating if trait has been purchased (unlocked)</param>
-        public SpellTrait(string name, string desc, int cost, int manaCost, int range, int numTargets, bool active) : base(name, desc, cost, active)
+        public SpellTrait(string name, string desc, int cost, int manaCost, int range, int numTargets, TraitStatus status) : base(name, desc, cost, status)
         {
             ManaCost = manaCost;
             Range = range;
             NumTargets = numTargets;
-            IsCrossroad = false;
         }
 
         /// <summary>

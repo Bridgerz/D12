@@ -13,31 +13,31 @@ namespace Assets.Classes.Traits
     {
         public Trait root;
 
-        public Linguist1 linguist1 = new Linguist1(false);
-        public Linguist2 linguist2 = new Linguist2(false);
-        public Linguist3 linguist3 = new Linguist3(false);
-        public Multilinguist multilinguist = new Multilinguist(false);
-        public Transcriber transcriber = new Transcriber(false);
-        public Linguist4 linguist4 = new Linguist4(false);
-        public Linguist5 linguist5 = new Linguist5(false);
-        public Archlinguist archlinguist = new Archlinguist(false);
-        public GlobalLocal globalLocal = new GlobalLocal(false);
+        public Linguist1 linguist1 = new Linguist1(TraitStatus.purchasble);
+        public Linguist2 linguist2 = new Linguist2(TraitStatus.inactive);
+        public Linguist3 linguist3 = new Linguist3(TraitStatus.inactive);
+        public Multilinguist multilinguist = new Multilinguist(TraitStatus.inactive);
+        public Transcriber transcriber = new Transcriber(TraitStatus.inactive);
+        public Linguist4 linguist4 = new Linguist4(TraitStatus.inactive);
+        public Linguist5 linguist5 = new Linguist5(TraitStatus.inactive);
+        public Archlinguist archlinguist = new Archlinguist(TraitStatus.inactive);
+        public GlobalLocal globalLocal = new GlobalLocal(TraitStatus.inactive);
 
-        public ChromicInsight1 chromicInsight1 = new ChromicInsight1(false);
-        public ChromicInsight2 chromicInsight2 = new ChromicInsight2(false);
-        public ChromicInsight3 chromicInsight3 = new ChromicInsight3(false);
+        public ChromicInsight1 chromicInsight1 = new ChromicInsight1(TraitStatus.purchasble);
+        public ChromicInsight2 chromicInsight2 = new ChromicInsight2(TraitStatus.inactive);
+        public ChromicInsight3 chromicInsight3 = new ChromicInsight3(TraitStatus.inactive);
 
-        public Religion1 religion1 = new Religion1(false);
-        public Religion2 religion2 = new Religion2(false);
-        public Religion3 religion3 = new Religion3(false);
-        public Religion4 religion4 = new Religion4(false);
-        public Religion5 religion5 = new Religion5(false);
-        public Philotheos philotheos = new Philotheos(false);
-        public Blessed blessed = new Blessed(false);
+        public Religion1 religion1 = new Religion1(TraitStatus.purchasble);
+        public Religion2 religion2 = new Religion2(TraitStatus.inactive);
+        public Religion3 religion3 = new Religion3(TraitStatus.inactive);
+        public Religion4 religion4 = new Religion4(TraitStatus.inactive);
+        public Religion5 religion5 = new Religion5(TraitStatus.inactive);
+        public Philotheos philotheos = new Philotheos(TraitStatus.inactive);
+        public Blessed blessed = new Blessed(TraitStatus.inactive);
 
         public AccumenDisciplineTree()
         {
-            root = new Trait("root", "root of accumen tree", 0, true);
+            root = new Trait("root", "root of accumen tree", 0, TraitStatus.active);
 
             link(root, linguist1);
             link(linguist1, linguist2);
