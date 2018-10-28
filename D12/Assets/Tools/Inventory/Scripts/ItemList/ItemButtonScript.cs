@@ -41,7 +41,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
                     return;
                 }
                 SpawnStoredItem(); //swap item when no selectedButton and selectedItem
-                toolTip.SetActive(false);
+                toolTip.GetComponent<ItemToolTip>().DeactivateReset();
             }
             if (ItemOm.SelectedItem == null) // if selectedItem is still null then turn on too much weight animation
             {
@@ -66,13 +66,14 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         }
         else if (Input.GetMouseButtonDown(1) && invenManager.selectedButton == null && ItemOm.SelectedItem == null)
         {
+            // add updtate statement here from ItemListManager. 
+
             toolTip.GetComponent<ItemToolTip>().UpdateComplex(item, gameObject, true);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        toolTip.SetActive(true);
         toolTip.GetComponent<ItemToolTip>().UpdateSimple(item, gameObject, true);
     }
 
@@ -98,6 +99,7 @@ public class ItemButtonScript : MonoBehaviour ,IPointerEnterHandler, IPointerExi
         else
         {
             ItemOm.SelectedItem = null;
+            ItemOm.IsDragging = false;
         }
     }
 

@@ -41,7 +41,7 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     ItemOm.SelectedFromEquipment = true;
                     Item.transform.SetParent(GameObject.Find("DragParent").transform);
                     ItemOm.IsDragging = true;
-                    Manager.ListManager.ToolTip.SetActive(false);
+                    Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().DeactivateReset();
                     Occupied = false;
                     transform.GetComponent<Image>().color = SlotColorHighlights.Green;
                 }
@@ -72,7 +72,6 @@ public class EquipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (Occupied)
         {
-            Manager.ListManager.ToolTip.SetActive(true);
             Manager.ListManager.ToolTip.GetComponent<ItemToolTip>().UpdateSimple(Item.GetComponent<ItemOm>().Item, gameObject, true);
         }
         if (ItemOm.SelectedItem == null)
