@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Classes\Character\BaseCharacter.cs" />
+    <Compile Include="Assets\Classes\Character\PlayerCharacter.cs" />
     <Compile Include="Assets\Classes\Character\CurrencyManager\Wallet.cs" />
     <Compile Include="Assets\Classes\Character\InfoManager\Information.cs" />
     <Compile Include="Assets\Classes\Character\StatsManager\Stats.cs" />

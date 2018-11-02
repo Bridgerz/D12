@@ -47,6 +47,18 @@ namespace Assets.Classes.Traits
         public List<Trait> children;
 
         /// <summary>
+        /// Returns true if a trait is not a crossroad or is a crossroad
+        /// where its purchasable condition is satisfied.
+        /// </summary>
+        /// <param name="system"></param>
+        /// <param name="additionalObjs"></param>
+        /// <returns></returns>
+        public virtual bool IsCrossroadSatisfied(TraitSystem system, object[] additionalObjs)
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Constructor: Initializes a Trait with a name, desc, cost and active flag
         /// </summary>
         /// <param name="name">Name of trait</param>
@@ -69,6 +81,7 @@ namespace Assets.Classes.Traits
     {
         locked,
         purchasble,
+        purchased,
         active,
         inactive
     }

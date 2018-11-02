@@ -1,15 +1,5 @@
 ﻿/// BaseCharacter.cs
 /// D12 Team
-/// This class represents a single player and contains their:
-/// - Attributes (TODO)
-/// - Stats (TODO)
-/// - Traits (TODO)
-/// - Inventory (TODO)
-/// - Currency Info (WIP)
-/// - Flavor Info (WIP)
-/// - Multiplayer information (TODO)
-
-/// (CTRL + M), (CTRL + O) to collapse all comments and functions
 
 using System;
 using Assets.Classes.Traits;
@@ -37,11 +27,6 @@ namespace Assets.Classes.Character
         public Stats Stats;
 
         /// <summary>
-        /// Trait management system
-        /// </summary>
-        public TraitSystem TraitTrees;
-
-        /// <summary>
         /// Unique player identifier
         /// </summary>
         public Guid Guid { get; private set; }
@@ -54,17 +39,7 @@ namespace Assets.Classes.Character
             Info = new Information();
             Wallet = new Wallet();
             Stats = new Stats();
-            TraitTrees = new TraitSystem();
             Guid = new Guid();
-        }
-
-        /// <summary>
-        /// Constructor: Initializes components from a save file (returning character)
-        /// </summary>
-        /// <param name="savefile">Path to save file</param>
-        public BaseCharacter(string savefile)
-        {
-            // TODO
         }
     }
 }
